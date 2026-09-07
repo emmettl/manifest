@@ -11,6 +11,8 @@ export interface StudySource {
   evidence: Evidence
   license: string
   publication: 'synthetic-only' | 'review-required' | 'approved'
+  url?: string
+  classification?: string
 }
 export interface TrackStudy {
   schemaVersion: 1
@@ -22,6 +24,7 @@ export interface TrackStudy {
   source: StudySource
   vessels: Vessel[]
   segments: TrackSegment[]
+  audit?: { maxGapSeconds: number; maxSpeedKnots: number; gapSplits: number; speedSplits: number; classSplits: number }
 }
 /** Presence is deliberately not a track: it cannot drive a directional vessel mark. */
 export interface PresenceStudy {

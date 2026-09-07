@@ -15,6 +15,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "data:demo": "node scripts/generate-demo.mjs",
     "data:compile": "node scripts/compile-ais.mjs",
+    "data:noaa": "node scripts/noaa-sample.mjs",
     "check:boundary": "node scripts/check-boundary.mjs",
     "check:bundle": "node scripts/check-bundle.mjs",
     "check": "npm run check:boundary && npm test && npm run build && npm run check:bundle",

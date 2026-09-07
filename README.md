@@ -30,13 +30,31 @@ React, TypeScript and Vite. MANIFEST consumes the published `@motionstudies/web`
 
 Every push to `main` runs the checks and deploys their exact `dist` artifact to GitHub Pages. Pull requests run the same checks without deployment. Six browser regressions check the built site’s desktop framing and canvas sizing before deployment. `Deploy Pages` can also be run manually. The repository’s Pages source must be **GitHub Actions**. No provider keys or deployment secrets are required; deployment uses the workflow’s Pages and OIDC permissions.
 
-Relative Vite asset paths support the `/manifest/` project URL. The public folder contains only the synthetic study, pinned Natural Earth land geometry and favicon. Raw provider data and local compilations belong in ignored `data/raw/` and `data/compiled/` directories.
+Relative Vite asset paths support the `/manifest/` project URL. Public movement data contains only the synthetic study, alongside pinned Natural Earth land and port geography. Raw provider data and local compilations belong in ignored `data/raw/` and `data/compiled/` directories.
+
+## Local NOAA observation review
+
+A real 72-hour LA/Long Beach sample is now supported alongside the public synthetic demo. It contains 84 NOAA cargo-class vessels, 29 tankers and 117,177 received positions from 1–3 January 2025. No positions are downsampled. See the [source, acquisition and quality notes](docs/NOAA-SAMPLE.md).
+
+With Node and the `zstd` CLI installed:
+
+```sh
+# First acquisition: about 572 MB of compressed AIS plus detailed Natural Earth land.
+npm run data:noaa -- --download
+# Subsequent rebuilds use the retained archives and metadata, without network access.
+npm run data:noaa
+npm run dev
+```
+
+Open `http://127.0.0.1:5173/?study=noaa-la-2025` (or the port printed by Vite). The review starts paused, uses actual UTC dates and labels observed versus interpolated positions. A ten-minute maximum gap, speed checks, conflicts and observed exits break tracks. Vessel types are NOAA/AVID classifications; no historical hull-identity or cargo-content claim is made.
+
+The local endpoints serve only the review tracks and regional land to loopback clients. Direct HTTP access to `data/raw/` and `data/compiled/` is denied. They are absent from production builds and `vite preview`; the default URL remains the synthetic study. Source metadata records an outstanding public-artwork use review. [Prepared external requests](docs/AIS-DATA-REQUESTS.md) have not been sent.
 
 ## Evidence and next milestone
 
 The regional compiler accepts normalized historical AIS reports, validates coordinates and identifiers, removes duplicates, rejects conflicting simultaneous positions, splits gaps and impossible jumps, and emits a source hash plus audit counts. Its output remains `review-required`; it does not authorize publication. The prototype loader admits only synthetic data.
 
-The next milestone is one licensed regional observation fixture, a measured gap policy, and a source-approved publication path. Global presence grids and individual trajectories have distinct contracts. See the [architecture](docs/ARCHITECTURE.md) for limitations and the normalized input format.
+The regional observation sample and initial measured gap policy are available locally. The next milestone is a source-approved publication path and review of a selected voyage. Global presence grids and individual trajectories have distinct contracts. See the [architecture](docs/ARCHITECTURE.md) for limitations and the normalized input format.
 
 Code: MIT. Generated fixture: CC0. Geography: public domain, [Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/); pinned source and hashes are in [data provenance](docs/DATA-SOURCES.json). Fonts currently load from Google Fonts with local system fallbacks.
 

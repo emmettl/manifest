@@ -8,16 +8,17 @@ const midpoint = (a: ScreenPoint, b: ScreenPoint) => ({ x: (a.x + b.x) / 2, y: (
 const distance = (a: ScreenPoint, b: ScreenPoint) => Math.hypot(a.x - b.x, a.y - b.y)
 
 /** Keep the geographic point under `from` beneath `to` after zooming. */
-export function transformCamera(camera: MapCamera, from: ScreenPoint, to: ScreenPoint, factor: number, viewport: Viewport): MapCamera {
+export function transformCamera(camera: MapCamera, from: ScreenPoint, to: ScreenPoint, factor: number, viewport: Viewport, maxZoom = 10): MapCamera {
   const base = projectionScale(viewport)
   if (base <= 0 || !Number.isFinite(factor) || factor <= 0) return camera
-  const zoom = clamp(camera.zoom * factor, 1, 10)
+  const zoom = clamp(camera.zoom * factor, 1, maxZoom)
   const longitude = camera.longitude + (from.x - viewport.width / 2) / (base * camera.zoom) - (to.x - viewport.width / 2) / (base * zoom)
   const latitude = camera.latitude - (from.y - viewport.height / 2) / (base * camera.zoom) + (to.y - viewport.height / 2) / (base * zoom)
   return { longitude: clamp(longitude, -180, 180), latitude: clamp(latitude, -60, 70), zoom }
 }
 
 export class PointerGesture {
+  constructor(private maxZoom = 10) {}
   private pointers = new Map<number, ScreenPoint>()
   private baseline: { points: ScreenPoint[]; camera: MapCamera } | null = null
   private moved = false
@@ -38,11 +39,11 @@ export class PointerGesture {
     if (points.length === 2) {
       const separation = distance(start.points[0], start.points[1])
       const factor = separation > 2 ? Math.max(1, distance(points[0], points[1])) / separation : 1
-      camera = transformCamera(start.camera, midpoint(start.points[0], start.points[1]), midpoint(points[0], points[1]), factor, viewport)
+      camera = transformCamera(start.camera, midpoint(start.points[0], start.points[1]), midpoint(points[0], points[1]), factor, viewport, this.maxZoom)
     } else {
       if (distance(start.points[0], points[0]) > 5) this.moved = true
       if (!this.moved) return null
-      camera = transformCamera(start.camera, start.points[0], points[0], 1, viewport)
+      camera = transformCamera(start.camera, start.points[0], points[0], 1, viewport, this.maxZoom)
     }
     this.rebase(camera)
     return camera
@@ -61,8 +62,8 @@ export class PointerGesture {
 interface SafariGestureEvent extends Event { scale: number; clientX?: number; clientY?: number }
 
 /** Native non-passive listeners keep trackpad pinch inside the canvas, not the page. */
-export function attachMapGestures(element: HTMLElement, readCamera: () => MapCamera, writeCamera: (camera: MapCamera) => void, onTap: (point: ScreenPoint) => void) {
-  const pointers = new PointerGesture()
+export function attachMapGestures(element: HTMLElement, readCamera: () => MapCamera, writeCamera: (camera: MapCamera) => void, onTap: (point: ScreenPoint) => void, maxZoom = 10) {
+  const pointers = new PointerGesture(maxZoom)
   const lifecycle = new AbortController()
   const options = { signal: lifecycle.signal, passive: false }
   const local = (event: { clientX?: number; clientY?: number }): ScreenPoint => {
@@ -95,7 +96,7 @@ export function attachMapGestures(element: HTMLElement, readCamera: () => MapCam
     const rect = element.getBoundingClientRect()
     const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? rect.height : 1)
     const anchor = local(event)
-    writeCamera(transformCamera(readCamera(), anchor, anchor, Math.exp(clamp(-delta * .01, -1, 1)), rect))
+    writeCamera(transformCamera(readCamera(), anchor, anchor, Math.exp(clamp(-delta * .01, -1, 1)), rect, maxZoom))
   }, options)
   // Safari trackpads use GestureEvents; touch PointerEvents remain the authority on iOS.
   element.addEventListener('gesturestart', event => {
@@ -106,7 +107,7 @@ export function attachMapGestures(element: HTMLElement, readCamera: () => MapCam
     event.preventDefault()
     if (!safari || pointers.count > 0) return
     const gesture = event as SafariGestureEvent
-    writeCamera(transformCamera(safari.camera, safari.anchor, local(gesture), gesture.scale, element.getBoundingClientRect()))
+    writeCamera(transformCamera(safari.camera, safari.anchor, local(gesture), gesture.scale, element.getBoundingClientRect(), maxZoom))
   }, options)
   element.addEventListener('gestureend', event => { event.preventDefault(); safari = null }, options)
   return () => lifecycle.abort()

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { PortLabels } from './PortLabels'
 import { layoutPortLabels, ports, type Port } from '../maritime/port-labels'
 import { projectionScale } from '../maritime/map-projection'
@@ -13,6 +13,9 @@ const colors = { cargo: '#d5e9e7', tanker: '#e9b86b', other: '#70888e' }
 interface Props { study: TrackStudy; land: LandCollection; time: number; region: Region; visible: Set<VesselClass>; selected: string | null; onSelect: (id: string | null) => void; selectedPort: Port | null; onPortSelect: (port: Port | null) => void }
 
 export function OceanScene({ study, land, time, region, visible, selected, onSelect, selectedPort, onPortSelect }: Props) {
+  const observed = study.source.evidence === 'observed'
+  const maxZoom = observed ? 320 : 10
+  const vessels = useMemo(() => new Map(study.vessels.map(vessel => [vessel.id, vessel])), [study])
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const backdrop = useRef<HTMLCanvasElement | null>(null)
   const hits = useRef<{ id: string; x: number; y: number }[]>([])
@@ -31,7 +34,7 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
     if (port) { onSelect(null); onPortSelect(port); setCamera({ longitude: port.position[0], latitude: port.position[1], zoom: 10 }); return }
     const hit = hits.current.filter(item => Math.hypot(item.x - x, item.y - y) < 18).sort((a,b) => Math.hypot(a.x - x,a.y-y) - Math.hypot(b.x-x,b.y-y))[0]
     onSelect(hit?.id ?? null)
-  }), [region, onSelect, onPortSelect, selectedPort, size])
+  }, maxZoom), [region, onSelect, onPortSelect, selectedPort, size, maxZoom])
   useEffect(() => { setCamera({ longitude: region.center[0], latitude: region.center[1], zoom: region.zoom }) }, [region])
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -85,7 +88,7 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
     }
     backdrop.current = buffer
   // The projection is determined entirely by these camera and size values.
-  }, [land, camera, size])
+  }, [land, observed, camera, size])
 
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -94,7 +97,6 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
     canvas.width = Math.round(size.width * ratio); canvas.height = Math.round(size.height * ratio)
     if (backdrop.current) context.drawImage(backdrop.current, 0, 0)
     context.scale(ratio, ratio)
-    const vessels = new Map(study.vessels.map(vessel => [vessel.id, vessel]))
     hits.current = []
     for (const segment of study.segments) {
       const vessel = vessels.get(segment.vesselId)!
@@ -109,7 +111,8 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
         if (x < -100 || x > size.width + 100 || y < -100 || y > size.height + 100) continue
         let previous: Position | null = null
         for (let i = 0; i <= 24; i++) {
-          const trailPoint = positionAt(segment, time - (1 - i / 24) * DAY * (active ? 3 : 1.4))
+          const trailSeconds = observed ? (active ? 3600 : 1800) : DAY * (active ? 3 : 1.4)
+          const trailPoint = positionAt(segment, time - (1 - i / 24) * trailSeconds)
           if (!trailPoint) { previous = null; continue }
           const projected = project([trailPoint[0] + shift, trailPoint[1]])
           if (previous && Math.abs(projected[0] - previous[0]) < worldWidth / 2) {
@@ -129,14 +132,14 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
       }
     }
     context.globalAlpha = 1
-  }, [study, time, visible, selected, camera, size])
+  }, [study, vessels, observed, time, visible, selected, camera, size])
 
   return <div className="ocean-scene">
-    <canvas ref={canvasRef} aria-label="World map with synthetic cargo and tanker movement. Use the port search, region controls and vessel selector to explore with a keyboard." role="img"
+    <canvas ref={canvasRef} aria-label={observed ? 'Regional map of observed NOAA vessel positions near Los Angeles. Interpolated only within accepted track segments. Use region controls and the vessel selector to explore with a keyboard.' : 'World map with synthetic cargo and tanker movement. Use the port search, region controls and vessel selector to explore with a keyboard.'} role="img"
       />
     <PortLabels camera={camera} size={size} selectedPort={selectedPort} onClear={() => onPortSelect(null)} onFocus={port => { onSelect(null); onPortSelect(port); setCamera({ longitude: port.position[0], latitude: port.position[1], zoom: 10 }) }} />
     <div className="map-tools" aria-label="Map controls">
-      <button aria-label="Zoom in" data-tooltip="See the vessels more closely" disabled={camera.zoom >= 10} onClick={() => setCamera(current => ({ ...current, zoom: Math.min(10, current.zoom * 1.4) }))}>+</button>
+      <button aria-label="Zoom in" data-tooltip="See the vessels more closely" disabled={camera.zoom >= maxZoom} onClick={() => setCamera(current => ({ ...current, zoom: Math.min(maxZoom, current.zoom * 1.4) }))}>+</button>
       <button aria-label="Zoom out" data-tooltip="See more of the ocean" disabled={camera.zoom <= 1} onClick={() => setCamera(current => ({ ...current, zoom: Math.max(1, current.zoom / 1.4) }))}>−</button>
       <button aria-label="Reset map view" data-tooltip="Return to this chapter’s opening view" onClick={() => setCamera({ longitude: region.center[0], latitude: region.center[1], zoom: region.zoom })}>↺</button>
     </div>
