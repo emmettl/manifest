@@ -4,7 +4,8 @@ import catalogue from '../public/data/ports.json' with { type: 'json' }
 test('ports are labelled in the opening view and remain legible when zooming', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 })
   await page.goto('/')
-  for (const port of catalogue) await expect(page.locator(`[data-port-id="${port.id}"] text`)).toHaveText(port.name.toUpperCase())
+  for (const port of catalogue) await expect(page.locator(`[data-port-id="${port.id}"] title`)).toHaveText(port.name)
+  for (const port of catalogue.filter(port => port.demoEndpoint)) await expect(page.locator(`[data-port-id="${port.id}"] text`)).toBeVisible()
   const boxes = await page.locator('[data-port-id] rect').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().toJSON()))
   for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
     const a = boxes[i], b = boxes[j]
@@ -58,3 +59,34 @@ test('high-density canvas stays inside its container through playback and resizi
   }
   await context.close()
 })
+
+for (const viewport of [{ width: 390, height: 844 }, { width: 1920, height: 1080 }]) {
+  test(`finds all ports and focuses alternate names at ${viewport.width}px`, async ({ page }) => {
+    await page.setViewportSize(viewport)
+    await page.goto('/')
+    const toggle = page.getByRole('button', { name: `Ports · ${catalogue.length}` })
+    await toggle.click()
+    await expect(page.locator('#port-directory li')).toHaveCount(catalogue.length)
+    const search = page.getByRole('searchbox', { name: 'Find a port' })
+    await search.fill('Shenzhen')
+    await page.locator('#port-directory li button').click()
+    await expect(toggle).toBeFocused()
+    await expect(page.locator('[data-port-id="yantian"][data-selected=true] text')).toBeVisible()
+    await toggle.click()
+    await search.fill('Cai Mep')
+    await page.locator('#port-directory li button').click()
+    await expect(page.locator('[data-port-id="cai-mep"][data-selected=true] text')).toBeVisible()
+    const marker = await page.locator('[data-port-id="cai-mep"] circle').boundingBox()
+    const canvas = await page.locator('canvas').boundingBox()
+    expect(marker!.x + marker!.width / 2).toBeCloseTo(canvas!.x + canvas!.width / 2, 0)
+    expect(marker!.y + marker!.height / 2).toBeCloseTo(canvas!.y + canvas!.height / 2, 0)
+    await toggle.click()
+    const panel = await page.locator('#port-directory').boundingBox()
+    expect(panel!.y + panel!.height).toBeLessThanOrEqual(canvas!.y + canvas!.height)
+    await search.fill('no such port')
+    await expect(page.getByRole('status')).toHaveText('No matching ports.')
+    await search.press('Escape')
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    await expect(toggle).toBeFocused()
+  })
+}

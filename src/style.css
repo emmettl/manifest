@@ -145,3 +145,21 @@ dialog dd { margin: 0; font-size: 14px; line-height: 1.6; color: #b2c5cc; }
 .port-labels circle { fill: #e9b86b; stroke: #080f14; stroke-width: 1.5; }
 .port-labels rect { fill: #0b151cee; stroke: #344951; stroke-width: .7; }
 .port-labels text { fill: #dae9ea; font: 12px ui-monospace, monospace; letter-spacing: .015em; }
+.port-labels [data-selected=true] rect { stroke: var(--amber); stroke-width: 1.5; }
+.port-finder { position: absolute; top: 73px; left: 32px; z-index: 3; max-width: calc(100% - 64px); }
+.port-finder > button { background: #0b151cf5; min-height: 36px; padding: 7px 12px; font: 12px 'IBM Plex Mono', monospace; }
+.port-finder > button span { margin-left: 18px; color: var(--amber); }
+.port-finder section { width: 310px; max-width: 100%; margin-top: 7px; padding: 14px; background: #0b151cfa; border: 1px solid #40545e; box-shadow: 0 8px 24px #0008; }
+.port-finder label { display: block; font-size: 14px; margin-bottom: 8px; }
+.port-finder input { width: 100%; min-height: 38px; background: #14232b; border: 1px solid #40545e; color: #e3eeee; padding: 8px; font-size: 16px; }
+.port-finder p { font-size: 11px; line-height: 1.4; color: var(--muted); margin-top: 9px; }
+.port-finder ul { list-style: none; padding: 0; margin: 12px -6px 0; max-height: clamp(75px, calc(100svh - 740px), 240px); overflow-y: auto; overscroll-behavior: contain; }
+.port-finder li button { width: 100%; text-align: left; display: flex; flex-direction: column; gap: 4px; padding: 9px 6px; min-height: 48px; border: 0; border-bottom: 1px solid #26363e; }
+.port-finder li small { color: #95a8b0; font-size: 10px; }
+.port-finder .port-evidence { font-size: 10px; }
+@media (max-width: 700px) {
+  .port-finder { top: 66px; left: 20px; max-width: calc(100% - 40px); }
+  .port-finder section { padding: 10px; }
+  .port-finder section > p:first-of-type { display: none; }
+  .port-finder ul { max-height: 80px; margin-top: 7px; }
+}

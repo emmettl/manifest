@@ -128,7 +128,7 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
   return <div className="ocean-scene">
     <canvas ref={canvasRef} aria-label="World map with synthetic cargo and tanker movement. Use the region controls and vessel selector to explore with a keyboard." role="img"
       />
-    <PortLabels camera={camera} size={size} />
+    <PortLabels camera={camera} size={size} onFocus={port => setCamera({ longitude: port.position[0], latitude: port.position[1], zoom: 10 })} />
     <div className="map-tools" aria-label="Map controls">
       <button aria-label="Zoom in" data-tooltip="See the vessels more closely" disabled={camera.zoom >= 10} onClick={() => setCamera(current => ({ ...current, zoom: Math.min(10, current.zoom * 1.4) }))}>+</button>
       <button aria-label="Zoom out" data-tooltip="See more of the ocean" disabled={camera.zoom <= 1} onClick={() => setCamera(current => ({ ...current, zoom: Math.max(1, current.zoom / 1.4) }))}>−</button>

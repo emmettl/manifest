@@ -6,7 +6,11 @@
       121.48722,
       31.221944
     ],
-    "naturalEarthId": 1730089389
+    "naturalEarthId": 1730089389,
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": true,
+    "containerRank2024": 1
   },
   {
     "id": "rotterdam",
@@ -15,7 +19,11 @@
       4.292874,
       51.927222
     ],
-    "naturalEarthId": 1730089247
+    "naturalEarthId": 1730089247,
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": true,
+    "containerRank2024": 11
   },
   {
     "id": "yantian",
@@ -24,7 +32,13 @@
       114.26702,
       22.574167
     ],
-    "naturalEarthId": 1730087339
+    "naturalEarthId": 1730087339,
+    "aliases": [
+      "Shenzhen"
+    ],
+    "selection": "container",
+    "demoEndpoint": true,
+    "containerRank2024": 4
   },
   {
     "id": "palermo",
@@ -33,7 +47,10 @@
       13.369847,
       38.130833
     ],
-    "naturalEarthId": 1730089601
+    "naturalEarthId": 1730089601,
+    "aliases": [],
+    "selection": "demo",
+    "demoEndpoint": true
   },
   {
     "id": "jubail",
@@ -42,7 +59,10 @@
       49.670907,
       27.028611
     ],
-    "naturalEarthId": 1730087689
+    "naturalEarthId": 1730087689,
+    "aliases": [],
+    "selection": "demo",
+    "demoEndpoint": true
   },
   {
     "id": "los-angeles",
@@ -51,7 +71,11 @@
       -118.259717,
       33.731944
     ],
-    "naturalEarthId": 1730089645
+    "naturalEarthId": 1730089645,
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": true,
+    "containerRank2024": 16
   },
   {
     "id": "singapore",
@@ -60,7 +84,11 @@
       103.722144,
       1.292778
     ],
-    "naturalEarthId": 1730089479
+    "naturalEarthId": 1730089479,
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": true,
+    "containerRank2024": 2
   },
   {
     "id": "new-york",
@@ -69,7 +97,13 @@
       -74.024264,
       40.688333
     ],
-    "naturalEarthId": 1730089663
+    "naturalEarthId": 1730089663,
+    "aliases": [
+      "New York-New Jersey"
+    ],
+    "selection": "container",
+    "demoEndpoint": true,
+    "containerRank2024": 24
   },
   {
     "id": "long-beach",
@@ -78,6 +112,1734 @@
       -118.200707,
       33.748889
     ],
-    "naturalEarthId": 1730089493
+    "naturalEarthId": 1730089493,
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 19
+  },
+  {
+    "id": "ningbo-zhoushan",
+    "name": "Ningbo-Zhoushan",
+    "position": [
+      121.55,
+      29.883333
+    ],
+    "worldPortIndex": 59940,
+    "sourceName": "Ningbo",
+    "aliases": [
+      "Ningbo"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 3
+  },
+  {
+    "id": "qingdao",
+    "name": "Qingdao",
+    "position": [
+      120.31702,
+      36.095833
+    ],
+    "naturalEarthId": 1730089387,
+    "sourceName": "Qingdao",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 5
+  },
+  {
+    "id": "guangzhou",
+    "name": "Guangzhou",
+    "position": [
+      113.233333,
+      23.116667
+    ],
+    "worldPortIndex": 57830,
+    "sourceName": "Guangzhou",
+    "aliases": [
+      "Guangzhou Harbor"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 6
+  },
+  {
+    "id": "busan",
+    "name": "Busan",
+    "position": [
+      129.033333,
+      35.1
+    ],
+    "worldPortIndex": 60390,
+    "sourceName": "Busan",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 7
+  },
+  {
+    "id": "tianjin",
+    "name": "Tianjin",
+    "position": [
+      117.833333,
+      38.966667
+    ],
+    "worldPortIndex": 60190,
+    "sourceName": "Tianjin Xin Gang",
+    "aliases": [
+      "Tianjin Xin Gang"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 8
+  },
+  {
+    "id": "jebel-ali",
+    "name": "Jebel Ali",
+    "position": [
+      55.05,
+      25.016667
+    ],
+    "worldPortIndex": 48276,
+    "sourceName": "Mina Jabal Ali",
+    "aliases": [
+      "Jebel Ali, Dubai",
+      "Mina Jabal Ali"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 9
+  },
+  {
+    "id": "port-klang",
+    "name": "Port Klang",
+    "position": [
+      101.4,
+      3.0
+    ],
+    "worldPortIndex": 49930,
+    "sourceName": "Port Klang",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 10
+  },
+  {
+    "id": "hong-kong",
+    "name": "Hong Kong",
+    "position": [
+      114.2,
+      22.266667
+    ],
+    "worldPortIndex": 57840,
+    "sourceName": "Hong Kong",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 12
+  },
+  {
+    "id": "antwerp",
+    "name": "Antwerp",
+    "position": [
+      4.4,
+      51.216667
+    ],
+    "worldPortIndex": 31250,
+    "sourceName": "Antwerpen",
+    "aliases": [
+      "Antwerpen"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 13
+  },
+  {
+    "id": "xiamen",
+    "name": "Xiamen",
+    "position": [
+      118.066667,
+      24.45
+    ],
+    "worldPortIndex": 57870,
+    "sourceName": "Xiamen",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 14
+  },
+  {
+    "id": "tanjung-pelepas",
+    "name": "Tanjung Pelepas",
+    "position": [
+      103.55,
+      1.35
+    ],
+    "worldPortIndex": 51587,
+    "sourceName": "Tanjung Pelepas",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 15
+  },
+  {
+    "id": "tanger-med",
+    "name": "Tanger Med",
+    "position": [
+      -5.516667,
+      35.9
+    ],
+    "worldPortIndex": 45753,
+    "sourceName": "Tangier-Mediterranean",
+    "aliases": [
+      "Tangier-Mediterranean"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 17
+  },
+  {
+    "id": "suzhou-taicang",
+    "name": "Suzhou / Taicang",
+    "position": [
+      121.2,
+      31.65
+    ],
+    "worldPortIndex": 59976,
+    "sourceName": "Taicang",
+    "aliases": [
+      "Suzhou",
+      "Taicang"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 18
+  },
+  {
+    "id": "laem-chabang",
+    "name": "Laem Chabang",
+    "position": [
+      100.883333,
+      13.083333
+    ],
+    "worldPortIndex": 57462,
+    "sourceName": "Laem Chabang",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 20
+  },
+  {
+    "id": "kaohsiung",
+    "name": "Kaohsiung",
+    "position": [
+      120.307067,
+      22.565278
+    ],
+    "naturalEarthId": 1730089303,
+    "sourceName": "Kaohsiung",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 21
+  },
+  {
+    "id": "ho-chi-minh-city",
+    "name": "Ho Chi Minh City",
+    "position": [
+      106.716667,
+      10.766667
+    ],
+    "worldPortIndex": 57580,
+    "sourceName": "Thanh Ho Chi Minh",
+    "aliases": [
+      "Thanh Ho Chi Minh"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 22
+  },
+  {
+    "id": "beibu-gulf-qinzhou",
+    "name": "Beibu Gulf / Qinzhou",
+    "position": [
+      108.583333,
+      21.733333
+    ],
+    "worldPortIndex": 57820,
+    "sourceName": "Qinzhou",
+    "aliases": [
+      "Beibu Gulf",
+      "Guangxi Beibu",
+      "Qinzhou"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 23
+  },
+  {
+    "id": "mundra",
+    "name": "Mundra",
+    "position": [
+      69.706667,
+      22.728333
+    ],
+    "worldPortIndex": 48617,
+    "sourceName": "Mundra",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 25
+  },
+  {
+    "id": "hamburg",
+    "name": "Hamburg",
+    "position": [
+      9.933333,
+      53.55
+    ],
+    "worldPortIndex": 30780,
+    "sourceName": "Hamburg",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 26
+  },
+  {
+    "id": "tanjung-priok",
+    "name": "Tanjung Priok",
+    "position": [
+      106.8904,
+      -6.101389
+    ],
+    "naturalEarthId": 1730088085,
+    "sourceName": "Tanjung Priok",
+    "aliases": [
+      "Jakarta"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 27
+  },
+  {
+    "id": "colombo",
+    "name": "Colombo",
+    "position": [
+      79.85,
+      6.95
+    ],
+    "worldPortIndex": 49240,
+    "sourceName": "Colombo",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 28
+  },
+  {
+    "id": "hai-phong",
+    "name": "Hai Phong",
+    "position": [
+      106.683333,
+      20.916667
+    ],
+    "worldPortIndex": 57680,
+    "sourceName": "Hai Phong",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 29
+  },
+  {
+    "id": "cai-mep",
+    "name": "Cai Mep",
+    "position": [
+      107.014203,
+      10.517213
+    ],
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "sourceUrl": "https://www.vpa.org.vn/cai-mep-international-terminal/",
+    "coordinateNote": "CMIT terminal representative point",
+    "containerRank2024": 30
+  },
+  {
+    "id": "nhava-sheva",
+    "name": "Nhava Sheva",
+    "position": [
+      72.95,
+      18.95
+    ],
+    "worldPortIndex": 48845,
+    "sourceName": "Jawaharlal Nehru Port (Nhava Shiva)",
+    "aliases": [
+      "JNPA",
+      "Jawaharlal Nehru",
+      "Jawaharlal Nehru Port (Nhava Shiva)",
+      "Jawarharlal Nehru Port (Nhava Sheva)"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 31
+  },
+  {
+    "id": "rizhao",
+    "name": "Rizhao",
+    "position": [
+      119.566667,
+      35.383333
+    ],
+    "worldPortIndex": 60133,
+    "sourceName": "Rizhao",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 32
+  },
+  {
+    "id": "lianyungang",
+    "name": "Lianyungang",
+    "position": [
+      119.45,
+      34.733333
+    ],
+    "worldPortIndex": 60130,
+    "sourceName": "Lianyungang",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 33
+  },
+  {
+    "id": "yingkou",
+    "name": "Yingkou",
+    "position": [
+      122.233333,
+      40.683333
+    ],
+    "worldPortIndex": 60220,
+    "sourceName": "Yingkou",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 34
+  },
+  {
+    "id": "savannah",
+    "name": "Savannah",
+    "position": [
+      -81.083333,
+      32.083333
+    ],
+    "worldPortIndex": 8530,
+    "sourceName": "Savannah",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 35
+  },
+  {
+    "id": "manila",
+    "name": "Manila",
+    "position": [
+      120.966667,
+      14.583333
+    ],
+    "worldPortIndex": 58370,
+    "sourceName": "Manila",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 36
+  },
+  {
+    "id": "santos",
+    "name": "Santos",
+    "position": [
+      -46.3,
+      -23.95
+    ],
+    "worldPortIndex": 12970,
+    "sourceName": "Santos",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 37
+  },
+  {
+    "id": "valencia",
+    "name": "Valencia",
+    "position": [
+      -0.316667,
+      39.45
+    ],
+    "worldPortIndex": 38480,
+    "sourceName": "Valencia",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 38
+  },
+  {
+    "id": "abu-dhabi",
+    "name": "Abu Dhabi",
+    "position": [
+      54.372674,
+      24.525
+    ],
+    "naturalEarthId": 1730089023,
+    "sourceName": "Abu Dhabi",
+    "aliases": [
+      "Zayed"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 39
+  },
+  {
+    "id": "dalian",
+    "name": "Dalian",
+    "position": [
+      121.666667,
+      38.916667
+    ],
+    "worldPortIndex": 60250,
+    "sourceName": "Dalian",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 40
+  },
+  {
+    "id": "colon",
+    "name": "Colon",
+    "position": [
+      -79.883333,
+      9.366667
+    ],
+    "worldPortIndex": 9865,
+    "sourceName": "Puerto Colon",
+    "aliases": [
+      "Puerto Colon"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 41
+  },
+  {
+    "id": "yantai",
+    "name": "Yantai",
+    "position": [
+      121.45,
+      37.55
+    ],
+    "worldPortIndex": 60160,
+    "sourceName": "Yantai",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 42
+  },
+  {
+    "id": "algeciras",
+    "name": "Algeciras",
+    "position": [
+      -5.433333,
+      36.133333
+    ],
+    "worldPortIndex": 38310,
+    "sourceName": "Algeciras",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 43
+  },
+  {
+    "id": "piraeus",
+    "name": "Piraeus",
+    "position": [
+      23.656537,
+      37.937222
+    ],
+    "naturalEarthId": 1730087471,
+    "sourceName": "Piraeus",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 44
+  },
+  {
+    "id": "tokyo",
+    "name": "Tokyo",
+    "position": [
+      139.788457,
+      35.624722
+    ],
+    "naturalEarthId": 1730089211,
+    "sourceName": "Tokyo",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 45
+  },
+  {
+    "id": "bremerhaven",
+    "name": "Bremerhaven",
+    "position": [
+      8.583333,
+      53.533333
+    ],
+    "worldPortIndex": 30810,
+    "sourceName": "Bremerhaven",
+    "aliases": [
+      "Bremen/Bremerhaven"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 46
+  },
+  {
+    "id": "tanjung-perak",
+    "name": "Tanjung Perak",
+    "position": [
+      112.733333,
+      -7.2
+    ],
+    "worldPortIndex": 51130,
+    "sourceName": "Surabaya",
+    "aliases": [
+      "Surabaya"
+    ],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 47
+  },
+  {
+    "id": "houston",
+    "name": "Houston",
+    "position": [
+      -95.283333,
+      29.75
+    ],
+    "worldPortIndex": 9240,
+    "sourceName": "Houston",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 48
+  },
+  {
+    "id": "dongguan",
+    "name": "Dongguan",
+    "position": [
+      113.75,
+      23.033333
+    ],
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "sourceUrl": "https://service.unece.org/trade/locode/cn.htm",
+    "coordinateNote": "UN/LOCODE CNDGG locality point, not a berth",
+    "containerRank2024": 49
+  },
+  {
+    "id": "balboa",
+    "name": "Balboa",
+    "position": [
+      -79.566667,
+      8.95
+    ],
+    "worldPortIndex": 15410,
+    "sourceName": "Balboa",
+    "aliases": [],
+    "selection": "container",
+    "demoEndpoint": false,
+    "containerRank2024": 50
+  },
+  {
+    "id": "port-hedland",
+    "name": "Port Hedland",
+    "position": [
+      118.572222,
+      -20.319444
+    ],
+    "worldPortIndex": 54620,
+    "sourceName": "Port Hedland",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "dampier",
+    "name": "Dampier",
+    "position": [
+      116.716667,
+      -20.633333
+    ],
+    "worldPortIndex": 54605,
+    "sourceName": "Dampier",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "newcastle",
+    "name": "Newcastle",
+    "position": [
+      151.783333,
+      -32.916667
+    ],
+    "worldPortIndex": 53610,
+    "sourceName": "Newcastle",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "richards-bay",
+    "name": "Richards Bay",
+    "position": [
+      32.098333,
+      -28.81
+    ],
+    "worldPortIndex": 46855,
+    "sourceName": "Richards Bay",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "saldanha-bay",
+    "name": "Saldanha Bay",
+    "position": [
+      17.966667,
+      -33.033333
+    ],
+    "worldPortIndex": 46750,
+    "sourceName": "Saldanha Bay",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "tubarao",
+    "name": "Tubarao",
+    "position": [
+      -40.25,
+      -20.283333
+    ],
+    "worldPortIndex": 12855,
+    "sourceName": "Tubarao",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "itaqui",
+    "name": "Itaqui",
+    "position": [
+      -44.366667,
+      -2.566667
+    ],
+    "worldPortIndex": 12585,
+    "sourceName": "Itaqui",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "ras-tanura",
+    "name": "Ras Tanura",
+    "position": [
+      50.166667,
+      26.633333
+    ],
+    "worldPortIndex": 48340,
+    "sourceName": "Ras  Tannurah",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "ras-laffan",
+    "name": "Ras Laffan",
+    "position": [
+      51.583333,
+      25.916667
+    ],
+    "worldPortIndex": 48297,
+    "sourceName": "Ras Laffan",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "fujairah",
+    "name": "Fujairah",
+    "position": [
+      56.369167,
+      25.173056
+    ],
+    "worldPortIndex": 48262,
+    "sourceName": "Al Fujayrah",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "yanbu",
+    "name": "Yanbu",
+    "position": [
+      38.05,
+      24.083333
+    ],
+    "worldPortIndex": 48120,
+    "sourceName": "Yanbu",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "dammam",
+    "name": "Dammam",
+    "position": [
+      50.2,
+      26.5
+    ],
+    "worldPortIndex": 48335,
+    "sourceName": "Dammam",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "qinhuangdao",
+    "name": "Qinhuangdao",
+    "position": [
+      119.616667,
+      39.933333
+    ],
+    "worldPortIndex": 60200,
+    "sourceName": "Qinhuangdao",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "tangshan",
+    "name": "Tangshan",
+    "position": [
+      119.016667,
+      39.2
+    ],
+    "worldPortIndex": 60193,
+    "sourceName": "Tangshan (Jingtang)",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "corpus-christi",
+    "name": "Corpus Christi",
+    "position": [
+      -97.4,
+      27.816667
+    ],
+    "worldPortIndex": 9300,
+    "sourceName": "Corpus Christi",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "beaumont",
+    "name": "Beaumont",
+    "position": [
+      -94.083333,
+      30.083333
+    ],
+    "worldPortIndex": 9140,
+    "sourceName": "Beaumont",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "new-orleans",
+    "name": "New Orleans",
+    "position": [
+      -90.05,
+      29.95
+    ],
+    "worldPortIndex": 8860,
+    "sourceName": "New Orleans",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "ust-luga",
+    "name": "Ust Luga",
+    "position": [
+      28.316667,
+      59.666667
+    ],
+    "worldPortIndex": 28410,
+    "sourceName": "Ust Luga",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "novorossiysk",
+    "name": "Novorossiysk",
+    "position": [
+      37.783333,
+      44.716667
+    ],
+    "worldPortIndex": 44200,
+    "sourceName": "Novorossiysk",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "primorsk",
+    "name": "Primorsk",
+    "position": [
+      28.633333,
+      60.366667
+    ],
+    "worldPortIndex": 28360,
+    "sourceName": "Primorsk",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "murmansk",
+    "name": "Murmansk",
+    "position": [
+      33.05,
+      68.983333
+    ],
+    "worldPortIndex": 62950,
+    "sourceName": "Murmansk",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "bandar-abbas",
+    "name": "Bandar Abbas",
+    "position": [
+      56.2,
+      27.15
+    ],
+    "worldPortIndex": 48520,
+    "sourceName": "Bandar Abbas",
+    "aliases": [],
+    "selection": "bulk-energy",
+    "demoEndpoint": false
+  },
+  {
+    "id": "felixstowe",
+    "name": "Felixstowe",
+    "position": [
+      1.316667,
+      51.95
+    ],
+    "worldPortIndex": 31560,
+    "sourceName": "Felixstowe",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "southampton",
+    "name": "Southampton",
+    "position": [
+      -1.424441,
+      50.9025
+    ],
+    "naturalEarthId": 1730089419,
+    "sourceName": "Southampton",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "london",
+    "name": "London",
+    "position": [
+      -0.083333,
+      51.5
+    ],
+    "worldPortIndex": 31470,
+    "sourceName": "London",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "le-havre",
+    "name": "Le Havre",
+    "position": [
+      0.173734,
+      49.466944
+    ],
+    "naturalEarthId": 1730089583,
+    "sourceName": "Le Havre",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "marseille",
+    "name": "Marseille",
+    "position": [
+      5.366667,
+      43.316667
+    ],
+    "worldPortIndex": 38810,
+    "sourceName": "Marseille",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "barcelona",
+    "name": "Barcelona",
+    "position": [
+      2.166667,
+      41.35
+    ],
+    "worldPortIndex": 38550,
+    "sourceName": "Barcelona",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "genoa",
+    "name": "Genoa",
+    "position": [
+      8.861389,
+      44.406667
+    ],
+    "worldPortIndex": 39470,
+    "sourceName": "Genova",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "gioia-tauro",
+    "name": "Gioia Tauro",
+    "position": [
+      15.89,
+      38.444
+    ],
+    "worldPortIndex": 40115,
+    "sourceName": "Gioia Tauro",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "gdansk",
+    "name": "Gdansk",
+    "position": [
+      18.666667,
+      54.35
+    ],
+    "worldPortIndex": 28710,
+    "sourceName": "Gdansk",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "gothenburg",
+    "name": "Gothenburg",
+    "position": [
+      11.954722,
+      57.709722
+    ],
+    "worldPortIndex": 24020,
+    "sourceName": "Goteborg",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "istanbul",
+    "name": "Istanbul",
+    "position": [
+      28.966667,
+      41.016667
+    ],
+    "worldPortIndex": 43420,
+    "sourceName": "Istanbul",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "ambarli",
+    "name": "Ambarli",
+    "position": [
+      28.7,
+      40.966667
+    ],
+    "worldPortIndex": 43388,
+    "sourceName": "Ambarli",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "port-said",
+    "name": "Port Said",
+    "position": [
+      32.306007,
+      31.253333
+    ],
+    "naturalEarthId": 1730089573,
+    "sourceName": "Port Said",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "jeddah",
+    "name": "Jeddah",
+    "position": [
+      39.159011,
+      21.458611
+    ],
+    "naturalEarthId": 1730089475,
+    "sourceName": "Jeddah",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "salalah",
+    "name": "Salalah",
+    "position": [
+      54.00318,
+      16.941667
+    ],
+    "naturalEarthId": 1730088251,
+    "sourceName": "Salalah",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "karachi",
+    "name": "Karachi",
+    "position": [
+      66.983333,
+      24.783333
+    ],
+    "worldPortIndex": 48600,
+    "sourceName": "Karachi",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "port-qasim",
+    "name": "Port Qasim",
+    "position": [
+      67.35,
+      24.766667
+    ],
+    "worldPortIndex": 48605,
+    "sourceName": "Muhamamad Bin Qasim",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "chattogram",
+    "name": "Chattogram",
+    "position": [
+      91.816667,
+      22.316667
+    ],
+    "worldPortIndex": 49590,
+    "sourceName": "Chittagong",
+    "aliases": [
+      "Chittagong"
+    ],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "chennai",
+    "name": "Chennai",
+    "position": [
+      80.3,
+      13.1
+    ],
+    "naturalEarthId": 1730088465,
+    "sourceName": "Madras",
+    "aliases": [
+      "Madras"
+    ],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "visakhapatnam",
+    "name": "Visakhapatnam",
+    "position": [
+      83.28722,
+      17.693333
+    ],
+    "naturalEarthId": 1730089189,
+    "sourceName": "Visakhapatnam",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "kobe",
+    "name": "Kobe",
+    "position": [
+      135.183333,
+      34.65
+    ],
+    "worldPortIndex": 61560,
+    "sourceName": "Kobe",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "yokohama",
+    "name": "Yokohama",
+    "position": [
+      139.667373,
+      35.436389
+    ],
+    "naturalEarthId": 1730089613,
+    "sourceName": "Yokohama",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "nagoya",
+    "name": "Nagoya",
+    "position": [
+      136.866667,
+      35.066667
+    ],
+    "worldPortIndex": 61480,
+    "sourceName": "Nagoya Ko",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "incheon",
+    "name": "Incheon",
+    "position": [
+      126.616667,
+      37.466667
+    ],
+    "worldPortIndex": 60320,
+    "sourceName": "Inchon",
+    "aliases": [
+      "Inchon"
+    ],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "oakland",
+    "name": "Oakland",
+    "position": [
+      -122.333333,
+      37.816667
+    ],
+    "worldPortIndex": 16340,
+    "sourceName": "Oakland",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "seattle",
+    "name": "Seattle",
+    "position": [
+      -122.333333,
+      47.6
+    ],
+    "worldPortIndex": 17730,
+    "sourceName": "Seattle",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "tacoma",
+    "name": "Tacoma",
+    "position": [
+      -122.416667,
+      47.283333
+    ],
+    "worldPortIndex": 17700,
+    "sourceName": "Tacoma",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "vancouver",
+    "name": "Vancouver",
+    "position": [
+      -123.116667,
+      49.283333
+    ],
+    "worldPortIndex": 18150,
+    "sourceName": "Vancouver",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "prince-rupert",
+    "name": "Prince Rupert",
+    "position": [
+      -130.333333,
+      54.316667
+    ],
+    "worldPortIndex": 18950,
+    "sourceName": "Prince Rupert",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "montreal",
+    "name": "Montreal",
+    "position": [
+      -73.55,
+      45.516667
+    ],
+    "worldPortIndex": 2235,
+    "sourceName": "Montreal",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "halifax",
+    "name": "Halifax",
+    "position": [
+      -63.583333,
+      44.65
+    ],
+    "worldPortIndex": 6340,
+    "sourceName": "Halifax",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "norfolk",
+    "name": "Norfolk",
+    "position": [
+      -76.3,
+      36.85
+    ],
+    "worldPortIndex": 8280,
+    "sourceName": "Norfolk",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "charleston",
+    "name": "Charleston",
+    "position": [
+      -79.916667,
+      32.783333
+    ],
+    "worldPortIndex": 8500,
+    "sourceName": "Charleston",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "miami",
+    "name": "Miami",
+    "position": [
+      -80.183333,
+      25.783333
+    ],
+    "worldPortIndex": 8640,
+    "sourceName": "Miami",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "manzanillo",
+    "name": "Manzanillo",
+    "position": [
+      -104.316667,
+      19.05
+    ],
+    "worldPortIndex": 15770,
+    "sourceName": "Manzanillo",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "lazaro-cardenas",
+    "name": "Lazaro Cardenas",
+    "position": [
+      -102.166667,
+      17.933333
+    ],
+    "worldPortIndex": 15765,
+    "sourceName": "Lazaro Cardenas",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "veracruz",
+    "name": "Veracruz",
+    "position": [
+      -96.133333,
+      19.2
+    ],
+    "worldPortIndex": 9380,
+    "sourceName": "Veracruz",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "callao",
+    "name": "Callao",
+    "position": [
+      -77.15,
+      -12.05
+    ],
+    "worldPortIndex": 14950,
+    "sourceName": "Puerto Del Callao",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "guayaquil",
+    "name": "Guayaquil",
+    "position": [
+      -79.883333,
+      -2.2
+    ],
+    "worldPortIndex": 15270,
+    "sourceName": "Guayaquil",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "cartagena",
+    "name": "Cartagena",
+    "position": [
+      -75.533333,
+      10.416667
+    ],
+    "worldPortIndex": 11910,
+    "sourceName": "Cartagena",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "kingston",
+    "name": "Kingston",
+    "position": [
+      -76.783333,
+      17.966667
+    ],
+    "worldPortIndex": 10770,
+    "sourceName": "Kingston",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "san-antonio",
+    "name": "San Antonio",
+    "position": [
+      -71.61808,
+      -33.5875
+    ],
+    "naturalEarthId": 1730087333,
+    "sourceName": "San Antonio",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "buenos-aires",
+    "name": "Buenos Aires",
+    "position": [
+      -58.366667,
+      -34.6
+    ],
+    "worldPortIndex": 13760,
+    "sourceName": "Buenos Aires",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "montevideo",
+    "name": "Montevideo",
+    "position": [
+      -56.216667,
+      -34.9
+    ],
+    "worldPortIndex": 13120,
+    "sourceName": "Montevideo",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "rio-de-janeiro",
+    "name": "Rio de Janeiro",
+    "position": [
+      -43.191814,
+      -22.883056
+    ],
+    "naturalEarthId": 1730089549,
+    "sourceName": "Rio de Janeiro",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "durban",
+    "name": "Durban",
+    "position": [
+      31.066667,
+      -29.866667
+    ],
+    "worldPortIndex": 46850,
+    "sourceName": "Durban",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "cape-town",
+    "name": "Cape Town",
+    "position": [
+      18.416667,
+      -33.916667
+    ],
+    "worldPortIndex": 46770,
+    "sourceName": "Cape Town",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "mombasa",
+    "name": "Mombasa",
+    "position": [
+      39.666667,
+      -4.066667
+    ],
+    "worldPortIndex": 47100,
+    "sourceName": "Mombasa",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "dar-es-salaam",
+    "name": "Dar es Salaam",
+    "position": [
+      39.293404,
+      -6.834444
+    ],
+    "naturalEarthId": 1730089641,
+    "sourceName": "Dar es Salaam",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "djibouti",
+    "name": "Djibouti",
+    "position": [
+      43.133333,
+      11.6
+    ],
+    "worldPortIndex": 47850,
+    "sourceName": "Djibouti",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "lagos",
+    "name": "Lagos",
+    "position": [
+      3.4,
+      6.4
+    ],
+    "worldPortIndex": 46130,
+    "sourceName": "Lagos",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "lome",
+    "name": "Lome",
+    "position": [
+      1.283333,
+      6.133333
+    ],
+    "worldPortIndex": 46090,
+    "sourceName": "Lome",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "tema",
+    "name": "Tema",
+    "position": [
+      0.015556,
+      5.631944
+    ],
+    "worldPortIndex": 46070,
+    "sourceName": "Tema",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "abidjan",
+    "name": "Abidjan",
+    "position": [
+      -4.016667,
+      5.25
+    ],
+    "worldPortIndex": 46000,
+    "sourceName": "Abidjan",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "dakar",
+    "name": "Dakar",
+    "position": [
+      -17.433333,
+      14.683333
+    ],
+    "worldPortIndex": 45820,
+    "sourceName": "Dakar",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "melbourne",
+    "name": "Melbourne",
+    "position": [
+      144.966667,
+      -37.833333
+    ],
+    "worldPortIndex": 54030,
+    "sourceName": "Melbourne",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "sydney",
+    "name": "Sydney",
+    "position": [
+      151.2,
+      -33.866667
+    ],
+    "worldPortIndex": 53650,
+    "sourceName": "Sydney",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "brisbane",
+    "name": "Brisbane",
+    "position": [
+      153.151546,
+      -27.400043
+    ],
+    "worldPortIndex": 53490,
+    "sourceName": "Brisbane",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "fremantle",
+    "name": "Fremantle",
+    "position": [
+      115.75,
+      -32.05
+    ],
+    "worldPortIndex": 54520,
+    "sourceName": "Fremantle",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "auckland",
+    "name": "Auckland",
+    "position": [
+      174.77164,
+      -36.83851
+    ],
+    "worldPortIndex": 55060,
+    "sourceName": "Auckland",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
+  },
+  {
+    "id": "tauranga",
+    "name": "Tauranga",
+    "position": [
+      176.166667,
+      -37.633333
+    ],
+    "worldPortIndex": 55080,
+    "sourceName": "Tauranga",
+    "aliases": [],
+    "selection": "regional",
+    "demoEndpoint": false
   }
 ]

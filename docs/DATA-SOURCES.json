@@ -27,7 +27,14 @@
     "license": "Public domain",
     "termsUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
     "sourceSha256": "c5a5028f5187a5e1b9fe7f0fab99804a8be7482099a2365d404fb7e9dd6b5457",
-    "transformations": "Select nine named ports by Natural Earth feature name; retain source coordinates and stable feature IDs. Demo route endpoints are authored assignments, not observed port calls.",
-    "sha256": "5b04b114c0cf2aca0906f580e0e68b3facc368bd4dcb7a38811784beee6b6d63"
+    "transformations": "Curated major-port catalogue. Preserve the original nine Natural Earth markers and demo endpoints; add the WSC 2024 top 50 container port systems, represented by named port locations, plus bulk/energy and regional gateways. Coordinate sources and aggregate mappings are documented in PORTS.md. Added ports do not imply vessel calls.",
+    "sha256": "d007dbf0852de1f74435afdac7ad1deb989a2a1711d77e5d526772cb898c583a",
+    "worldPortIndexSource": {
+      "sourceUrl": "https://msi.nga.mil/api/publications/download?key=16920959/SFH00000/UpdatedPub150.csv&type=view",
+      "sha256": "315644f1e77966291633145fd351c2762b37702d115926b9ed074b39e8e21667",
+      "retrievedAt": "2026-09-07",
+      "license": "US government geographic data"
+    },
+    "selectionSourceUrl": "https://www.worldshipping.org/top-50-container-ports"
   }
 }
