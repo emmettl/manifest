@@ -8,6 +8,7 @@
 - [x] Acquire the NOAA 1–3 January 2025 regional sample, retain exact source metadata, and build its adapter. Public artwork use review remains open.
 - [x] Measure reception gaps, duplicate rates and speed outliers; adopt an initial ten-minute regional interpolation cap, documented in `NOAA-SAMPLE.md`.
 - [x] Add local observed playback, regional geography and evidence labels without admitting provider data to the public build.
+- [ ] Compile the Danish 1–3 January 2025 Baltic-entrance sample through the same compiler and audit; publication review open alongside NOAA.
 - [ ] Add time-aligned identity/class records and a selected observed voyage with honest gaps.
 - [ ] Choose whether the global proof is aggregate presence or licensed individual tracks.
 - [x] Add daily synthetic track chunks, bounded prefetch/cache, integrity checks and measured payload budgets.

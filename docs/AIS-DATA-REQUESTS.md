@@ -1,6 +1,6 @@
 # Prepared AIS data requests
 
-Drafts prepared on 7 September 2026. Neither request has been sent. No account, contract or purchase has been initiated.
+NOAA and Kpler drafts prepared on 7 September 2026; the Danish draft on 8 September 2026. None has been sent. No account, contract or purchase has been initiated, and no Danish archive file has been downloaded.
 
 ## NOAA publication-use clarification
 
@@ -52,3 +52,24 @@ The key requirement is a permitted publication path: a static public website ser
 Please separate evaluation pricing from full-window pricing and state any recurring charges or minimum commitment. We have not committed to a budget or subscription. We would like to evaluate actual data and the publication terms before choosing the production architecture.
 
 Thank you.
+
+## Danish historical AIS archive clarification
+
+Intended destination: the AIS data contact listed in the [AIS data management policy](https://www.dma.dk/safety-at-sea/navigational-information/ais-data/ais-data-management-policy-), `sifa@brs2.dk` (Danish Emergency Management Agency, which the [DMA AIS data page](https://www.dma.dk/safety-at-sea/navigational-information/ais-data) says now runs the land-based AIS system), copying the Danish Maritime Authority at `sfs@dma.dk`. The archive itself is at `http://aisdata.ais.dk/`; the policy page describes paid live access, and the historical download page states only that the files are free.
+
+Subject: Use of the historical Danish AIS CSV archive in an attributed public visual study
+
+Hello,
+
+I am developing MANIFEST, an independent visual study of vessel movement. We have already built a local evaluation from the NOAA 1–3 January 2025 daily AIS files for the Los Angeles/Long Beach approaches, and we would like to compile the same 72-hour window from the Danish historical archive at aisdata.ais.dk (`aisdk-2025-01-01.zip` to `aisdk-2025-01-03.zip`), covering the Skagerrak, Kattegat and Belt approaches.
+
+The proposed public work would replay received cargo- and tanker-class vessel positions over those 72 hours, preserve reception gaps, and credit the Danish Maritime Authority and the Danish Emergency Management Agency as the source. It would use Class A dynamic positions, MMSI, IMO, ship type and cargo type; it would exclude Class B, fishing and leisure targets; and it would make no claim about cargo contents or trade volumes. Names and destinations would be shown only as reported and time-stamped, if at all.
+
+The AIS data page states that historical AIS data are free to download under act no. 596 of 24 June 2005 on the re-use of public sector information, but we found no notice covering publication or redistribution of derived data. Could you confirm the terms that apply to an independent public visual artwork, specifically:
+
+1. Hosting browser-readable derived track JSON on a static website. The JSON contains positions, timestamps and namespaced MMSIs and can be recovered by viewers; we are not relying on downsampling or presentation as a restriction on copying.
+2. Keeping an archival copy of the downloaded files and displaying screenshots, video or exhibition captures of the work.
+3. Whether the conditions in the AIS data management policy for subscribed live access — in particular the condition on combining data so that persons become identifiable, which we understand to require a Danish Data Protection Agency permit — also apply to the historical files, and whether displaying the MMSI and IMO of commercial cargo and tanker vessels falls within it.
+4. The attribution wording you require, and whether a fixed published artifact may remain available indefinitely.
+
+If another notice, licence or permission governs this use, please direct us to it. No file has been downloaded pending this clarification. Thank you.
