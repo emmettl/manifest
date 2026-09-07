@@ -11,6 +11,7 @@
 - [ ] Add time-aligned identity/class records and a selected observed voyage with honest gaps.
 - [ ] Choose whether the global proof is aggregate presence or licensed individual tracks.
 - [x] Add daily synthetic track chunks, bounded prefetch/cache, integrity checks and measured payload budgets.
+- [x] Replace per-stroke Canvas fleet drawing with resident GPU geometry, batched fallback and measured full-fleet playback.
 - [ ] Add spatial subdivision, worker decoding and world-scale level of detail against measured payloads.
 - [ ] Add source-bounded port calls, voyage evidence and separate trade context.
 - [ ] Pass the study’s global coverage, publication-rights and signature-composition gates.

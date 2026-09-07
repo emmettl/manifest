@@ -37,14 +37,17 @@ export function App() {
 
   useEffect(() => {
     if (!playing || !data || !ready) return
-    let previous = 0, frame = 0
+    let previous = 0, frame = 0, cancelled = false
     const tick = (now: number) => {
-      // Do not catch up through time spent in a background tab.
-      if (previous && !document.hidden) setTime(current => advanceTime(current, Math.min((now - previous) / 1000, .1), data.study.duration / 180 * speedFactors[speedIndex], data.study.duration))
-      previous = now; frame = requestAnimationFrame(tick)
+      // Commit in this animation frame so React scheduling does not halve the
+      // presentation cadence. Do not catch up through time in a background tab.
+      if (previous && !document.hidden) flushSync(() => setTime(current => advanceTime(current, Math.min((now - previous) / 1000, .1), data.study.duration / 180 * speedFactors[speedIndex], data.study.duration)))
+      // A synchronous daily transition can clean up this effect during flushSync.
+      // Do not leave its old clock running alongside the new chunk’s clock.
+      if (!cancelled) { previous = now; frame = requestAnimationFrame(tick) }
     }
     frame = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame)
+    return () => { cancelled = true; cancelAnimationFrame(frame) }
   }, [playing, data, ready, speedIndex])
 
   useEffect(() => { if (about) dialogRef.current?.showModal(); else dialogRef.current?.close() }, [about])
@@ -53,14 +56,20 @@ export function App() {
     const ids = new Set(data.study.segments.filter(segment => time >= segment.samples[0].time && time <= segment.samples[segment.samples.length - 1].time).map(segment => segment.vesselId))
     return data.study.vessels.filter(vessel => ids.has(vessel.id) && visible.has(vessel.category))
   }, [data, ready, time, visible])
-  const vessel = data?.study.vessels.find(item => item.id === selected)
+  const vessel = selected ? data?.study.vessels.find(item => item.id === selected) : undefined
   const vesselChoices = useMemo(() => {
     const query = vesselQuery.trim().toLowerCase()
-    return activeVessels.filter(item => !query || `${item.label} ${item.id}`.toLowerCase().includes(query)).slice(0, 100)
+    if (!query) return activeVessels.slice(0, 100)
+    const matches = []
+    for (const item of activeVessels) {
+      if (`${item.label} ${item.id}`.toLowerCase().includes(query)) matches.push(item)
+      if (matches.length === 100) break
+    }
+    return matches
   }, [activeVessels, vesselQuery])
   const residentSampleCount = useMemo(() => data?.study.segments.reduce((total, segment) => total + segment.samples.length, 0) ?? 0, [data])
   const sampleCount = manifest?.sampleCount ?? residentSampleCount
-  const selectedSegment = data?.study.segments.find(item => item.vesselId === selected && positionAt(item, time))
+  const selectedSegment = selected ? data?.study.segments.find(item => item.vesselId === selected && positionAt(item, time)) : undefined
   const position = selectedSegment ? positionAt(selectedSegment, time) : null
   const toggle = (category: VesselClass) => {
     setVisible(current => { const next = new Set(current); if (next.has(category)) next.delete(category); else next.add(category); return next })
@@ -130,7 +139,7 @@ export function App() {
         <dl><dt>Movement and credit</dt><dd><a href="https://www.fisheries.noaa.gov/inport/item/77594/full-list" target="_blank" rel="noreferrer">Nationwide Automatic Identification System 2025</a>. U.S. Coast Guard Navigation Center, Bureau of Ocean Energy Management, NOAA Office for Coastal Management.</dd><dt>What the marks mean</dt><dd>Received positions, interpolated only within accepted segments. Gaps over {gapMinutes} minutes, apparent speeds over {data?.study.audit?.maxSpeedKnots ?? 45} knots, conflicting reports and observed exits from the region break tracks. No extrapolation through gaps.</dd><dt>Classification</dt><dd>NOAA’s supplied vessel types include AVID enrichment. Their historical registry validity is not established. Identifiers are MMSIs, not verified hull identities. No cargo contents, trade volumes or port calls are asserted.</dd><dt>Publication</dt><dd>NOAA metadata lists no access constraints and “For coastal and ocean planning” as its use constraint. Public artwork redistribution remains under review. This sample is served locally and excluded from the public build.</dd><dt>Geography</dt><dd>Natural Earth, public domain, 1:10 million, regional polygon selection. Small harbour structures are generalized; this is not a navigational chart.</dd></dl>
       </> : <>
         <p><strong>Every vessel and journey here is synthetic.</strong> The 30-day clock is illustrative. Routes are schematic, vessel counts are invented, and the animation does not measure cargo contents or trade volumes. Port cards show separately sourced annual statistics.</p>
-        <p>The complete performance fixture contains {data?.study.vessels.length.toLocaleString('en-US')} vessels and {sampleCount.toLocaleString('en-US')} route samples. Voyages are staggered, so the count with positions varies with time and class filters; the drawn count also depends on the viewport and wrapped world copies. Daily chunks retain the original samples needed for every qualifying mark and its full prototype wake. The current day loads on demand, playback prefetches the next day, and only two decoded chunks are cached. The delivery meter reports decoded JSON bytes, not JavaScript heap size; its load time includes fetching, integrity checking, decoding and validation. This tests fleet-scale loading and rendering, not raw AIS sampling volume or realistic traffic distribution. The on-map meter reports Canvas 2D work against a 16.7 ms frame budget; it is not a measurement of total frame or GPU time.</p>
+        <p>The complete performance fixture contains {data?.study.vessels.length.toLocaleString('en-US')} vessels and {sampleCount.toLocaleString('en-US')} route samples. Voyages are staggered, so the count with positions varies with time and class filters; the drawn count also depends on the viewport and wrapped world copies. Daily chunks retain the original samples needed for every qualifying mark and its full prototype wake. The current day loads on demand, playback prefetches the next day, and only two decoded chunks are cached. The delivery meter reports decoded JSON bytes, not JavaScript heap size; its load time includes fetching, integrity checking, decoding and validation. This tests fleet-scale loading and rendering, not raw AIS sampling volume or realistic traffic distribution. The on-map meter reports CPU preparation and drawing submission against a 16.7 ms frame budget; it is not a measurement of total frame or GPU time.</p>
         <dl><dt>Movement</dt><dd>Deterministic authored fixture, CC0. No live feed, AIS recording or vessel identity.</dd><dt>Geography</dt><dd><a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer">Natural Earth</a>, public-domain land geometry at 1:110 million scale. Not for navigation.</dd><dt>Port statistics</dt><dd>Port cards cite published container rankings, throughput and vessel-arrival figures where added. Each metric carries its reporting period and source. Rankings use the World Shipping Council’s 2024 container-port baseline; combined port systems are identified explicitly. These figures are independent of the study clock.</dd><dt>Next evidence</dt><dd>A regional historical AIS proof, followed by a decision on global tracks or aggregate presence. Observed, reported, inferred and statistical evidence will remain distinct.</dd></dl>
       </>}
       <a className="repo-link" href="https://github.com/emmettl/manifest" target="_blank" rel="noreferrer">Repository & study notes ↗</a>

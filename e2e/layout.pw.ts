@@ -20,7 +20,7 @@ for (const viewport of [{ width: 1366, height: 768 }, { width: 1920, height: 108
   test(`world opening uses the screen at ${viewport.width}×${viewport.height}`, async ({ page }) => {
     await page.setViewportSize(viewport)
     await page.goto('/')
-    const canvas = page.locator('canvas')
+    const canvas = page.locator('canvas[role="img"]')
     await expect(canvas).toBeVisible()
     // Sample actual rendered land near the top: the photographed failure left this area empty.
     await expect.poll(() => canvas.evaluate(element => {
@@ -49,10 +49,12 @@ test('high-density canvas stays inside its container through playback and resizi
   await page.getByRole('button', { name: 'Play playback', exact: true }).click()
   for (const viewport of [{ width: 3840, height: 2160 }, { width: 1366, height: 768 }, { width: 1920, height: 1080 }]) {
     await page.setViewportSize(viewport)
-    await expect.poll(() => page.locator('canvas').evaluate(canvas => {
+    await expect.poll(() => page.locator('canvas[role="img"]').evaluate(canvas => {
       const bounds = canvas.getBoundingClientRect()
       const parent = canvas.parentElement!.getBoundingClientRect()
-      return Math.abs(canvas.width - Math.round(bounds.width * 2)) + Math.abs(canvas.height - Math.round(bounds.height * 2)) + Math.abs(bounds.height - parent.height)
+      const fleet = document.querySelector<HTMLCanvasElement>('.fleet-canvas')!
+      const gpuSizeError = canvas.dataset.renderer === 'webgl2' ? Math.abs(fleet.width - canvas.width) + Math.abs(fleet.height - canvas.height) : 0
+      return gpuSizeError + Math.abs(canvas.width - Math.round(bounds.width * 2)) + Math.abs(canvas.height - Math.round(bounds.height * 2)) + Math.abs(bounds.height - parent.height)
     })).toBeLessThan(1)
     const footer = await page.locator('.playback').boundingBox()
     expect(footer!.y + footer!.height).toBeLessThanOrEqual(viewport.height + 1)

@@ -45,7 +45,7 @@ test('missing review artifact does not fall back to synthetic movement', async (
   await page.route('**/__local/noaa-la-2025.json', route => route.fulfill({ status: 404, body: 'Missing local sample' }))
   await page.goto('/?study=noaa-la-2025')
   await expect(page.getByRole('status')).toContainText('local NOAA sample is unavailable')
-  await expect(page.locator('canvas')).toHaveCount(0)
+  await expect(page.locator('canvas[role="img"]')).toHaveCount(0)
   await expect(page.getByRole('button', { name: 'Play playback', exact: true })).toBeDisabled()
 })
 
@@ -67,4 +67,64 @@ test('local data cannot be read through Vite static paths or cross-origin reques
   expect(head.status()).toBe(403)
   const response = await request.get('/__local/noaa-la-2025.json', { headers: { Origin: 'https://example.com' } })
   expect(response.status()).toBe(403)
+})
+
+test('GPU pixels preserve gaps and the renderer recovers from context loss', async ({ page }) => {
+  // Exercise shaders with a tiny invented study even on CI's software GPU.
+  await page.addInitScript(() => {
+    const getParameter = WebGL2RenderingContext.prototype.getParameter
+    WebGL2RenderingContext.prototype.getParameter = function(parameter: number) {
+      return parameter === 0x9246 ? 'Shader contract test' : getParameter.call(this, parameter)
+    }
+  })
+  await page.setViewportSize({ width: 1366, height: 900 })
+  await page.route('**/__local/noaa-la-2025.json', route => route.fulfill({ json: testStudy }))
+  await page.route('**/__local/noaa-la-land.geojson', route => route.fulfill({ json: land }))
+  await page.goto('/?study=noaa-la-2025')
+  const map = page.locator('canvas[role="img"]')
+  await expect(map).toHaveAttribute('data-renderer', 'webgl2')
+  // Read in the draw task, before the browser discards the drawing buffer.
+  await page.evaluate(() => {
+    const map = document.querySelector('canvas[role="img"]')!
+    const canvas = document.querySelector<HTMLCanvasElement>('.fleet-canvas')!
+    const gl = canvas.getContext('webgl2')!
+    new MutationObserver(() => {
+      const pixels = new Uint8Array(canvas.width * canvas.height * 4)
+      gl.readPixels(0, 0, canvas.width, canvas.height, gl.RGBA, gl.UNSIGNED_BYTE, pixels)
+      let count = 0
+      for (let i = 3; i < pixels.length; i += 4) if (pixels[i] > 30) count++
+      canvas.dataset.litPixels = String(count)
+      canvas.dataset.glError = String(gl.getError())
+    }).observe(map, { attributes: true, attributeFilter: ['data-frame'] })
+  })
+  await page.getByLabel('Study time', { exact: true }).fill('43320')
+  await expect.poll(() => page.locator('.fleet-canvas').getAttribute('data-lit-pixels').then(Number)).toBeGreaterThan(8)
+  await expect(page.locator('.fleet-canvas')).toHaveAttribute('data-gl-error', '0')
+  await expect(page.locator('.fleet-canvas')).toHaveAttribute('data-geometry-uploads', '1')
+  // The marker at this instant is just right of the opening camera's centre.
+  const box = (await map.boundingBox())!
+  const scale = Math.max(box.width / 360, box.height / 130) * 85
+  await map.click({ position: { x: box.width / 2 + .007 * scale, y: box.height / 2 } })
+  await expect(page.getByLabel('Inspect an observed vessel')).toHaveValue('test-cargo')
+  await page.getByLabel('Study time', { exact: true }).fill('60000')
+  await expect(page.locator('.fleet-canvas')).toHaveAttribute('data-lit-pixels', '0')
+  await expect(map).toHaveAttribute('data-drawn', '0')
+  await page.getByLabel('Study time', { exact: true }).fill('86460')
+  await expect.poll(() => page.locator('.fleet-canvas').getAttribute('data-lit-pixels').then(Number)).toBeGreaterThan(8)
+  await page.evaluate(() => {
+    const canvas = document.querySelector<HTMLCanvasElement>('.fleet-canvas')!
+    const extension = canvas.getContext('webgl2')!.getExtension('WEBGL_lose_context')!
+    // Extensions cannot be requested while the context is lost.
+    Object.assign(canvas, { restoreTestContext: () => extension.restoreContext() })
+    extension.loseContext()
+  })
+  await expect(map).toHaveAttribute('data-renderer', 'canvas2d')
+  await expect(map).toHaveAttribute('data-drawn', '1')
+  await expect(page.getByLabel('Rendering performance')).toContainText('Canvas fallback')
+  await page.evaluate(() => {
+    document.querySelector<HTMLCanvasElement & { restoreTestContext: () => void }>('.fleet-canvas')!.restoreTestContext()
+  })
+  await expect(map).toHaveAttribute('data-renderer', 'webgl2')
+  await expect.poll(() => page.locator('.fleet-canvas').getAttribute('data-lit-pixels').then(Number)).toBeGreaterThan(8)
+  await expect(page.locator('.fleet-canvas')).toHaveAttribute('data-gl-error', '0')
 })

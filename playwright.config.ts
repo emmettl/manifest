@@ -8,7 +8,7 @@ export default defineConfig({
   testMatch: '**/*.pw.ts',
   fullyParallel: true,
   workers: 2,
-  use: { baseURL: `http://127.0.0.1:${port}`, browserName: 'chromium', contextOptions: { reducedMotion: 'reduce' }, screenshot: 'only-on-failure', trace: 'retain-on-failure' },
+  use: { baseURL: `http://127.0.0.1:${port}`, browserName: 'chromium', launchOptions: { args: process.platform === 'darwin' && !process.env.CI ? ['--use-angle=metal'] : [] }, contextOptions: { reducedMotion: 'reduce' }, screenshot: 'only-on-failure', trace: 'retain-on-failure' },
   projects: [
     { name: 'public', testIgnore: '**/noaa-review.pw.ts' },
     { name: 'local-review', testMatch: '**/noaa-review.pw.ts', use: { baseURL: `http://127.0.0.1:${reviewPort}` } },
