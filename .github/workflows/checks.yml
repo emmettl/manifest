@@ -19,7 +19,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
       - name: Verify reproducible synthetic fixture
-        run: npm run data:demo && git diff --exit-code -- public/data/demo-study.json
+        run: npm run data:demo && git diff --exit-code -- public/data/demo-study.json public/data/demo docs/DATA-SOURCES.json
       - uses: actions/upload-artifact@v7
         with:
           name: manifest-site

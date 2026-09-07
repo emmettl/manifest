@@ -19,7 +19,8 @@
     "check:boundary": "node scripts/check-boundary.mjs",
     "check:bundle": "node scripts/check-bundle.mjs",
     "check": "npm run check:boundary && npm test && npm run build && npm run check:bundle",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "benchmark": "playwright test e2e/performance.pw.ts --project=public --workers=1"
   },
   "dependencies": {
     "@motionstudies/web": "0.1.0-alpha.1",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.62.1",
+    "@types/node": "22.20.1",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.7",
     "@vitejs/plugin-react": "6.1.1",

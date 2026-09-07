@@ -4,7 +4,7 @@
 
 [Open the prototype](https://emmettl.github.io/manifest/) · [Study](docs/STUDY.md) · [Architecture](docs/ARCHITECTURE.md) · [Next steps](docs/ROADMAP.md)
 
-The first version is a static, runnable ocean study with 420 deterministic synthetic vessels, cargo/tanker filters, world and regional views, pan/zoom (including touch and trackpad pinch), a 30-day playback clock, vessel inspection, a visible search across 135 major ports, port hero cards, labels at every demo destination, and source notes. Every vessel and trajectory is explicitly synthetic. Counts are fixture counts, routes are schematic, and the clock is illustrative. The animation contains no AIS observations, real vessel identities, cargo contents or measured trade volumes. Port cards separately display attributed annual statistics and rankings for 52 ports; other ports have geographic profiles with an explicit missing-statistics state.
+The first version is a static, runnable ocean study with 60,000 deterministic synthetic vessels, cargo/tanker filters, world and regional views, pan/zoom (including touch and trackpad pinch), a 30-day playback clock, vessel inspection, a visible search across 135 major ports, port hero cards, labels at every demo destination, and source notes. Every vessel and trajectory is explicitly synthetic. Counts are fixture counts, routes are schematic, and the clock is illustrative. The full fixture has 1,088,589 route samples and 24,406 vessels with positions at the opening time. The fixture is delivered as a small manifest, a vessel catalogue and 30 daily chunks. Playback prefetches the next day and retains at most two decoded chunks. The on-map meters show delivery costs, drawn marks, Canvas drawing cost and canvas draws per second against a 60 fps target. The animation contains no AIS observations, real vessel identities, cargo contents or measured trade volumes. Port cards separately display attributed annual statistics and rankings for 52 ports; other ports have geographic profiles with an explicit missing-statistics state.
 
 The prototype remains **unlinked from the Motion Studies catalogue** until it progresses. The page requests no indexing; the repository and Pages URL are public, so this is not access control.
 
@@ -20,7 +20,9 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-`npm run check` checks repository boundaries, runs the maritime contract/compiler tests, typechecks, builds the application, and enforces compressed payload budgets. `npm run data:demo` regenerates the exact committed fixture. Respect reduced-motion preferences: playback starts paused for those users. Scrubbing pauses the clock.
+`npm run benchmark` measures the built full-fleet site at desktop and phone viewport sizes, with one browser worker, and attaches timing JSON plus screenshots under `test-results/`. Phone viewports emulate layout on the host, not phone hardware.
+
+`npm run check` checks repository boundaries, runs the maritime contract/compiler tests, typechecks, builds the application, and enforces compressed and decoded payload ceilings. The chunked benchmark enforces a 2 MiB gzip first-view ceiling, 1.5 MiB gzip per day, 8 MiB decoded per asset, and 24 MiB decoded JSON for the catalogue plus two cached days. Its worst first view is 1.72 MiB gzip; the remaining 15% overage against the original 1.5 MiB target is reported explicitly. This is a workload baseline, not a passing production delivery budget. Sparse schematic samples do not reproduce raw AIS archive volume. See [performance scope and measurements](docs/PERFORMANCE.md). `npm run data:demo` regenerates the exact manifest, catalogue, hashed daily chunks and provenance. The 1.09 million original samples remain the workload reference; each chunk carries a three-day wake overlap and the original samples bracketing its bounds. Respect reduced-motion preferences: playback starts paused for those users. Scrubbing pauses the clock.
 
 ## Repository boundary
 

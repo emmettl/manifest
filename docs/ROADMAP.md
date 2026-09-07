@@ -10,7 +10,8 @@
 - [x] Add local observed playback, regional geography and evidence labels without admitting provider data to the public build.
 - [ ] Add time-aligned identity/class records and a selected observed voyage with honest gaps.
 - [ ] Choose whether the global proof is aggregate presence or licensed individual tracks.
-- [ ] Add spatial/time chunks and world-scale level of detail against measured payloads.
+- [x] Add daily synthetic track chunks, bounded prefetch/cache, integrity checks and measured payload budgets.
+- [ ] Add spatial subdivision, worker decoding and world-scale level of detail against measured payloads.
 - [ ] Add source-bounded port calls, voyage evidence and separate trade context.
 - [ ] Pass the study’s global coverage, publication-rights and signature-composition gates.
 - [ ] Admit to the catalogue and add a catalogue link only after explicit editorial approval.

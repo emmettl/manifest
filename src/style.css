@@ -41,6 +41,12 @@ canvas:active { cursor: grabbing; }
 .field-count { position: absolute; right: 42px; top: 25px; text-align: right; pointer-events: none; }
 .field-count strong { display: block; font: 24px 'IBM Plex Mono', monospace; }
 .field-count span { font-size: 12px; color: var(--muted); }
+.field-count small { display: block; color: var(--muted); font-size: 10px; margin-top: 4px; }
+.performance-readout { position: absolute; z-index: 2; top: 108px; right: 32px; white-space: pre-line; text-align: right; font: 10px/1.7 'IBM Plex Mono', monospace; color: #9db2b8; background: #080f14e8; padding: 5px 8px; pointer-events: none; }
+.performance-readout[data-over-budget="true"] { color: #e9b86b; }
+.vessel-picker { display: flex; gap: 8px; }
+.vessel-picker input { min-width: 0; width: 40%; background: #0d171e; color: inherit; border: 1px solid var(--line); border-radius: 0; padding: 8px; font: inherit; font-size: 12px; }
+.vessel-picker select { min-width: 0; flex: 1; }
 .map-tools { position: absolute; bottom: 28px; right: 42px; display: flex; flex-direction: column; gap: 5px; }
 .map-tools button { width: 38px; height: 38px; font-size: 23px; background: #0d171eee; }
 .map-hint { position: absolute; bottom: 22px; left: 42px; font-size: 12px; color: #849ca6; pointer-events: none; }
@@ -122,15 +128,19 @@ dialog dd { margin: 0; font-size: 14px; line-height: 1.6; color: #b2c5cc; }
   canvas, .ocean-scene { min-height: 330px; }
   .layer-controls { left: 20px; top: 16px; }
   .layer-controls button { padding: 8px 10px; font-size: 12px; }
-  .field-count { top: 21px; right: 20px; }
-  .field-count strong { font-size: 20px; }
-  .field-count span { font-size: 10px; }
+  .field-count { top: 16px; right: 20px; }
+  .field-count strong { font-size: 20px; line-height: 24px; }
+  .field-count span { display: block; font-size: 10px; line-height: 12px; }
+  .field-count small { font-size: 9px; line-height: 10px; margin-top: 0; }
+  .performance-readout { top: 112px; right: 20px; font-size: 9px; }
   .map-tools { right: 20px; bottom: 20px; }
   .map-hint { left: 20px; bottom: 20px; font-size: 10px; }
   .study-notes { grid-template-columns: 1fr; padding: 21px 20px; gap: 20px; }
   .evidence-panel { border-left: 0; border-top: 1px solid var(--line); padding: 17px 0 0; }
   .chapter-copy h2 { font-size: 26px; }
   .evidence-panel select { font-size: 16px; }
+  .vessel-picker { flex-direction: column; }
+  .vessel-picker input { width: 100%; font-size: 16px; }
   .playback { padding: 17px 20px 24px; gap: 12px; flex-wrap: wrap; }
   .transport { gap: 13px; }
   .clock { width: 126px; }
@@ -200,3 +210,8 @@ dialog dd { margin: 0; font-size: 14px; line-height: 1.6; color: #b2c5cc; }
   .study:has(.port-hero) { grid-template-rows: auto auto minmax(260px, 1fr) auto auto; }
   .study:has(.port-hero) .map-surface { min-height: 260px; }
 }
+
+.delivery-readout { position: absolute; z-index: 2; left: 32px; bottom: 43px; max-width: calc(100% - 120px); background: #080f14ee; color: #9db2b8; padding: 4px 7px; font: 10px/1.5 'IBM Plex Mono', monospace; pointer-events: none; }
+.chunk-loading { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 14px; background: #080f14f5; color: #c7d8dd; text-align: center; padding: 24px; }
+.chunk-loading button { padding: 8px 14px; }
+@media (max-width: 700px) { .delivery-readout { left: 20px; bottom: 41px; font-size: 9px; } }

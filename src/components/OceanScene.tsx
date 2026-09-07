@@ -10,15 +10,17 @@ import type { LandCollection, Position, TrackStudy, VesselClass } from '../marit
 const colors = { cargo: '#d5e9e7', tanker: '#e9b86b', other: '#70888e' }
 
 
-interface Props { study: TrackStudy; land: LandCollection; time: number; region: Region; visible: Set<VesselClass>; selected: string | null; onSelect: (id: string | null) => void; selectedPort: Port | null; onPortSelect: (port: Port | null) => void }
+interface Props { study: TrackStudy; land: LandCollection; time: number; playing: boolean; region: Region; visible: Set<VesselClass>; selected: string | null; onSelect: (id: string | null) => void; selectedPort: Port | null; onPortSelect: (port: Port | null) => void }
 
-export function OceanScene({ study, land, time, region, visible, selected, onSelect, selectedPort, onPortSelect }: Props) {
+export function OceanScene({ study, land, time, playing, region, visible, selected, onSelect, selectedPort, onPortSelect }: Props) {
   const observed = study.source.evidence === 'observed'
   const maxZoom = observed ? 320 : 10
   const vessels = useMemo(() => new Map(study.vessels.map(vessel => [vessel.id, vessel])), [study])
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const backdrop = useRef<HTMLCanvasElement | null>(null)
   const hits = useRef<{ id: string; x: number; y: number }[]>([])
+  const performanceRef = useRef<HTMLOutputElement>(null)
+  const measurements = useRef({ since: 0, durations: [] as number[], playing })
   const [size, setSize] = useState({ width: 1, height: 1 })
   const [camera, setCamera] = useState({ longitude: region.center[0] as number, latitude: region.center[1] as number, zoom: region.zoom as number })
   const cameraRef = useRef(camera)
@@ -91,6 +93,7 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
   }, [land, observed, camera, size])
 
   useEffect(() => {
+    const started = performance.now()
     const canvas = canvasRef.current!
     const context = canvas.getContext('2d')!
     const ratio = Math.min(window.devicePixelRatio || 1, 2)
@@ -132,11 +135,35 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
       }
     }
     context.globalAlpha = 1
-  }, [study, vessels, observed, time, visible, selected, camera, size])
+    const finished = performance.now()
+    const drawMs = finished - started
+    canvas.dataset.drawn = String(hits.current.length)
+    canvas.dataset.drawMs = String(drawMs)
+    canvas.dataset.frame = String(Number(canvas.dataset.frame ?? 0) + 1)
+    const meter = measurements.current
+    if (meter.playing !== playing || !meter.since) {
+      meter.playing = playing; meter.since = started; meter.durations = []
+    }
+    meter.durations.push(drawMs)
+    // Publish once per second without scheduling another React render. Paused
+    // redraws still expose their cost; idle time must never count as a slow frame.
+    if (!playing || finished - meter.since >= 1000) {
+      const sorted = meter.durations.slice().sort((a, b) => a - b)
+      const p95 = sorted[Math.max(0, Math.ceil(sorted.length * .95) - 1)]
+      const fps = meter.durations.length * 1000 / (finished - meter.since)
+      const output = performanceRef.current!
+      output.textContent = `${hits.current.length.toLocaleString('en-US')} marks drawn · ${playing ? `p95 ${p95.toFixed(1)}` : drawMs.toFixed(1)} ms draw\n${playing ? `${fps.toFixed(1)} canvas draws/s · target 60` : 'Paused · frame budget 16.7 ms'}`
+      output.dataset.drawMs = String(p95)
+      output.dataset.fps = playing ? String(fps) : ''
+      output.dataset.overBudget = String(p95 > 1000 / 60)
+      meter.since = finished; meter.durations = []
+    }
+  }, [study, vessels, observed, time, playing, visible, selected, camera, size])
 
   return <div className="ocean-scene">
     <canvas ref={canvasRef} aria-label={observed ? 'Regional map of observed NOAA vessel positions near Los Angeles. Interpolated only within accepted track segments. Use region controls and the vessel selector to explore with a keyboard.' : 'World map with synthetic cargo and tanker movement. Use the port search, region controls and vessel selector to explore with a keyboard.'} role="img"
       />
+    <output ref={performanceRef} className="performance-readout" role="note" aria-label="Rendering performance" aria-live="off" title="Canvas drawing time and completed canvas draws per second, sampled over about one second. A 60 fps frame has 16.7 ms for all work; draw time excludes React, data loading, browser painting and GPU completion. Marks include wrapped world copies. No vessels or trails are dropped to meet the budget.">Measuring canvas rendering…</output>
     <PortLabels camera={camera} size={size} selectedPort={selectedPort} onClear={() => onPortSelect(null)} onFocus={port => { onSelect(null); onPortSelect(port); setCamera({ longitude: port.position[0], latitude: port.position[1], zoom: 10 }) }} />
     <div className="map-tools" aria-label="Map controls">
       <button aria-label="Zoom in" data-tooltip="See the vessels more closely" disabled={camera.zoom >= maxZoom} onClick={() => setCamera(current => ({ ...current, zoom: Math.min(maxZoom, current.zoom * 1.4) }))}>+</button>

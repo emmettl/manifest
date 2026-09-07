@@ -20,6 +20,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Data exceptions: public/data/demo-study.json is generated synthetic data
+Data exceptions: public/data/demo-study.json and public/data/demo/ are generated synthetic data
 dedicated under CC0-1.0. public/data/land.geojson is public-domain Natural Earth
 data. See docs/DATA-SOURCES.json for provenance.

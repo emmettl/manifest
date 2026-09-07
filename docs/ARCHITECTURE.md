@@ -10,7 +10,10 @@ The feasibility study is sufficient for a provider-independent prototype. This r
 | `src/components/OceanScene.tsx` | Land projection, pan/zoom, moving marks, fading trails and pointer selection |
 | `src/maritime/types.ts` | Distinct track and presence contracts; evidence and publication metadata |
 | `src/maritime/playback.ts` | Bounded segment interpolation and short-path longitude wrapping |
-| `src/maritime/load.ts` | Runtime validation; synthetic-only public artifact gate |
+| `src/maritime/load.ts` | Runtime track validation; synthetic-only public artifact gate |
+| `src/maritime/chunks.ts` | Manifest/catalogue/packed chunk validation, SHA-256 integrity and bounded cache |
+| `src/maritime/use-study-data.ts` | Requested-day loading, next-day prefetch, stale-response protection and loading/retry states |
+| `scripts/chunk-tracks.mjs` | Original-sample window slicing and packed delivery encoding |
 | `scripts/generate-demo.mjs` | Seeded, reproducible illustrative fixture |
 | `scripts/compile-ais.mjs` | Offline quality filtering and segmentation of normalized reports |
 | `scripts/noaa-sample.mjs` | Fixed NOAA 2025 acquisition, checksums, two-pass regional adapter, classification episodes and quality audit |
@@ -60,13 +63,28 @@ Presence grids describe intensity. They cannot be converted into moving hulls or
 ## Initial budgets and remaining work
 
 - Application JS/CSS: at most 150 KiB gzip.
-- Initial world field plus land: at most 1.5 MiB gzip.
+- Initial world field plus land delivery target: 1.5 MiB gzip. The chunked 60,000-vessel benchmark has an explicit first-view ceiling of 2 MiB gzip, per-day ceiling of 1.5 MiB gzip, per-asset ceiling of 8 MiB decoded, and catalogue-plus-two-days ceiling of 24 MiB decoded JSON. The remaining delivery-target overage is reported by `check:bundle`. It fetches actual track samples, with no client-side count multiplier or procedural expansion.
 - No raw feed or provider credentials in the browser.
+- The on-map meter reports canvas marks drawn, CPU Canvas draw duration (p95 over roughly one second during playback), and completed canvas draws per second. Paused redraws report one draw duration and exclude idle time. The 16.7 ms target covers the whole frame, so a draw below budget alone does not establish 60 fps. React, browser painting, GPU completion and data loading are outside the draw timer. Counts with positions respect the time and category filters; viewport culling changes drawn marks, not the loaded fleet.
+- Vessel inspection searches active vessels by label/ID and offers the first 100 matches. Every active vessel remains searchable and selectable on the map without creating tens of thousands of option nodes each frame.
+- `npm run benchmark` runs serial desktop and phone-viewport Chromium measurements of the full built site. See `PERFORMANCE.md` for workload limits and measured results.
 - CI tests cover playback limits, dateline interpolation, fixture admission, ordering, duplicates, conflicts, invalid reports, gap splitting, speed jumps and publication status.
 - Gesture regression tests cover pointer sequences, anchored zoom, handoff to one-finger panning, cancellation, trackpad event handling and listener cleanup. Six Chromium browser checks exercise actual rendered land near the top of the map, visible playback controls, 1366×768 through 3840×2160 windows, a tall viewport, and high-density resizing during playback. Physical-device interaction and phone frame-rate measurements remain to be performed; bundle checks do not establish GPU/CPU performance.
-- Spatial/time chunk loading, adaptive level of detail, port-call inference, provider adapters, static identity histories and trade statistics are next-stage work.
+- Spatial subdivision, adaptive level of detail, port-call inference, provider adapters, static identity histories and trade statistics are next-stage work.
 
 The source research remains in Motion Studies; `docs/STUDY.md` is a pinned copy so the new repository is understandable on its own. Catalogue admission and linking remain a separate editorial decision.
+
+## Chunked track delivery
+
+`demo-study.json` is a `track-manifest`, not a full `TrackStudy`. It records source identity, interval, original fleet/sample counts, a three-day lookback, catalogue descriptor, and an ordered daily index. Descriptors carry content-hashed relative paths, decoded byte lengths and SHA-256 digests. The public parser validates continuous, non-overlapping index coverage and synthetic publication metadata before fetching assets. Paths are restricted to the generated asset namespace. Build checks reject unlisted files, missing assets, source mismatches and integrity failures.
+
+The catalogue is loaded once. Each `track-chunk` carries source/study identity, its index, and packed segment rows `[segmentId, vesselIndex, originPortId, destinationPortId, [time, longitude, latitude, ...]]`. Decoding restores the normal `TrackStudy` renderer contract, then applies the existing identity, ordering and coordinate checks. Vessel indices refer to the pinned catalogue. Catalogue or chunk source mismatches cannot substitute observed data for the synthetic study.
+
+A chunk owns a half-open UTC interval `[start, end)`. It includes segments active anywhere in that day and original samples covering the previous three days through the day end, including one bracketing sample on either side where available. No points are resampled. Logical segment IDs remain distinct, and chunks are never concatenated into artificial tracks. Origin/destination metadata describes the full synthetic voyage; a fragment's first or last retained sample is not necessarily a port endpoint. The client uses a chunk only within its declared core interval. Tests compare active counts and all 25 selected-wake lookups against the original fixture at daily seams, dateline crossings and study boundaries.
+
+The store retains only the current and next day. Playback prefetches one day ahead, including day zero at the loop boundary; paused opening loads only its requested day. Cached transitions are immediately readable, without a false loading gap. A distant scrub cancels obsolete requests and evicts old cache entries. Late results are discarded even if a transport ignores cancellation. The clock stops advancing while the requested day is unavailable. A loading/error overlay hides stale marks and counts; retry requests the failed day without reloading the catalogue. Prefetch errors are retried on demand. The local NOAA review keeps its separate existing full-track path.
+
+The delivery meter reports cache size, decoded JSON bytes and fetch/integrity/decode/validation duration. These serialized bytes are a repeatable payload metric, not JavaScript heap usage. Packed rows are expanded into objects and browser/GPU allocations require additional memory. Spatial/time tiling, worker decoding and physical-device memory measurements remain future work; the current global daily window deliberately keeps the full concurrent vessel rendering load.
 
 ## Optional agent navigation
 

@@ -2,8 +2,9 @@ import { describe, expect, it } from 'vitest'
 import { advanceTime, positionAt } from './playback'
 import { parseStudy } from './load'
 import { validateNavigation } from './agent-navigation'
-import fixture from '../../public/data/demo-study.json'
-import type { TrackSegment } from './types'
+import { createDemoStudy } from '../../scripts/generate-demo.mjs'
+import type { TrackSegment, TrackStudy } from './types'
+const fixture: TrackStudy = parseStudy(createDemoStudy())
 
 describe('maritime playback', () => {
   const segment: TrackSegment = { id: 's', vesselId: 'v', samples: [{ time: 10, position: [179, 0] }, { time: 20, position: [-179, 2] }] }
@@ -35,7 +36,13 @@ describe('public study contract', () => {
     expect(() => validateNavigation({ region: 'world', day: 1, url: 'unexpected' })).toThrow()
   })
   it('accepts the complete deterministic fixture', () => {
-    expect(parseStudy(fixture).vessels).toHaveLength(420)
+    expect(parseStudy(fixture).vessels).toHaveLength(60_000)
+    expect(fixture.segments.reduce((sum, segment) => sum + segment.samples.length, 0)).toBeGreaterThan(1_000_000)
+    expect(fixture.segments.every(segment => segment.samples[0].time < fixture.duration && segment.samples.at(-1)!.time >= 0)).toBe(true)
+    // Temporal load is sustained, not just a high fleet count of absent vessels.
+    for (const time of [0, 10.5 * 86400, fixture.duration - 1]) {
+      expect(fixture.segments.filter(segment => positionAt(segment, time)).length).toBeGreaterThan(20_000)
+    }
   })
   it('rejects observed artifacts from this synthetic-only prototype', () => {
     expect(() => parseStudy({ ...fixture, source: { ...fixture.source, evidence: 'observed', publication: 'review-required' } })).toThrow('synthetic')
@@ -44,13 +51,13 @@ describe('public study contract', () => {
     expect(() => parseStudy({ ...fixture, kind: 'presence' })).toThrow('format')
   })
   it('rejects unordered samples, invalid positions and orphan segments', () => {
-    const badTime = structuredClone(fixture)
+    const badTime = structuredClone({ ...fixture, vessels: fixture.vessels.slice(0, 1), segments: fixture.segments.slice(0, 1) })
     badTime.segments[0].samples[1].time = badTime.segments[0].samples[0].time
     expect(() => parseStudy(badTime)).toThrow('sample')
-    const badPosition = structuredClone(fixture)
-    badPosition.segments[0].samples[0].position[0] = 181
+    const badPosition = structuredClone({ ...fixture, vessels: fixture.vessels.slice(0, 1), segments: fixture.segments.slice(0, 1) })
+    badPosition.segments[0].samples[0].position = [181, 0]
     expect(() => parseStudy(badPosition)).toThrow('sample')
-    const orphan = structuredClone(fixture)
+    const orphan = structuredClone({ ...fixture, vessels: fixture.vessels.slice(0, 1), segments: fixture.segments.slice(0, 1) })
     orphan.segments[0].vesselId = 'missing'
     expect(() => parseStudy(orphan)).toThrow('segment')
   })

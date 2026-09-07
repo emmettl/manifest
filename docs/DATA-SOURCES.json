@@ -6,7 +6,8 @@
     "seed": 9173,
     "evidence": "synthetic",
     "license": "CC0-1.0",
-    "sha256": "2cfb51791abb021c67b0d4be52e86d11df4b0ed4a97a4b0a59137da259020704"
+    "sha256": "8fd4acbe86341680dfdf261d477057b003dac76b59be6b063413ae059f5bf0e1",
+    "delivery": "Daily track chunks and a vessel catalogue; content hashes and decoded byte lengths are recorded in the manifest. Three-day trail overlap retains original samples and segment boundaries."
   },
   "geography": {
     "path": "public/data/land.geojson",

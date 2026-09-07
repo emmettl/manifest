@@ -5,7 +5,7 @@
     "strict": true, "skipLibCheck": true, "noEmit": true,
     "allowImportingTsExtensions": true, "resolveJsonModule": true,
     "allowJs": true, "checkJs": false, "noUnusedLocals": true, "noUnusedParameters": true,
-    "types": ["vite/client"]
+    "types": ["vite/client", "node"]
   },
   "include": ["src", "vite.config.ts"]
 }

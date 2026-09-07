@@ -1,14 +1,17 @@
+import { parseStudy } from './load'
 import { expect, it } from 'vitest'
-import fixture from '../../public/data/demo-study.json'
+import { createDemoStudy } from '../../scripts/generate-demo.mjs'
+import type { TrackStudy } from './types'
+const fixture: TrackStudy = parseStudy(createDemoStudy())
 import { ports, layoutPortLabels, searchPorts } from './port-labels'
 
 it('gives both ends of every demo voyage a named port at its exact marker', () => {
   const byId = new Map(ports.map(port => [port.id, port]))
   for (const segment of fixture.segments) {
-    expect(byId.has(segment.originPortId)).toBe(true)
-    expect(byId.has(segment.destinationPortId)).toBe(true)
-    expect(segment.samples[0].position).toEqual(byId.get(segment.originPortId)!.position)
-    expect(segment.samples.at(-1)!.position).toEqual(byId.get(segment.destinationPortId)!.position)
+    expect(byId.has(segment.originPortId!)).toBe(true)
+    expect(byId.has(segment.destinationPortId!)).toBe(true)
+    expect(segment.samples[0].position).toEqual(byId.get(segment.originPortId!)!.position)
+    expect(segment.samples.at(-1)!.position).toEqual(byId.get(segment.destinationPortId!)!.position)
   }
 })
 
