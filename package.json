@@ -5,7 +5,7 @@
   "type": "module",
   "description": "MANIFEST \u2014 World trade in motion. An independent Motion Studies investigation.",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
@@ -34,5 +34,6 @@
     "typescript": "7.0.2",
     "vite": "8.2.2",
     "vitest": "5.0.0"
-  }
+  },
+  "packageManager": "npm@11.19.0"
 }
