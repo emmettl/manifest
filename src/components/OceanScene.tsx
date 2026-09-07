@@ -182,6 +182,6 @@ export function OceanScene({ study, land, time, playing, region, visible, select
       <button aria-label="Zoom out" data-tooltip="See more of the ocean" disabled={camera.zoom <= 1} onClick={() => setCamera(current => ({ ...current, zoom: Math.max(1, current.zoom / 1.4) }))}>−</button>
       <button aria-label="Reset map view" data-tooltip="Return to this chapter’s opening view" onClick={() => setCamera({ longitude: region.center[0], latitude: region.center[1], zoom: region.zoom })}>↺</button>
     </div>
-    <span className="map-hint">Drag to explore · Pinch to zoom</span>
+    <span className="map-hint">Drag to explore · Scroll or pinch to zoom</span>
   </div>
 }

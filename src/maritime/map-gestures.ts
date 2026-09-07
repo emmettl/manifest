@@ -61,7 +61,7 @@ export class PointerGesture {
 
 interface SafariGestureEvent extends Event { scale: number; clientX?: number; clientY?: number }
 
-/** Native non-passive listeners keep trackpad pinch inside the canvas, not the page. */
+/** Native non-passive listeners keep wheel and pinch zoom inside the canvas. */
 export function attachMapGestures(element: HTMLElement, readCamera: () => MapCamera, writeCamera: (camera: MapCamera) => void, onTap: (point: ScreenPoint) => void, maxZoom = 10) {
   const pointers = new PointerGesture(maxZoom)
   const lifecycle = new AbortController()
@@ -90,13 +90,14 @@ export function attachMapGestures(element: HTMLElement, readCamera: () => MapCam
   element.addEventListener('pointercancel', cancel, options)
   element.addEventListener('lostpointercapture', cancel, options)
   element.addEventListener('wheel', event => {
-    if (!event.ctrlKey) return // Ordinary scrolling still scrolls the page.
     event.preventDefault()
     if (safari || pointers.count > 1) return
     const rect = element.getBoundingClientRect()
     const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? rect.height : 1)
     const anchor = local(event)
-    writeCamera(transformCamera(readCamera(), anchor, anchor, Math.exp(clamp(-delta * .01, -1, 1)), rect, maxZoom))
+    // Wheel notches have larger deltas than trackpad pinch events.
+    const sensitivity = event.ctrlKey ? .01 : .002
+    writeCamera(transformCamera(readCamera(), anchor, anchor, Math.exp(clamp(-delta * sensitivity, -1, 1)), rect, maxZoom))
   }, options)
   // Safari trackpads use GestureEvents; touch PointerEvents remain the authority on iOS.
   element.addEventListener('gesturestart', event => {
