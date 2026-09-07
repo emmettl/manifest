@@ -1,0 +1,1079 @@
+{
+  "capturedAt": "2026-09-07",
+  "sources": {
+    "wsc2024": {
+      "name": "World Shipping Council",
+      "title": "Top 50 container ports · 2024",
+      "url": "https://www.worldshipping.org/top-50-container-ports"
+    },
+    "rotterdam2025": {
+      "name": "Port of Rotterdam",
+      "title": "Annual throughput · 2025",
+      "url": "https://www.portofrotterdam.com/en/news-and-press-releases/throughput-port-rotterdam-shows-slight-decline"
+    },
+    "losAngeles2024": {
+      "name": "Port of Los Angeles",
+      "title": "Facts & figures · 2024",
+      "url": "https://kentico.portoflosangeles.org/getmedia/50998557-64e2-46ad-aa43-6a7a6a505b23/2024-facts-figures"
+    },
+    "pilbara2026": {
+      "name": "Pilbara Ports",
+      "title": "Annual trade · FY 2025–26",
+      "url": "https://www.pilbaraports.com.au/about-pilbara-ports/news,-media-and-statistics/news/2026/july/pilbara-ports-exceeds-800-million-tonnes-to-delive"
+    },
+    "mpa2024": {
+      "name": "Maritime and Port Authority of Singapore",
+      "title": "Annual report · 2024",
+      "url": "https://www.mpa.gov.sg/docs/mpalibraries/mpa-documents-files/comms-and-community/annual-report/mpa-ar24-full-book_fa.pdf?sfvrsn=2f89c7a0_1"
+    }
+  },
+  "ports": {
+    "shanghai": {
+      "scope": "Shanghai",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 51.51,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 1,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "rotterdam": {
+      "scope": "Rotterdam",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 13.82,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 11,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 428.4,
+          "unit": "million tonnes",
+          "period": "2025",
+          "source": "rotterdam2025"
+        }
+      ]
+    },
+    "yantian": {
+      "scope": "Shenzhen",
+      "scopeNote": "Figures cover the Shenzhen port system, including Yantian and other terminals.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 33.4,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 4,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "los-angeles": {
+      "scope": "Los Angeles",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 10.3,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 16,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "arrivals",
+          "value": 1807,
+          "unit": "arrivals",
+          "period": "2024",
+          "source": "losAngeles2024"
+        }
+      ]
+    },
+    "singapore": {
+      "scope": "Singapore",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 41.12,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 2,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 622.67,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "mpa2024"
+        }
+      ]
+    },
+    "new-york": {
+      "scope": "New York-New Jersey",
+      "scopeNote": "Figures cover the Port of New York and New Jersey.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 8.7,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 24,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "long-beach": {
+      "scope": "Long Beach",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 9.65,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 19,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "ningbo-zhoushan": {
+      "scope": "Ningbo-Zhoushan",
+      "scopeNote": "Figures cover the combined Ningbo–Zhoushan port system.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 39.3,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 3,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "qingdao": {
+      "scope": "Qingdao",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 30.87,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 5,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "guangzhou": {
+      "scope": "Guangzhou Harbor",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 26.07,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 6,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "busan": {
+      "scope": "Busan",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 24.4,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 7,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "tianjin": {
+      "scope": "Tianjin",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 23.29,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 8,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "jebel-ali": {
+      "scope": "Jebel Ali, Dubai",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 15.54,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 9,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "port-klang": {
+      "scope": "Port Klang",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 14.64,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 10,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "hong-kong": {
+      "scope": "Hong Kong",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 13.69,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 12,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "antwerp": {
+      "scope": "Antwerp",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 13.5,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 13,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "xiamen": {
+      "scope": "Xiamen",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 12.26,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 14,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "tanjung-pelepas": {
+      "scope": "Tanjung Pelepas",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 12.25,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 15,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "tanger-med": {
+      "scope": "Tanger Med",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 10.24,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 17,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "suzhou-taicang": {
+      "scope": "Suzhou",
+      "scopeNote": "Figures cover Suzhou’s port system; the map marker represents Taicang.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 9.67,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 18,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "laem-chabang": {
+      "scope": "Laem Chabang",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 9.55,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 20,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "kaohsiung": {
+      "scope": "Kaohsiung",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 9.23,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 21,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "ho-chi-minh-city": {
+      "scope": "Ho Chi Minh City",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 9.16,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 22,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "beibu-gulf-qinzhou": {
+      "scope": "Guangxi Beibu",
+      "scopeNote": "Figures cover Guangxi Beibu Gulf ports; the map marker represents Qinzhou.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 9.02,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 23,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "mundra": {
+      "scope": "Mundra",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 8.5,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 25,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "hamburg": {
+      "scope": "Hamburg",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 7.8,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 26,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "tanjung-priok": {
+      "scope": "Tanjung Priok",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 7.8,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 27,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "colombo": {
+      "scope": "Colombo",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 7.79,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 28,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "hai-phong": {
+      "scope": "Hai Phong",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 7.15,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 29,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "cai-mep": {
+      "scope": "Cai Mep",
+      "scopeNote": "Figures cover the Cai Mep port complex; the marker represents CMIT, one of its terminals.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 7.08,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 30,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "nhava-sheva": {
+      "scope": "Jawaharlal Nehru Port (Nhava Sheva)",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 7.05,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 31,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "rizhao": {
+      "scope": "Rizhao",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 6.71,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 32,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "lianyungang": {
+      "scope": "Lianyungang",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 6.69,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 33,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "yingkou": {
+      "scope": "Yingkou",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 5.56,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 34,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "savannah": {
+      "scope": "Savannah",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 5.55,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 35,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "manila": {
+      "scope": "Manila",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 5.5,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 36,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "santos": {
+      "scope": "Santos",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 5.48,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 37,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "valencia": {
+      "scope": "Valencia",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 5.48,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 38,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "abu-dhabi": {
+      "scope": "Abu Dhabi",
+      "scopeNote": "Figures cover Abu Dhabi’s port system, including terminals beyond the map marker.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 5.42,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 39,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "dalian": {
+      "scope": "Dalian",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 5.4,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 40,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "colon": {
+      "scope": "Colon",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 5.4,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 41,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "yantai": {
+      "scope": "Yantai",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 5.09,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 42,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "algeciras": {
+      "scope": "Algeciras",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 4.71,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 43,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "piraeus": {
+      "scope": "Piraeus",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 4.7,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 44,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "tokyo": {
+      "scope": "Tokyo",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 4.7,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 45,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "bremerhaven": {
+      "scope": "Bremen/Bremerhaven",
+      "scopeNote": "Figures cover Bremen and Bremerhaven together.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 4.45,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 46,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "tanjung-perak": {
+      "scope": "Tanjung Perak",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 4.3,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 47,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "houston": {
+      "scope": "Houston",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 4.14,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 48,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "dongguan": {
+      "scope": "Dongguan",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 4.02,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 49,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "balboa": {
+      "scope": "Balboa",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 4.01,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "wsc2024"
+        },
+        {
+          "kind": "containerRank",
+          "value": 50,
+          "unit": "rank",
+          "period": "2024",
+          "source": "wsc2024"
+        }
+      ]
+    },
+    "port-hedland": {
+      "scope": "Port Hedland",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 580.4,
+          "unit": "million tonnes",
+          "period": "FY 2025–26",
+          "source": "pilbara2026"
+        }
+      ]
+    },
+    "dampier": {
+      "scope": "Dampier",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 178.3,
+          "unit": "million tonnes",
+          "period": "FY 2025–26",
+          "source": "pilbara2026"
+        }
+      ]
+    }
+  }
+}

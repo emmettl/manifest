@@ -4,7 +4,7 @@
 
 [Open the prototype](https://emmettl.github.io/manifest/) · [Study](docs/STUDY.md) · [Architecture](docs/ARCHITECTURE.md) · [Next steps](docs/ROADMAP.md)
 
-The first version is a static, runnable ocean study with 420 deterministic synthetic vessels, cargo/tanker filters, world and regional views, pan/zoom (including touch and trackpad pinch), a 30-day playback clock, vessel inspection, a searchable catalogue of 135 major ports with labels at every demo destination, and source notes. Every vessel and trajectory is explicitly synthetic. Counts are fixture counts, routes are schematic, and the clock is illustrative. No AIS observations, vessel identities, cargo contents or trade volumes are represented.
+The first version is a static, runnable ocean study with 420 deterministic synthetic vessels, cargo/tanker filters, world and regional views, pan/zoom (including touch and trackpad pinch), a 30-day playback clock, vessel inspection, a visible search across 135 major ports, port hero cards, labels at every demo destination, and source notes. Every vessel and trajectory is explicitly synthetic. Counts are fixture counts, routes are schematic, and the clock is illustrative. The animation contains no AIS observations, real vessel identities, cargo contents or measured trade volumes. Port cards separately display attributed annual statistics and rankings for 52 ports; other ports have geographic profiles with an explicit missing-statistics state.
 
 The prototype remains **unlinked from the Motion Studies catalogue** until it progresses. The page requests no indexing; the repository and Pages URL are public, so this is not access control.
 

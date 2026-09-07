@@ -16,9 +16,14 @@ export interface PortLabel extends Box { id: string; name: string; markerX: numb
 const overlaps = (a: Box, b: Box) => a.x < b.x + b.width + 4 && a.x + a.width + 4 > b.x && a.y < b.y + b.height + 4 && a.y + a.height + 4 > b.y
 
 export function searchPorts(query: string): Port[] {
-  const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
-  const term = normalize(query.trim())
-  return ports.filter(port => normalize([port.name, ...port.aliases].join(' ')).includes(term)).sort((a, b) => a.name.localeCompare(b.name))
+  const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim()
+  const term = normalize(query)
+  const words = term.split(/\s+/).filter(Boolean)
+  const score = (port: Port) => normalize(port.name) === term ? 0 : normalize(port.name).startsWith(term) ? 1 : 2
+  return ports.filter(port => {
+    const text = normalize([port.name, ...port.aliases].join(' '))
+    return words.every(word => text.includes(word))
+  }).sort((a, b) => (term ? score(a) - score(b) : (a.containerRank2024 ?? 100) - (b.containerRank2024 ?? 100)) || a.name.localeCompare(b.name))
 }
 
 /** Preserve every visible marker; reveal names where they fit, prioritising the selected port and voyage endpoints. */
@@ -27,7 +32,7 @@ export function layoutPortLabels(camera: MapCamera, viewport: { width: number; h
   if (width < 100 || height < 100) return []
   const scale = projectionScale(viewport) * camera.zoom
   const occupied: Box[] = [
-    { x: 0, y: 0, width: Math.min(245, width * .62), height: 120 },
+    { x: 0, y: 0, width: Math.min(370, width - 12), height: 130 },
     { x: width - 190, y: 0, width: 190, height: 78 },
     { x: width - 90, y: height - 170, width: 90, height: 170 },
     { x: 0, y: height - 40, width: 270, height: 40 },

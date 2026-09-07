@@ -1,7 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { createDataUrlResolver } from '@motionstudies/web/data-url'
 import { OceanScene } from './components/OceanScene'
+import { PortHero } from './components/PortHero'
+import type { Port } from './maritime/port-labels'
 import { parseLand, parseStudy } from './maritime/load'
 import { advanceTime, DAY, positionAt } from './maritime/playback'
 import { regions } from './maritime/regions'
@@ -22,12 +24,14 @@ export function App() {
   const [speedIndex, setSpeedIndex] = useState(1)
   const [visible, setVisible] = useState<Set<VesselClass>>(() => new Set(['cargo', 'tanker']))
   const [selected, setSelected] = useState<string | null>(null)
+  const [selectedPort, setSelectedPort] = useState<Port | null>(null)
+  const selectVessel = useCallback((id: string | null) => { setSelected(id); setSelectedPort(null) }, [])
   const [about, setAbout] = useState(false)
   const dialogRef = useRef<HTMLDialogElement>(null)
   const region = regions.find(item => item.id === regionId) ?? regions[0]
 
   useEffect(() => registerAgentNavigation((region, day) => {
-    flushSync(() => { setRegionId(region); setTime((day - 1) * DAY); setPlaying(false); setSelected(null) })
+    flushSync(() => { setRegionId(region); setTime((day - 1) * DAY); setPlaying(false); setSelected(null); setSelectedPort(null) })
   }), [])
 
   useEffect(() => {
@@ -78,10 +82,10 @@ export function App() {
       <div className="header-meta"><span className="demo-badge"><i />SYNTHETIC STUDY</span><button className="text-button" onClick={() => setAbout(true)}>About the data <span aria-hidden="true">↗</span></button></div>
     </header>
 
-    <nav className="chapters" aria-label="Study regions">{regions.map(item => <button key={item.id} aria-pressed={regionId === item.id} data-tooltip={`Explore ${item.title.toLowerCase()}`} onClick={() => { setRegionId(item.id); setSelected(null) }}><span>{item.number}</span>{item.label}</button>)}</nav>
+    <nav className="chapters" aria-label="Study regions">{regions.map(item => <button key={item.id} aria-pressed={regionId === item.id} data-tooltip={`Explore ${item.title.toLowerCase()}`} onClick={() => { setRegionId(item.id); setSelected(null); setSelectedPort(null) }}><span>{item.number}</span>{item.label}</button>)}</nav>
 
     <section className="map-surface" aria-label="Maritime study">
-      {data ? <OceanScene study={data.study} land={data.land} time={time} region={region} visible={visible} selected={selected} onSelect={setSelected} /> : <div className="load-state" role="status">{error ? <><p>The study could not be loaded.</p><button onClick={() => { setError(false); setAttempt(value => value + 1) }}>Try again</button></> : <p>Opening the ocean study…</p>}</div>}
+      {data ? <OceanScene study={data.study} land={data.land} time={time} region={region} visible={visible} selected={selected} onSelect={selectVessel} selectedPort={selectedPort} onPortSelect={setSelectedPort} /> : <div className="load-state" role="status">{error ? <><p>The study could not be loaded.</p><button onClick={() => { setError(false); setAttempt(value => value + 1) }}>Try again</button></> : <p>Opening the ocean study…</p>}</div>}
       <div className="layer-controls" aria-label="Vessel classes">
         <button aria-pressed={visible.has('cargo')} data-tooltip="Show or hide synthetic cargo vessels" onClick={() => toggle('cargo')}><i className="cargo-dot" />Cargo</button>
         <button aria-pressed={visible.has('tanker')} data-tooltip="Show or hide synthetic tankers" onClick={() => toggle('tanker')}><i className="tanker-dot" />Tankers</button>
@@ -90,7 +94,8 @@ export function App() {
       {data && !visible.size && <div className="empty-hint">Choose Cargo or Tankers to show movement.</div>}
     </section>
 
-    <section className="study-notes" aria-label="Chapter and vessel evidence">
+    <section className="study-notes" aria-label="Study details">
+      {selectedPort ? <PortHero port={selectedPort} onClose={() => { setSelectedPort(null); document.getElementById('port-search')?.focus() }} /> : <>
       <div className="chapter-copy"><p className="eyebrow">{region.number} <span>/</span> {region.label.toUpperCase()}</p><h2>{region.title}</h2><p>{region.description}</p></div>
       <div className="evidence-panel">
         <label htmlFor="vessel">Inspect a demo vessel</label>
@@ -101,6 +106,7 @@ export function App() {
         </select>
         {vessel ? <p><span className="evidence-tag">SYNTHETIC</span> {position ? `${Math.abs(position[1]).toFixed(2)}°${position[1] < 0 ? 'S' : 'N'} · ${Math.abs(position[0]).toFixed(2)}°${position[0] < 0 ? 'W' : 'E'}` : 'No position at this time.'} <span className="muted">Interpolated demo position; no observed voyage or cargo claim.</span></p> : <p>{region.caption} <span className="muted">These movements are generated, not observed.</span></p>}
       </div>
+      </>}
     </section>
 
     <footer className="playback">
@@ -113,8 +119,8 @@ export function App() {
     <dialog ref={dialogRef} onCancel={() => setAbout(false)} onClose={() => setAbout(false)} aria-labelledby="about-title">
       <div className="dialog-head"><p className="eyebrow">SOURCE NOTES / V0.1</p><button aria-label="Close source notes" onClick={() => setAbout(false)}>×</button></div>
       <h2 id="about-title">A study taking shape.</h2><p>MANIFEST explores how vessel movement can make the world’s trade routes visible. This first version is a working prototype.</p>
-      <p><strong>Every vessel and journey here is synthetic.</strong> The 30-day clock is illustrative. Routes are schematic, vessel counts are invented, and neither cargo contents nor trade volumes are represented.</p>
-      <dl><dt>Movement</dt><dd>Deterministic authored fixture, CC0. No live feed, AIS recording or vessel identity.</dd><dt>Geography</dt><dd><a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer">Natural Earth</a>, public-domain land geometry at 1:110 million scale. Not for navigation.</dd><dt>Next evidence</dt><dd>A regional historical AIS proof, followed by a decision on global tracks or aggregate presence. Observed, reported, inferred and statistical evidence will remain distinct.</dd></dl>
+      <p><strong>Every vessel and journey here is synthetic.</strong> The 30-day clock is illustrative. Routes are schematic, vessel counts are invented, and the animation does not measure cargo contents or trade volumes. Port cards show separately sourced annual statistics.</p>
+      <dl><dt>Movement</dt><dd>Deterministic authored fixture, CC0. No live feed, AIS recording or vessel identity.</dd><dt>Geography</dt><dd><a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer">Natural Earth</a>, public-domain land geometry at 1:110 million scale. Not for navigation.</dd><dt>Port statistics</dt><dd>Port cards cite published container rankings, throughput and vessel-arrival figures where added. Each metric carries its reporting period and source. Rankings use the World Shipping Council’s 2024 container-port baseline; combined port systems are identified explicitly. These figures are independent of the study clock.</dd><dt>Next evidence</dt><dd>A regional historical AIS proof, followed by a decision on global tracks or aggregate presence. Observed, reported, inferred and statistical evidence will remain distinct.</dd></dl>
       <a className="repo-link" href="https://github.com/emmettl/manifest" target="_blank" rel="noreferrer">Repository & study notes ↗</a>
     </dialog>
   </main>

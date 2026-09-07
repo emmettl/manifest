@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { PortLabels } from './PortLabels'
+import { layoutPortLabels, ports, type Port } from '../maritime/port-labels'
 import { projectionScale } from '../maritime/map-projection'
 import { attachMapGestures } from '../maritime/map-gestures'
 import { DAY, positionAt } from '../maritime/playback'
@@ -9,9 +10,9 @@ import type { LandCollection, Position, TrackStudy, VesselClass } from '../marit
 const colors = { cargo: '#d5e9e7', tanker: '#e9b86b', other: '#70888e' }
 
 
-interface Props { study: TrackStudy; land: LandCollection; time: number; region: Region; visible: Set<VesselClass>; selected: string | null; onSelect: (id: string | null) => void }
+interface Props { study: TrackStudy; land: LandCollection; time: number; region: Region; visible: Set<VesselClass>; selected: string | null; onSelect: (id: string | null) => void; selectedPort: Port | null; onPortSelect: (port: Port | null) => void }
 
-export function OceanScene({ study, land, time, region, visible, selected, onSelect }: Props) {
+export function OceanScene({ study, land, time, region, visible, selected, onSelect, selectedPort, onPortSelect }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const backdrop = useRef<HTMLCanvasElement | null>(null)
   const hits = useRef<{ id: string; x: number; y: number }[]>([])
@@ -23,9 +24,14 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
     cameraRef.current = next
     setCamera(next)
   }, ({ x, y }) => {
+    const labels = layoutPortLabels(cameraRef.current, size, selectedPort?.id)
+    const marker = labels.filter(port => Math.hypot(port.markerX - x, port.markerY - y) < 12).sort((a, b) => Math.hypot(a.markerX - x, a.markerY - y) - Math.hypot(b.markerX - x, b.markerY - y))[0]
+    const label = marker ?? labels.find(port => port.labelled && x >= port.x && x <= port.x + port.width && y >= port.y && y <= port.y + port.height)
+    const port = ports.find(port => port.id === label?.id)
+    if (port) { onSelect(null); onPortSelect(port); setCamera({ longitude: port.position[0], latitude: port.position[1], zoom: 10 }); return }
     const hit = hits.current.filter(item => Math.hypot(item.x - x, item.y - y) < 18).sort((a,b) => Math.hypot(a.x - x,a.y-y) - Math.hypot(b.x-x,b.y-y))[0]
     onSelect(hit?.id ?? null)
-  }), [region, onSelect])
+  }), [region, onSelect, onPortSelect, selectedPort, size])
   useEffect(() => { setCamera({ longitude: region.center[0], latitude: region.center[1], zoom: region.zoom }) }, [region])
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -126,9 +132,9 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
   }, [study, time, visible, selected, camera, size])
 
   return <div className="ocean-scene">
-    <canvas ref={canvasRef} aria-label="World map with synthetic cargo and tanker movement. Use the region controls and vessel selector to explore with a keyboard." role="img"
+    <canvas ref={canvasRef} aria-label="World map with synthetic cargo and tanker movement. Use the port search, region controls and vessel selector to explore with a keyboard." role="img"
       />
-    <PortLabels camera={camera} size={size} onFocus={port => setCamera({ longitude: port.position[0], latitude: port.position[1], zoom: 10 })} />
+    <PortLabels camera={camera} size={size} selectedPort={selectedPort} onClear={() => onPortSelect(null)} onFocus={port => { onSelect(null); onPortSelect(port); setCamera({ longitude: port.position[0], latitude: port.position[1], zoom: 10 }) }} />
     <div className="map-tools" aria-label="Map controls">
       <button aria-label="Zoom in" data-tooltip="See the vessels more closely" disabled={camera.zoom >= 10} onClick={() => setCamera(current => ({ ...current, zoom: Math.min(10, current.zoom * 1.4) }))}>+</button>
       <button aria-label="Zoom out" data-tooltip="See more of the ocean" disabled={camera.zoom <= 1} onClick={() => setCamera(current => ({ ...current, zoom: Math.max(1, current.zoom / 1.4) }))}>−</button>

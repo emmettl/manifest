@@ -36,5 +36,40 @@
       "license": "US government geographic data"
     },
     "selectionSourceUrl": "https://www.worldshipping.org/top-50-container-ports"
+  },
+  "portStatistics": {
+    "path": "public/data/port-statistics.json",
+    "capturedAt": "2026-09-07",
+    "sha256": "db462a0042f484e40769285a065720d4da5cd3824e7b706edfd6d6cf9e14941a",
+    "sources": [
+      {
+        "name": "World Shipping Council",
+        "title": "Top 50 container ports · 2024",
+        "url": "https://www.worldshipping.org/top-50-container-ports"
+      },
+      {
+        "name": "Port of Rotterdam",
+        "title": "Annual throughput · 2025",
+        "url": "https://www.portofrotterdam.com/en/news-and-press-releases/throughput-port-rotterdam-shows-slight-decline"
+      },
+      {
+        "name": "Port of Los Angeles",
+        "title": "Facts & figures · 2024",
+        "url": "https://kentico.portoflosangeles.org/getmedia/50998557-64e2-46ad-aa43-6a7a6a505b23/2024-facts-figures"
+      },
+      {
+        "name": "Pilbara Ports",
+        "title": "Annual trade · FY 2025–26",
+        "url": "https://www.pilbaraports.com.au/about-pilbara-ports/news,-media-and-statistics/news/2026/july/pilbara-ports-exceeds-800-million-tonnes-to-delive"
+      },
+      {
+        "name": "Maritime and Port Authority of Singapore",
+        "title": "Annual report · 2024",
+        "url": "https://www.mpa.gov.sg/docs/mpalibraries/mpa-documents-files/comms-and-community/annual-report/mpa-ar24-full-book_fa.pdf?sfvrsn=2f89c7a0_1"
+      }
+    ],
+    "transformations": "Transcribe attributed numerical facts only. WSC 2024 rank and million-TEU throughput matched by existing catalogue rank, comma decimal separators normalized. Preserve source periods, units and aggregate port-system scope. Supplement four port-specific cargo totals and one vessel-arrival count; exclude authority-wide Pilbara vessel counts. No metrics derive from the synthetic animation.",
+    "wscEmbedUrl": "https://flo.uri.sh/visualisation/25394867/embed",
+    "wscRetrievedHtmlSha256": "b63ad78ae4f92d7acf4bcc6a8bc4ab18aa0a7544ef5dd35d8a3f10377da641a1"
   }
 }
