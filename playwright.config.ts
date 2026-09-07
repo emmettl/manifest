@@ -4,6 +4,14 @@ const port = Number(process.env.MANIFEST_TEST_PORT ?? 4187)
 const reviewPort = port + 1
 
 export default defineConfig({
+  reporter: process.env.CI
+    ? [
+        ['list'],
+        ['github'],
+        ['html', { outputFolder: 'playwright-report', open: 'never' }],
+        ['./scripts/playwright-summary-reporter.mjs'],
+      ]
+    : 'list',
   testDir: './e2e',
   testMatch: '**/*.pw.ts',
   fullyParallel: true,
