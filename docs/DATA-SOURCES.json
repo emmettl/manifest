@@ -1,0 +1,24 @@
+{
+  "capturedAt": "2026-09-07",
+  "movement": {
+    "path": "public/data/demo-study.json",
+    "source": "scripts/generate-demo.mjs",
+    "seed": 9173,
+    "evidence": "synthetic",
+    "license": "CC0-1.0",
+    "sha256": "42d170509ad6b88ed6b5cbf13a691c4d289c025769cc505c40a48ec14021ab01"
+  },
+  "geography": {
+    "path": "public/data/land.geojson",
+    "sourceUrl": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/ca96624a56bd078437bca8184e78163e5039ad19/geojson/ne_110m_land.geojson",
+    "revision": "ca96624a56bd078437bca8184e78163e5039ad19",
+    "license": "Public domain",
+    "termsUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "sha256": "9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9"
+  },
+  "study": {
+    "path": "docs/STUDY.md",
+    "sourceUrl": "https://github.com/emmettl/motionstudies/blob/fcfb4287e1ddd94500470432da197243feee81ca/docs/MANIFEST.md",
+    "sha256": "e7f86a673ed3e49fb04f3c0983981a04f3a7d00a014181ea57ed8bbca641fa1e"
+  }
+}

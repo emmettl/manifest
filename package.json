@@ -1,0 +1,33 @@
+{
+  "name": "manifest-motion-study",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MANIFEST — World trade in motion. An independent Motion Studies investigation.",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "data:demo": "node scripts/generate-demo.mjs",
+    "data:compile": "node scripts/compile-ais.mjs",
+    "check:boundary": "node scripts/check-boundary.mjs",
+    "check:bundle": "node scripts/check-bundle.mjs",
+    "check": "npm run check:boundary && npm test && npm run build && npm run check:bundle"
+  },
+  "dependencies": {
+    "@motionstudies/web": "0.1.0-alpha.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "@vitejs/plugin-react": "6.1.1",
+    "typescript": "7.0.2",
+    "vite": "8.2.2",
+    "vitest": "5.0.0"
+  }
+}

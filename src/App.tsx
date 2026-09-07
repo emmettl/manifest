@@ -1,0 +1,121 @@
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { flushSync } from 'react-dom'
+import { createDataUrlResolver } from '@motionstudies/web/data-url'
+import { OceanScene } from './components/OceanScene'
+import { parseLand, parseStudy } from './maritime/load'
+import { advanceTime, DAY, positionAt } from './maritime/playback'
+import { regions } from './maritime/regions'
+import { registerAgentNavigation } from './maritime/agent-navigation'
+import type { LandCollection, TrackStudy, VesselClass } from './maritime/types'
+
+const dataUrl = createDataUrlResolver(`${import.meta.env.BASE_URL}data/`)
+const speeds = [7200, 14400, 28800] // 30 days in 6, 3 or 1.5 minutes.
+const initialTime = DAY * 10.5
+
+export function App() {
+  const [data, setData] = useState<{ study: TrackStudy; land: LandCollection } | null>(null)
+  const [error, setError] = useState(false)
+  const [attempt, setAttempt] = useState(0)
+  const [regionId, setRegionId] = useState('world')
+  const [time, setTime] = useState(initialTime)
+  const [playing, setPlaying] = useState(() => !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const [speedIndex, setSpeedIndex] = useState(1)
+  const [visible, setVisible] = useState<Set<VesselClass>>(() => new Set(['cargo', 'tanker']))
+  const [selected, setSelected] = useState<string | null>(null)
+  const [about, setAbout] = useState(false)
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const region = regions.find(item => item.id === regionId) ?? regions[0]
+
+  useEffect(() => registerAgentNavigation((region, day) => {
+    flushSync(() => { setRegionId(region); setTime((day - 1) * DAY); setPlaying(false); setSelected(null) })
+  }), [])
+
+  useEffect(() => {
+    const controller = new AbortController()
+    const read = async (file: string) => {
+      const response = await fetch(dataUrl(file), { signal: controller.signal })
+      if (!response.ok) throw new Error('Unable to load study')
+      return response.json() as Promise<unknown>
+    }
+    Promise.all([read('demo-study.json'), read('land.geojson')]).then(([study, land]) => {
+      if (!controller.signal.aborted) setData({ study: parseStudy(study), land: parseLand(land) })
+    }).catch(() => { if (!controller.signal.aborted) setError(true) })
+    return () => controller.abort()
+  }, [attempt])
+
+  useEffect(() => {
+    if (!playing || !data) return
+    let previous = 0, frame = 0
+    const tick = (now: number) => {
+      // Do not catch up through time spent in a background tab.
+      if (previous && !document.hidden) setTime(current => advanceTime(current, Math.min((now - previous) / 1000, .1), speeds[speedIndex], data.study.duration))
+      previous = now; frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [playing, data, speedIndex])
+
+  useEffect(() => { if (about) dialogRef.current?.showModal(); else dialogRef.current?.close() }, [about])
+  const activeVessels = useMemo(() => {
+    if (!data) return []
+    const ids = new Set(data.study.segments.filter(segment => positionAt(segment, time)).map(segment => segment.vesselId))
+    return data.study.vessels.filter(vessel => ids.has(vessel.id) && visible.has(vessel.category))
+  }, [data, time, visible])
+  const vessel = data?.study.vessels.find(item => item.id === selected)
+  const selectedSegment = data?.study.segments.find(item => item.vesselId === selected && positionAt(item, time))
+  const position = selectedSegment ? positionAt(selectedSegment, time) : null
+  const toggle = (category: VesselClass) => {
+    setVisible(current => { const next = new Set(current); if (next.has(category)) next.delete(category); else next.add(category); return next })
+    if (vessel?.category === category) setSelected(null)
+  }
+  const day = Math.min(30, Math.floor(time / DAY) + 1)
+  const hours = String(Math.floor(time % DAY / 3600)).padStart(2, '0')
+  const minutes = String(Math.floor(time % 3600 / 60)).padStart(2, '0')
+
+  return <main className="study">
+    <header className="masthead">
+      <div><p className="eyebrow">MOTION STUDIES <span>/</span> WORK IN PROGRESS</p><h1>MANIFEST<span className="title-dot">.</span></h1><p className="subtitle">World trade in motion</p></div>
+      <div className="header-meta"><span className="demo-badge"><i />SYNTHETIC STUDY</span><button className="text-button" onClick={() => setAbout(true)}>About the data <span aria-hidden="true">↗</span></button></div>
+    </header>
+
+    <nav className="chapters" aria-label="Study regions">{regions.map(item => <button key={item.id} aria-pressed={regionId === item.id} data-tooltip={`Explore ${item.title.toLowerCase()}`} onClick={() => { setRegionId(item.id); setSelected(null) }}><span>{item.number}</span>{item.label}</button>)}</nav>
+
+    <section className="map-surface" aria-label="Maritime study">
+      {data ? <OceanScene study={data.study} land={data.land} time={time} region={region} visible={visible} selected={selected} onSelect={setSelected} /> : <div className="load-state" role="status">{error ? <><p>The study could not be loaded.</p><button onClick={() => { setError(false); setAttempt(value => value + 1) }}>Try again</button></> : <p>Opening the ocean study…</p>}</div>}
+      <div className="layer-controls" aria-label="Vessel classes">
+        <button aria-pressed={visible.has('cargo')} data-tooltip="Show or hide synthetic cargo vessels" onClick={() => toggle('cargo')}><i className="cargo-dot" />Cargo</button>
+        <button aria-pressed={visible.has('tanker')} data-tooltip="Show or hide synthetic tankers" onClick={() => toggle('tanker')}><i className="tanker-dot" />Tankers</button>
+      </div>
+      {data && <div className="field-count"><strong>{activeVessels.length}</strong><span>demo vessels active</span></div>}
+      {data && !visible.size && <div className="empty-hint">Choose Cargo or Tankers to show movement.</div>}
+    </section>
+
+    <section className="study-notes" aria-label="Chapter and vessel evidence">
+      <div className="chapter-copy"><p className="eyebrow">{region.number} <span>/</span> {region.label.toUpperCase()}</p><h2>{region.title}</h2><p>{region.description}</p></div>
+      <div className="evidence-panel">
+        <label htmlFor="vessel">Inspect a demo vessel</label>
+        <select id="vessel" value={selected ?? ''} onChange={event => setSelected(event.target.value || null)}>
+          <option value="">Select a moving mark or choose here</option>
+          {vessel && !activeVessels.some(item => item.id === vessel.id) && <option value={vessel.id}>{vessel.label} — outside current view or time</option>}
+          {activeVessels.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
+        </select>
+        {vessel ? <p><span className="evidence-tag">SYNTHETIC</span> {position ? `${Math.abs(position[1]).toFixed(2)}°${position[1] < 0 ? 'S' : 'N'} · ${Math.abs(position[0]).toFixed(2)}°${position[0] < 0 ? 'W' : 'E'}` : 'No position at this time.'} <span className="muted">Interpolated demo position; no observed voyage or cargo claim.</span></p> : <p>{region.caption} <span className="muted">These movements are generated, not observed.</span></p>}
+      </div>
+    </section>
+
+    <footer className="playback">
+      <div className="transport"><button className="play-button" disabled={!data} aria-label={playing ? 'Pause playback' : 'Play playback'} data-tooltip={playing ? 'Pause the study clock' : 'Resume the study clock'} onClick={() => setPlaying(value => !value)}>{playing ? 'Ⅱ' : '▶'}</button><div className="clock"><strong>DAY {String(day).padStart(2,'0')}</strong><span>{hours}:{minutes} <span className="clock-zone">DEMO UTC</span></span></div></div>
+      <div className="timeline"><label className="sr-only" htmlFor="time">Study time</label><input id="time" type="range" min="0" max={data?.study.duration ? data.study.duration - 1 : 30 * DAY - 1} step="60" value={time} disabled={!data} aria-valuetext={`Demo day ${day}, ${hours}:${minutes} UTC`} onChange={event => { setPlaying(false); setTime(Number(event.target.value)) }} /><div className="timeline-labels"><span>DAY 01</span><span>10</span><span>20</span><span>30</span></div></div>
+      <button className="speed-button" data-tooltip="Change the playback speed" aria-label={`Playback speed ${speeds[speedIndex] / 14400} times. Click to change.`} onClick={() => setSpeedIndex(value => (value + 1) % speeds.length)}>{speeds[speedIndex] / 14400}×</button>
+      <button className="restart-button" aria-label="Restart study" data-tooltip="Return to day one" onClick={() => { setTime(0); setSelected(null) }}>↤</button>
+    </footer>
+
+    <dialog ref={dialogRef} onCancel={() => setAbout(false)} onClose={() => setAbout(false)} aria-labelledby="about-title">
+      <div className="dialog-head"><p className="eyebrow">SOURCE NOTES / V0.1</p><button aria-label="Close source notes" onClick={() => setAbout(false)}>×</button></div>
+      <h2 id="about-title">A study taking shape.</h2><p>MANIFEST explores how vessel movement can make the world’s trade routes visible. This first version is a working prototype.</p>
+      <p><strong>Every vessel and journey here is synthetic.</strong> The 30-day clock is illustrative. Routes are schematic, vessel counts are invented, and neither cargo contents nor trade volumes are represented.</p>
+      <dl><dt>Movement</dt><dd>Deterministic authored fixture, CC0. No live feed, AIS recording or vessel identity.</dd><dt>Geography</dt><dd><a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer">Natural Earth</a>, public-domain land geometry at 1:110 million scale. Not for navigation.</dd><dt>Next evidence</dt><dd>A regional historical AIS proof, followed by a decision on global tracks or aggregate presence. Observed, reported, inferred and statistical evidence will remain distinct.</dd></dl>
+      <a className="repo-link" href="https://github.com/emmettl/manifest" target="_blank" rel="noreferrer">Repository & study notes ↗</a>
+    </dialog>
+  </main>
+}
