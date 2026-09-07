@@ -20,7 +20,7 @@
   "study": {
     "path": "docs/STUDY.md",
     "sourceUrl": "https://github.com/emmettl/motionstudies/blob/fcfb4287e1ddd94500470432da197243feee81ca/docs/MANIFEST.md",
-    "sha256": "e7f86a673ed3e49fb04f3c0983981a04f3a7d00a014181ea57ed8bbca641fa1e"
+    "sha256": "ea71f620c6dc740da742521ae14fbe496a8df81d1139bd963b0bc397c0417347"
   },
   "ports": {
     "path": "public/data/ports.json",
