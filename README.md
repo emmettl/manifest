@@ -16,6 +16,8 @@ Node 22.12 or later and npm:
 npm ci
 npm run dev
 npm run check
+npx playwright install chromium
+npm run test:e2e
 ```
 
 `npm run check` checks repository boundaries, runs the maritime contract/compiler tests, typechecks, builds the application, and enforces compressed payload budgets. `npm run data:demo` regenerates the exact committed fixture. Respect reduced-motion preferences: playback starts paused for those users. Scrubbing pauses the clock.
@@ -26,7 +28,7 @@ React, TypeScript and Vite. MANIFEST consumes the published `@motionstudies/web`
 
 ## Publication
 
-Every push to `main` runs the checks and deploys their exact `dist` artifact to GitHub Pages. Pull requests run the same checks without deployment. `Deploy Pages` can also be run manually. The repository’s Pages source must be **GitHub Actions**. No provider keys or deployment secrets are required; deployment uses the workflow’s Pages and OIDC permissions.
+Every push to `main` runs the checks and deploys their exact `dist` artifact to GitHub Pages. Pull requests run the same checks without deployment. Six browser regressions check the built site’s desktop framing and canvas sizing before deployment. `Deploy Pages` can also be run manually. The repository’s Pages source must be **GitHub Actions**. No provider keys or deployment secrets are required; deployment uses the workflow’s Pages and OIDC permissions.
 
 Relative Vite asset paths support the `/manifest/` project URL. The public folder contains only the synthetic study, pinned Natural Earth land geometry and favicon. Raw provider data and local compilations belong in ignored `data/raw/` and `data/compiled/` directories.
 

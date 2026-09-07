@@ -12,7 +12,7 @@ button:focus-visible, select:focus-visible, input:focus-visible, a:focus-visible
 button, a { -webkit-tap-highlight-color: transparent; }
 a { color: #e9b86b; text-underline-offset: 4px; }
 p { margin: 0; }
-.study { max-width: 2200px; min-height: 100svh; margin: auto; display: flex; flex-direction: column; }
+.study { width: 100%; min-height: 100svh; margin: auto; display: flex; flex-direction: column; }
 .masthead { display: flex; justify-content: space-between; align-items: center; padding: 30px 42px 25px; }
 .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; color: #9cafb6; }
 .eyebrow span { margin: 0 9px; color: #536a74; }

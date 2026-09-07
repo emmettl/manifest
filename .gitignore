@@ -8,3 +8,5 @@ data/raw/
 data/compiled/
 coverage/
 *.tsbuildinfo
+test-results/
+playwright-report/
