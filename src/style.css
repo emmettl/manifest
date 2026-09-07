@@ -229,3 +229,75 @@ dialog dd { margin: 0; font-size: 14px; line-height: 1.6; color: #b2c5cc; }
 
 .ocean-scene .fleet-canvas { position: absolute; inset: 0; pointer-events: none; }
 .vessel-labels { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; font: 12px monospace; }
+
+.port-metric-button { display: block; width: 100%; border: 0; padding: 0; text-align: left; }
+.port-metric-button strong small { font: 15px sans-serif; color: var(--amber); vertical-align: top; margin-left: 8px; }
+.port-metric-button > span { display: block; margin-top: 4px; font-size: 10px; color: #a5b9c0; }
+.freight-open { float: right; margin: 0 0 4px 18px; color: var(--amber); border: 0; padding: 0; font-size: 11px; }
+.freight-panel { width: min(1120px, calc(100% - 48px)); max-width: none; max-height: calc(100svh - 48px); margin: auto; padding: 0; border: 1px solid #4c636d; background: #0b151c; color: #dce7e8; overscroll-behavior: contain; }
+.freight-panel::backdrop { background: #02080dde; backdrop-filter: blur(5px); }
+.freight-header { position: sticky; top: 0; z-index: 2; background: #0b151c; display: flex; justify-content: space-between; gap: 20px; padding: 24px 32px; border-bottom: 1px solid var(--line); }
+.freight-header p { margin: 0; }
+.freight-panel .freight-header h2 { font: 500 clamp(32px, 4vw, 48px)/1.05 'Barlow Condensed', 'Arial Narrow', sans-serif; margin: 10px 0; }
+.freight-header > div > p:last-child { color: var(--muted); font-size: 14px; }
+.freight-close { position: static; width: 42px; height: 42px; flex-shrink: 0; font-size: 26px; }
+.freight-controls { display: flex; align-items: end; flex-wrap: wrap; gap: 16px; padding: 20px 32px; border-bottom: 1px solid var(--line); }
+.freight-measures { display: flex; margin-right: auto; }
+.freight-measures button { min-height: 42px; padding: 10px 14px; font-size: 13px; }
+.freight-measures button[aria-pressed=true] { background: var(--amber); color: #080f14; border-color: var(--amber); }
+.freight-controls label { display: grid; gap: 6px; font-size: 10px; color: var(--muted); }
+.freight-controls select { min-height: 42px; background: #101f28; border: 1px solid #40545e; padding: 8px; color: #dce7e8; font-size: 13px; }
+.freight-content { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); }
+.freight-comparison { min-width: 0; padding: 28px 32px; }
+.freight-section-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; }
+.freight-panel h3 { margin: 0; font: 500 25px 'Barlow Condensed', 'Arial Narrow', sans-serif; }
+.freight-section-heading > span { font: 10px 'IBM Plex Mono', monospace; color: var(--amber); }
+.freight-panel .freight-caption { color: var(--muted); font-size: 11px; line-height: 1.6; margin: 10px 0 0; }
+.freight-bars { list-style: none; margin: 20px 0 0; padding: 0; }
+.freight-bars li { padding: 4px 0 10px; border-bottom: 1px solid var(--line); }
+.freight-bars li > button { display: grid; width: 100%; grid-template-columns: 25px minmax(0, 1fr) auto; gap: 5px 10px; padding: 9px 8px; text-align: left; border: 1px solid transparent; }
+.freight-bars li[data-highlighted=true] > button { border-color: var(--amber); background: #1e2d32; }
+.freight-rank { font: 11px 'IBM Plex Mono', monospace; color: #829aa6; padding-top: 3px; }
+.freight-bar-label { font-size: 13px; }
+.freight-bar-label small { display: block; font: 10px 'IBM Plex Mono', monospace; color: var(--muted); margin-top: 3px; }
+.freight-bars button > strong { font: 500 20px 'Barlow Condensed', 'Arial Narrow', sans-serif; }
+.freight-bar-track { grid-column: 2 / -1; height: 5px; background: #1b2c36; display: block; margin-top: 4px; }
+.freight-bar-track > span { display: block; height: 100%; background: #729ca8; }
+.freight-bars li[data-highlighted=true] .freight-bar-track > span { background: var(--amber); }
+.freight-row-source { padding: 4px 8px 0 43px; font-size: 9px; }
+.freight-row-source a { color: #95a8b0; }
+.freight-detail { border-left: 1px solid var(--line); padding: 30px 28px; background: #0e1b23; }
+.freight-detail .eyebrow { font-size: 10px; margin-bottom: 12px; }
+.freight-panel .freight-detail h3 { font-size: 34px; line-height: 1.05; scroll-margin-top: 180px; }
+.freight-panel .freight-total { margin: 28px 0 18px; }
+.freight-total > strong { display: block; font: 500 64px/1 'Barlow Condensed', 'Arial Narrow', sans-serif; color: var(--amber); }
+.freight-total > span { display: block; margin-top: 7px; font: 11px 'IBM Plex Mono', monospace; color: #b5c8ce; }
+.freight-breakdown { border-top: 1px solid var(--line); margin-top: 26px; padding-top: 20px; }
+.freight-breakdown h4 { margin: 0 0 18px; font-size: 14px; font-weight: 500; }
+.freight-breakdown ul { list-style: none; padding: 0; margin: 0; }
+.freight-breakdown li { margin-bottom: 18px; }
+.freight-breakdown li > div:first-child { display: flex; justify-content: space-between; gap: 16px; font-size: 12px; }
+.freight-breakdown li strong { font: 12px 'IBM Plex Mono', monospace; }
+.freight-part-track { background: #1e3039; height: 8px; margin-top: 8px; }
+.freight-part-track > span { display: block; height: 100%; background: var(--amber); }
+.freight-breakdown li small { font: 9px 'IBM Plex Mono', monospace; color: var(--muted); display: block; margin-top: 5px; }
+.freight-detail-source { font-size: 11px; margin-top: 24px; }
+.freight-panel .freight-footnote { padding: 20px 32px; border-top: 1px solid var(--line); font-size: 11px; line-height: 1.6; color: var(--muted); margin: 0; }
+.freight-empty { padding: 24px 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+@media (max-width: 700px) {
+  .freight-open { float: none; margin: 0 0 10px; min-height: 32px; font-size: 12px; }
+  .freight-panel { width: calc(100% - 20px); max-height: calc(100svh - 20px); }
+  .freight-header { padding: 22px 18px; gap: 12px; }
+  .freight-header .eyebrow { font-size: 9px; letter-spacing: .04em; }
+  .freight-header .eyebrow span { margin-inline: 4px; }
+  .freight-close { width: 36px; height: 36px; }
+  .freight-controls { padding: 16px 18px; gap: 14px; }
+  .freight-measures { width: 100%; }
+  .freight-measures button { flex: 1; padding-inline: 8px; font-size: 12px; }
+  .freight-controls select { font-size: 16px; max-width: 220px; }
+  .freight-content { grid-template-columns: 1fr; }
+  .freight-detail { grid-row: 1; border-left: 0; border-bottom: 1px solid var(--line); padding: 24px 18px; }
+  .freight-comparison { padding: 24px 18px; }
+  .freight-panel .freight-footnote { padding: 20px 18px; }
+  .freight-total > strong { font-size: 52px; }
+}

@@ -8,8 +8,8 @@
     },
     "rotterdam2025": {
       "name": "Port of Rotterdam",
-      "title": "Annual throughput · 2025",
-      "url": "https://www.portofrotterdam.com/en/news-and-press-releases/throughput-port-rotterdam-shows-slight-decline"
+      "title": "Annual throughput and cargo categories · 2025",
+      "url": "https://www.portofrotterdam.com/sites/default/files/2026-02/throughput-port-of-rotterdam-2025.pdf"
     },
     "losAngeles2024": {
       "name": "Port of Los Angeles",
@@ -25,6 +25,331 @@
       "name": "Maritime and Port Authority of Singapore",
       "title": "Annual report · 2024",
       "url": "https://www.mpa.gov.sg/docs/mpalibraries/mpa-documents-files/comms-and-community/annual-report/mpa-ar24-full-book_fa.pdf?sfvrsn=2f89c7a0_1"
+    },
+    "ll2024-gioia-tauro": {
+      "name": "Lloyd’s List",
+      "title": "Gioia Tauro · container throughput 2024",
+      "url": "https://lloydslist.com/LL1153899"
+    },
+    "ll2024-manzanillo": {
+      "name": "Lloyd’s List",
+      "title": "Manzanillo · container throughput 2024",
+      "url": "https://lloydslist.com/LL1153979"
+    },
+    "ll2024-port-said": {
+      "name": "Lloyd’s List",
+      "title": "Port Said* · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154118"
+    },
+    "ll2024-barcelona": {
+      "name": "Lloyd’s List",
+      "title": "Barcelona · container throughput 2024",
+      "url": "https://lloydslist.com/LL1153828"
+    },
+    "ll2024-jeddah": {
+      "name": "Lloyd’s List",
+      "title": "Jeddah · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154043"
+    },
+    "ll2024-cartagena": {
+      "name": "Lloyd’s List",
+      "title": "Cartagena · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154197"
+    },
+    "ll2024-felixstowe": {
+      "name": "Lloyd’s List",
+      "title": "Felixstowe · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154144"
+    },
+    "ll2024-incheon": {
+      "name": "Lloyd’s List",
+      "title": "Incheon · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154133"
+    },
+    "ll2024-norfolk": {
+      "name": "Lloyd’s List",
+      "title": "Virginia · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154056"
+    },
+    "ll2024-vancouver": {
+      "name": "Lloyd’s List",
+      "title": "Vancouver · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154057"
+    },
+    "ll2024-melbourne": {
+      "name": "Lloyd’s List",
+      "title": "Melbourne  · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154075"
+    },
+    "ll2024-salalah": {
+      "name": "Lloyd’s List",
+      "title": "Salalah · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154105"
+    },
+    "ll2024-dammam": {
+      "name": "Lloyd’s List",
+      "title": "Dammam · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154039"
+    },
+    "ll2024-yokohama": {
+      "name": "Lloyd’s List",
+      "title": "Yokohama · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154028"
+    },
+    "ll2024-callao": {
+      "name": "Lloyd’s List",
+      "title": "Callao · container throughput 2024",
+      "url": "https://lloydslist.com/LL1153924"
+    },
+    "ll2024-ambarli": {
+      "name": "Lloyd’s List",
+      "title": "Ambarli · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154191"
+    },
+    "ll2024-sydney": {
+      "name": "Lloyd’s List",
+      "title": "Sydney · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154076"
+    },
+    "ll2024-kobe": {
+      "name": "Lloyd’s List",
+      "title": "Kobe · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154026"
+    },
+    "ll2024-nagoya": {
+      "name": "Lloyd’s List",
+      "title": "Nagoya · container throughput 2024",
+      "url": "https://lloydslist.com/LL1153877"
+    },
+    "ll2024-tangshan": {
+      "name": "Lloyd’s List",
+      "title": "Tangshan · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154383"
+    },
+    "ll2024-durban": {
+      "name": "Lloyd’s List",
+      "title": "Durban  · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154269"
+    },
+    "ll2024-kingston": {
+      "name": "Lloyd’s List",
+      "title": "Kingston · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154200"
+    },
+    "ll2024-charleston": {
+      "name": "Lloyd’s List",
+      "title": "Charleston · container throughput 2024",
+      "url": "https://lloydslist.com/LL1153882"
+    },
+    "ll2024-genoa": {
+      "name": "Lloyd’s List",
+      "title": "Genoa · container throughput 2024",
+      "url": "https://lloydslist.com/LL1153898"
+    },
+    "ll2024-lazaro-cardenas": {
+      "name": "Lloyd’s List",
+      "title": "Lázaro Cárdenas · container throughput 2024",
+      "url": "https://lloydslist.com/LL1154198"
+    },
+    "china2024": {
+      "name": "Ministry of Transport, China",
+      "title": "Annual port statistics · 2024",
+      "url": "https://xxgk.mot.gov.cn/jigou/zhghs/202503/P020250326508512684765.pdf"
+    },
+    "palermo2024": {
+      "name": "Comune di Palermo",
+      "title": "Annual port statistics · 2024",
+      "url": "https://docs.comune.palermo.it/palermo-statistica.php?cap=8&per=2024&sel=7&sez=187"
+    },
+    "italy2024": {
+      "name": "Confetra / Assoporti",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.confetra.com/wp-content/uploads/Traffico-merci-2024-per-tipologia-di-trasporto-nei-porti-italiani.pdf"
+    },
+    "canada2024": {
+      "name": "Transport Canada",
+      "title": "Table M18 · preliminary 2024 container volumes",
+      "url": "https://tdih-cdit.tc.canada.ca/en/addendum-tables/2024/table-m18-containerized-freight-volumes-selected-ports-2015-2024-0"
+    },
+    "montreal2024": {
+      "name": "Port of Montreal",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.port-montreal.com/en/benefits-and-traffic-2024"
+    },
+    "rupert2024": {
+      "name": "Prince Rupert Port Authority",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.rupertport.com/port-of-prince-rupert-moved-23-1-million-tonnes-of-cargo-in-2024-amid-historic-expansion-phase/"
+    },
+    "vancouver2024": {
+      "name": "Vancouver Fraser Port Authority",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.globenewswire.com/news-release/2025/03/10/3040234/0/en/Port-of-Vancouver-moves-record-trade-in-2024-supporting-Canada-and-Canadians.html"
+    },
+    "russia2024": {
+      "name": "Maritime Board of Russia / ASOP",
+      "title": "Annual port statistics · 2024",
+      "url": "https://marine.org.ru/events/sudostroenie/16855/"
+    },
+    "haropa2024": {
+      "name": "HAROPA PORT",
+      "title": "Annual port statistics · 2024",
+      "url": "https://rapport-annuel.haropaport.com/en/news/2024-new-model-growth-increase-traffic-and-industrial-projects"
+    },
+    "marseille2024": {
+      "name": "French transport statistics (SDES)",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.statistiques.developpement-durable.gouv.fr/le-trafic-maritime-en-france-tres-legere-baisse-du-fret-en-2024"
+    },
+    "gothenburg2025": {
+      "name": "Port of Gothenburg",
+      "title": "Sustainability report · 2025",
+      "url": "https://www.portofgothenburg.com/globalassets/dokument/publikationer/engelska/sustainability_report_2025_eng.pdf"
+    },
+    "saudi2024": {
+      "name": "General Authority for Statistics, Saudi Arabia",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.stats.gov.sa/documents/20117/2435281/Maritime%2BTransport%2BStatistics%2BPublication%2B2024%2B-%2BEN.pdf/3ff86956-7844-2137-44ad-32338b01c4fe"
+    },
+    "newcastle2024": {
+      "name": "Port of Newcastle",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.portofnewcastle.com.au/wp-content/uploads/2025/03/PON_Annual_Trade_Report_2024.pdf"
+    },
+    "tauranga2024": {
+      "name": "Port of Tauranga",
+      "title": "Financial results · year ended 30 June 2024",
+      "url": "https://www.port-tauranga.co.nz/news/port-of-tauranga-shows-resilience-amid-economic-and-supply-chain-challenges/"
+    },
+    "auckland2024": {
+      "name": "Port of Auckland",
+      "title": "Annual report · year ended 30 June 2024",
+      "url": "https://poal.co.nz/sites/default/files/2024-09/2024%20Annual%20Report.pdf"
+    },
+    "fremantle2024": {
+      "name": "Fremantle Ports",
+      "title": "Annual report · 2023–24",
+      "url": "https://www.fremantleports.com.au/docs/default-source/annual-reports/fremantle-ports-annual-report-2024.pdf?sfvrsn=27bc79dc_3"
+    },
+    "brisbane2025": {
+      "name": "Port of Brisbane",
+      "title": "Trade results · FY 2024–25",
+      "url": "https://www.portbris.com.au/w/strong-fy25-trade-through-port-of-brisbane"
+    },
+    "india2024": {
+      "name": "Ministry of Ports, Shipping and Waterways, India",
+      "title": "Cargo loaded and unloaded · FY 2023–24",
+      "url": "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2037381&lang=2&reg=48"
+    },
+    "karachi2024": {
+      "name": "Karachi Port Trust",
+      "title": "Cargo handled · FY 2023–24",
+      "url": "https://kpt.gov.pk/news/149/a-massive-increase-of-24.43-percent-in-cargo-handling-at-karachi-port-at-the-end-of-f.y-2023-24"
+    },
+    "oakland2024": {
+      "name": "Port of Oakland",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.portofoakland.com/wp-content/uploads/2025/01/Maritime-News-Jan-2025-FINAL.pdf"
+    },
+    "nwsa2024": {
+      "name": "Northwest Seaport Alliance",
+      "title": "Annual port statistics · 2024",
+      "url": "https://s3.us-west-2.amazonaws.com/nwseaportalliance.com.if-us-west-2-or/2025-04/2024%20NWSA%20Annual%20Cargo%20Report.pdf"
+    },
+    "miami2024": {
+      "name": "Miami-Dade County / PortMiami",
+      "title": "Cargo volumes · fiscal years",
+      "url": "https://www.miamidade.gov/portmiami/cargo.page"
+    },
+    "mombasa2024": {
+      "name": "Kenya Ports Authority",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.kpa.co.ke/Media/Read/2"
+    },
+    "dar2025": {
+      "name": "Bank of Tanzania / Tanzania Ports Authority",
+      "title": "Consolidated zonal report · FY 2024–25",
+      "url": "https://www.bot.go.tz/Publications/Regular/Consolidated%20Zonal%20Economic%20Report/sw/2025121711505302.pdf"
+    },
+    "abidjan2024": {
+      "name": "Ministry of Transport, Côte d’Ivoire",
+      "title": "Annual port statistics · 2024",
+      "url": "https://transports.gouv.ci/actualites/developpement-portuaire-le-port-dabidjan-monte-en-puissance"
+    },
+    "lome2024": {
+      "name": "Agence Togolaise de Presse / Port of Lomé",
+      "title": "Annual port statistics · 2024",
+      "url": "https://atop.tg/performances-du-port-autonome-de-lome-en-2024-le-trafic-global-en-progression-de-185/"
+    },
+    "itaqui2024": {
+      "name": "Porto do Itaqui",
+      "title": "Annual port statistics · 2024",
+      "url": "https://website.portodoitaqui.com.br/imprensa/noticia/porto-do-itaqui-alcanca-segunda-melhor-movimentacao-historica-e-reforca-papel-estrategico-no-desenvolvimento-do-maranhao"
+    },
+    "sanantonio2024": {
+      "name": "Puerto San Antonio",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.puertosanantonio.com/transferencia-de-carga-aumento-10-52-en-2024"
+    },
+    "barcelona2024": {
+      "name": "Port de Barcelona",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.portdebarcelona.cat/memoria2024/05-economic-value.html"
+    },
+    "aapa2016": {
+      "name": "American Association of Port Authorities",
+      "title": "World port rankings · historical 2016 reference",
+      "url": "https://aapa.files.cms-plus.com/Statistics/WORLD%20PORT%20RANKINGS%202016.xlsx"
+    },
+    "rio2024": {
+      "name": "PortosRio",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.portosrio.gov.br/pt-br/node/4739"
+    },
+    "veracruz2024": {
+      "name": "ASIPONA Veracruz",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.puertodeveracruz.com.mx/wp-content/uploads/2025/01/Resumen_Estadistico_ASIPONAVER_DICIEMBRE_2024.pdf"
+    },
+    "djibouti2024": {
+      "name": "SGTD Doraleh",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.sgtd-terminal.com/2025/01/19/record-of-1-2m-teus/"
+    },
+    "tema2023": {
+      "name": "Ghana News Agency / GPHA",
+      "title": "GPHA annual performance · 2023",
+      "url": "https://gna.org.gh/2024/03/tema-port-handles-18-million-tonnes-of-cargo-in-2023/"
+    },
+    "dakar2024": {
+      "name": "RTS / Port Autonome de Dakar",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.rts.sn/actualite/detail/economie/port-autonome-de-dakar-une-croissance-de-6-du-trafic-global-en-2024-malgre-des-fluctuations-mensuelles"
+    },
+    "montevideo2023": {
+      "name": "Administración Nacional de Puertos",
+      "title": "Year-end performance statement · 2023",
+      "url": "https://anp.com.uy/index.php/es/inicio/comunicacion/noticias/el-puerto-de-montevideo-superara-el-millon-de-teus-en-contenedores-y-no-tendra-aumento-de-tarifas-en-2024"
+    },
+    "buenosaires2024": {
+      "name": "Administración General de Puertos",
+      "title": "Annual port statistics · 2024",
+      "url": "https://www.argentina.gob.ar/sites/default/files/2021/08/informe_estadistico_diciembre_2024-_evolucion_historica.pdf"
+    },
+    "qasim2025": {
+      "name": "Ministry of Maritime Affairs, Pakistan",
+      "title": "Yearbook · FY 2024–25, Port Qasim chapter",
+      "url": "https://moma.gov.pk/SiteImage/Misc/files/YEAR%20BOOK%202024-2025.pdf"
+    },
+    "sa2024": {
+      "name": "Africa Ports & Ships / TNPA",
+      "title": "TNPA calendar 2024 container and ship-call statistics",
+      "url": "https://africaports.co.za/2025/02/01/africa-ports-ships-maritime-news-26-27-january-2025/"
+    },
+    "lagos2017": {
+      "name": "Nigerian Ports Authority",
+      "title": "Port handbook 2018 · Lagos port complex statistics 2017",
+      "url": "https://nigerianports.gov.ng/wp-content/uploads/2018/09/NigerianPortHandbook2018final-compressed.pdf"
     }
   },
   "ports": {
@@ -45,6 +370,14 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 789.59,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024",
+          "note": "Coastal-port reporting area; Shanghai inland-port traffic is reported separately."
         }
       ]
     },
@@ -71,7 +404,26 @@
           "value": 428.4,
           "unit": "million tonnes",
           "period": "2025",
-          "source": "rotterdam2025"
+          "source": "rotterdam2025",
+          "breakdown": [
+            {
+              "label": "Dry bulk",
+              "value": 66.6
+            },
+            {
+              "label": "Liquid bulk",
+              "value": 197
+            },
+            {
+              "label": "Containerized cargo",
+              "value": 133.2
+            },
+            {
+              "label": "Breakbulk",
+              "value": 31.7
+            }
+          ],
+          "breakdownNote": "Published categories are rounded independently and sum to 428.5 million tonnes; shares use the published total of 428.4."
         }
       ]
     },
@@ -92,6 +444,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 317.9,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -206,6 +565,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 1377.09,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -226,6 +592,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 712.27,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -246,6 +619,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 657.55,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -286,6 +666,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 579.31,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -386,6 +773,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 210.74,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -446,6 +840,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 597.81,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -686,6 +1087,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 622.7,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -706,6 +1114,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 346.2,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -726,6 +1141,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 218.58,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -846,6 +1268,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 319.3,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -886,6 +1315,13 @@
           "unit": "rank",
           "period": "2024",
           "source": "wsc2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 501.99,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
         }
       ]
     },
@@ -1072,6 +1508,1510 @@
           "unit": "million tonnes",
           "period": "FY 2025–26",
           "source": "pilbara2026"
+        }
+      ]
+    },
+    "gioia-tauro": {
+      "scope": "Gioia Tauro",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.9405,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-gioia-tauro"
+        },
+        {
+          "kind": "cargo",
+          "value": 44.753499,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "italy2024",
+          "breakdown": [
+            {
+              "label": "Liquid bulk",
+              "value": 0.8
+            },
+            {
+              "label": "Containerized cargo",
+              "value": 43.64717
+            },
+            {
+              "label": "Ro-Ro",
+              "value": 0.306329
+            }
+          ]
+        }
+      ]
+    },
+    "manzanillo": {
+      "scope": "Manzanillo",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.924501,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-manzanillo"
+        }
+      ]
+    },
+    "port-said": {
+      "scope": "Port Said",
+      "scopeNote": "Figures cover the Port Said port system. The ranking publication marks this figure as estimated.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.905266,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-port-said"
+        }
+      ]
+    },
+    "barcelona": {
+      "scope": "Barcelona",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.885736,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-barcelona"
+        },
+        {
+          "kind": "cargo",
+          "value": 69.7,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "barcelona2024"
+        }
+      ]
+    },
+    "jeddah": {
+      "scope": "Jeddah",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.722865,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-jeddah"
+        },
+        {
+          "kind": "arrivals",
+          "value": 3805,
+          "unit": "arrivals",
+          "period": "2024",
+          "source": "saudi2024"
+        }
+      ]
+    },
+    "cartagena": {
+      "scope": "Cartagena",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.701044,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-cartagena"
+        }
+      ]
+    },
+    "felixstowe": {
+      "scope": "Felixstowe",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.611,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-felixstowe"
+        }
+      ]
+    },
+    "incheon": {
+      "scope": "Incheon",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.558455,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-incheon"
+        }
+      ]
+    },
+    "norfolk": {
+      "scope": "Virginia",
+      "scopeNote": "Figures cover the Port of Virginia system, represented on the map by Norfolk.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.523512,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-norfolk"
+        }
+      ]
+    },
+    "vancouver": {
+      "scope": "Vancouver-Fraser",
+      "scopeNote": "Figures cover the Vancouver Fraser Port Authority reporting area.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.4738,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "canada2024",
+          "breakdown": [
+            {
+              "label": "Loaded containers",
+              "value": 2.6165
+            },
+            {
+              "label": "Empty containers",
+              "value": 0.8573
+            }
+          ],
+          "note": "Preliminary figures. Loaded TEU calculated as total less empty TEU."
+        },
+        {
+          "kind": "cargo",
+          "value": 158,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "vancouver2024"
+        }
+      ]
+    },
+    "melbourne": {
+      "scope": "Melbourne",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.396,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-melbourne"
+        }
+      ]
+    },
+    "salalah": {
+      "scope": "Salalah",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.3047,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-salalah"
+        }
+      ]
+    },
+    "dammam": {
+      "scope": "King Abdulaziz Port, Dammam",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.290538,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-dammam"
+        },
+        {
+          "kind": "arrivals",
+          "value": 1980,
+          "unit": "arrivals",
+          "period": "2024",
+          "source": "saudi2024"
+        }
+      ]
+    },
+    "yokohama": {
+      "scope": "Yokohama",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.075369,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-yokohama"
+        }
+      ]
+    },
+    "callao": {
+      "scope": "Callao",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.063,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-callao"
+        }
+      ]
+    },
+    "ambarli": {
+      "scope": "Ambarli",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.0097,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-ambarli"
+        }
+      ]
+    },
+    "sydney": {
+      "scope": "Port Botany",
+      "scopeNote": "Container figures cover Port Botany in the Sydney port area, not Sydney Harbour.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.847572,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-sydney"
+        }
+      ]
+    },
+    "kobe": {
+      "scope": "Kobe",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.771879,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-kobe"
+        }
+      ]
+    },
+    "nagoya": {
+      "scope": "Nagoya",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.75549,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-nagoya"
+        }
+      ]
+    },
+    "tangshan": {
+      "scope": "Tangshan",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.72,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-tangshan"
+        },
+        {
+          "kind": "cargo",
+          "value": 862.16,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
+        }
+      ]
+    },
+    "durban": {
+      "scope": "Durban",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.6504,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-durban"
+        },
+        {
+          "kind": "arrivals",
+          "value": 2887,
+          "unit": "arrivals",
+          "period": "2024",
+          "source": "sa2024"
+        }
+      ]
+    },
+    "kingston": {
+      "scope": "Kingston",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.549698,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-kingston"
+        }
+      ]
+    },
+    "charleston": {
+      "scope": "Charleston",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.497143,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-charleston"
+        }
+      ]
+    },
+    "genoa": {
+      "scope": "Genoa",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.447815,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-genoa"
+        },
+        {
+          "kind": "cargo",
+          "value": 47.485968,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "italy2024",
+          "breakdown": [
+            {
+              "label": "Liquid bulk",
+              "value": 13.073658
+            },
+            {
+              "label": "Dry bulk",
+              "value": 1.437376
+            },
+            {
+              "label": "Containerized cargo",
+              "value": 23.031345
+            },
+            {
+              "label": "Ro-Ro",
+              "value": 9.417158
+            },
+            {
+              "label": "Other general cargo",
+              "value": 0.526431
+            }
+          ]
+        }
+      ]
+    },
+    "lazaro-cardenas": {
+      "scope": "Lazaro Cardenas",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.40698,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "ll2024-lazaro-cardenas"
+        }
+      ]
+    },
+    "qinhuangdao": {
+      "scope": "Qinhuangdao",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 187.4,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "china2024"
+        },
+        {
+          "kind": "containers",
+          "value": 0.54,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "china2024"
+        }
+      ]
+    },
+    "palermo": {
+      "scope": "Palermo",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "arrivals",
+          "value": 4471,
+          "unit": "arrivals",
+          "period": "2024",
+          "source": "palermo2024"
+        },
+        {
+          "kind": "cargo",
+          "value": 8.07095,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "italy2024",
+          "breakdown": [
+            {
+              "label": "Liquid bulk",
+              "value": 0.649079
+            },
+            {
+              "label": "Dry bulk",
+              "value": 0.105103
+            },
+            {
+              "label": "Containerized cargo",
+              "value": 0.176965
+            },
+            {
+              "label": "Ro-Ro",
+              "value": 7.139803
+            }
+          ]
+        }
+      ]
+    },
+    "montreal": {
+      "scope": "Montreal",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 1.4643,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "canada2024",
+          "breakdown": [
+            {
+              "label": "Loaded containers",
+              "value": 1.2661
+            },
+            {
+              "label": "Empty containers",
+              "value": 0.1982
+            }
+          ],
+          "note": "Preliminary figures. Loaded TEU calculated as total less empty TEU."
+        },
+        {
+          "kind": "cargo",
+          "value": 35.41,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "montreal2024",
+          "breakdown": [
+            {
+              "label": "Containerized cargo",
+              "value": 12.58
+            },
+            {
+              "label": "Dry bulk",
+              "value": 9.16
+            },
+            {
+              "label": "Liquid bulk",
+              "value": 13.67
+            }
+          ],
+          "breakdownNote": "Source totals are rounded; categories follow the published sector totals."
+        }
+      ]
+    },
+    "prince-rupert": {
+      "scope": "Prince Rupert",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 0.7393,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "canada2024",
+          "breakdown": [
+            {
+              "label": "Loaded containers",
+              "value": 0.5312
+            },
+            {
+              "label": "Empty containers",
+              "value": 0.2081
+            }
+          ],
+          "note": "Preliminary figures. Loaded TEU calculated as total less empty TEU."
+        },
+        {
+          "kind": "cargo",
+          "value": 23.1,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "rupert2024"
+        }
+      ]
+    },
+    "halifax": {
+      "scope": "Halifax",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 0.5093,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "canada2024",
+          "breakdown": [
+            {
+              "label": "Loaded containers",
+              "value": 0.4047
+            },
+            {
+              "label": "Empty containers",
+              "value": 0.1046
+            }
+          ],
+          "note": "Preliminary figures. Loaded TEU calculated as total less empty TEU."
+        }
+      ]
+    },
+    "murmansk": {
+      "scope": "Murmansk",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 52.1,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "russia2024"
+        }
+      ]
+    },
+    "ust-luga": {
+      "scope": "Ust Luga",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 135,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "russia2024"
+        }
+      ]
+    },
+    "primorsk": {
+      "scope": "Primorsk",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 60.7,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "russia2024"
+        }
+      ]
+    },
+    "novorossiysk": {
+      "scope": "Novorossiysk",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 164.8,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "russia2024"
+        }
+      ]
+    },
+    "le-havre": {
+      "scope": "HAROPA PORT",
+      "scopeNote": "Figures cover the HAROPA port system (Le Havre, Rouen and Paris), not Le Havre alone.",
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 83.2,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "haropa2024",
+          "breakdown": [
+            {
+              "label": "Liquid bulk",
+              "value": 39.9
+            },
+            {
+              "label": "Dry bulk",
+              "value": 11.7
+            },
+            {
+              "label": "Other cargo",
+              "value": 31.6
+            }
+          ],
+          "breakdownNote": "Other cargo is calculated as total less liquid and dry bulk; figures are rounded."
+        },
+        {
+          "kind": "containers",
+          "value": 3.1,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "haropa2024"
+        }
+      ]
+    },
+    "marseille": {
+      "scope": "Marseille-Fos",
+      "scopeNote": "Figures cover the Marseille-Fos port system, including both harbour areas.",
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 70.5,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "marseille2024"
+        }
+      ]
+    },
+    "gothenburg": {
+      "scope": "Gothenburg",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 38.7,
+          "unit": "million tonnes",
+          "period": "2025",
+          "source": "gothenburg2025"
+        },
+        {
+          "kind": "containers",
+          "value": 0.934,
+          "unit": "million TEU",
+          "period": "2025",
+          "source": "gothenburg2025"
+        }
+      ]
+    },
+    "newcastle": {
+      "scope": "Newcastle",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "arrivals",
+          "value": 2267,
+          "unit": "arrivals",
+          "period": "2024",
+          "source": "newcastle2024",
+          "breakdown": [
+            {
+              "label": "Coal vessels",
+              "value": 1726
+            },
+            {
+              "label": "Non-coal vessels",
+              "value": 525
+            },
+            {
+              "label": "Cruise vessels",
+              "value": 16
+            }
+          ]
+        }
+      ]
+    },
+    "tauranga": {
+      "scope": "Tauranga",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 23.6,
+          "unit": "million tonnes",
+          "period": "FY 2023–24",
+          "source": "tauranga2024",
+          "breakdown": [
+            {
+              "label": "Imports",
+              "value": 7.8
+            },
+            {
+              "label": "Exports",
+              "value": 15.8
+            }
+          ]
+        },
+        {
+          "kind": "containers",
+          "value": 1.14735,
+          "unit": "million TEU",
+          "period": "FY 2023–24",
+          "source": "tauranga2024"
+        },
+        {
+          "kind": "arrivals",
+          "value": 1427,
+          "unit": "arrivals",
+          "period": "FY 2023–24",
+          "source": "tauranga2024"
+        }
+      ]
+    },
+    "auckland": {
+      "scope": "Auckland",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 0.845,
+          "unit": "million TEU",
+          "period": "FY 2023–24",
+          "source": "auckland2024"
+        }
+      ]
+    },
+    "fremantle": {
+      "scope": "Fremantle Ports",
+      "scopeNote": "Figures cover the Inner and Outer Harbours, including Kwinana.",
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 29.7,
+          "unit": "million tonnes",
+          "period": "FY 2023–24",
+          "source": "fremantle2024",
+          "breakdown": [
+            {
+              "label": "Imports",
+              "value": 15.2
+            },
+            {
+              "label": "Exports",
+              "value": 14.5
+            }
+          ]
+        }
+      ]
+    },
+    "brisbane": {
+      "scope": "Brisbane",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 1.62,
+          "unit": "million TEU",
+          "period": "FY 2024–25",
+          "source": "brisbane2025"
+        }
+      ]
+    },
+    "chennai": {
+      "scope": "Chennai",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 51.59,
+          "unit": "million tonnes",
+          "period": "FY 2023–24",
+          "source": "india2024"
+        }
+      ]
+    },
+    "visakhapatnam": {
+      "scope": "Visakhapatnam",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 81.09,
+          "unit": "million tonnes",
+          "period": "FY 2023–24",
+          "source": "india2024"
+        }
+      ]
+    },
+    "karachi": {
+      "scope": "Karachi",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 51.65,
+          "unit": "million tonnes",
+          "period": "FY 2023–24",
+          "source": "karachi2024",
+          "breakdown": [
+            {
+              "label": "Dry cargo",
+              "value": 40.24
+            },
+            {
+              "label": "Liquid bulk",
+              "value": 11.41
+            }
+          ]
+        }
+      ]
+    },
+    "oakland": {
+      "scope": "Oakland",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.26,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "oakland2024"
+        }
+      ]
+    },
+    "seattle": {
+      "scope": "Seattle–Tacoma",
+      "scopeNote": "Combined Northwest Seaport Alliance container throughput, including international and domestic traffic. This is not an individual harbour total.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.340733,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "nwsa2024"
+        }
+      ]
+    },
+    "tacoma": {
+      "scope": "Seattle–Tacoma",
+      "scopeNote": "Combined Northwest Seaport Alliance container throughput, including international and domestic traffic. This is not an individual harbour total.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 3.340733,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "nwsa2024"
+        }
+      ]
+    },
+    "miami": {
+      "scope": "Miami",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 1.089443,
+          "unit": "million TEU",
+          "period": "FY 2023–24",
+          "source": "miami2024"
+        }
+      ]
+    },
+    "mombasa": {
+      "scope": "Mombasa",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 41.1,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "mombasa2024"
+        }
+      ]
+    },
+    "dar-es-salaam": {
+      "scope": "Dar es Salaam",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 26.5966,
+          "unit": "million tonnes",
+          "period": "FY 2024–25",
+          "source": "dar2025",
+          "note": "Provisional throughput; converted from thousand tonnes."
+        }
+      ]
+    },
+    "abidjan": {
+      "scope": "Abidjan",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 40.102908,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "abidjan2024",
+          "note": "Net cargo throughput, as reported by the authority."
+        }
+      ]
+    },
+    "lome": {
+      "scope": "Lome",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 30.64183,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "lome2024",
+          "breakdown": [
+            {
+              "label": "Transshipment",
+              "value": 20.233379
+            },
+            {
+              "label": "Imports and exports",
+              "value": 10.408451
+            }
+          ],
+          "breakdownNote": "Imports and exports calculated as total less transshipment."
+        },
+        {
+          "kind": "arrivals",
+          "value": 1525,
+          "unit": "arrivals",
+          "period": "2024",
+          "source": "lome2024",
+          "breakdown": [
+            {
+              "label": "Commercial vessels",
+              "value": 1440
+            },
+            {
+              "label": "Other vessels",
+              "value": 85
+            }
+          ],
+          "breakdownNote": "Other vessels calculated as total less commercial vessels."
+        }
+      ]
+    },
+    "itaqui": {
+      "scope": "Itaqui",
+      "scopeNote": "Figures cover the public Port of Itaqui, excluding neighbouring private terminals such as Ponta da Madeira.",
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 34,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "itaqui2024"
+        }
+      ]
+    },
+    "san-antonio": {
+      "scope": "San Antonio",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 23.209963,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "sanantonio2024"
+        }
+      ]
+    },
+    "tubarao": {
+      "scope": "Tubarao",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 133.797,
+          "unit": "million tonnes",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "beaumont": {
+      "scope": "Beaumont",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 76.6838587536,
+          "unit": "million tonnes",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "new-orleans": {
+      "scope": "New Orleans",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 81.8937232848,
+          "unit": "million tonnes",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "corpus-christi": {
+      "scope": "Corpus Christi",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 74.3732185392,
+          "unit": "million tonnes",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "jubail": {
+      "scope": "Jubail",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 66.1,
+          "unit": "million tonnes",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "yanbu": {
+      "scope": "Yanbu",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 67.022,
+          "unit": "million tonnes",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "richards-bay": {
+      "scope": "Richards Bay",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 99.422,
+          "unit": "million tonnes",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        },
+        {
+          "kind": "arrivals",
+          "value": 1387,
+          "unit": "arrivals",
+          "period": "2024",
+          "source": "sa2024"
+        }
+      ]
+    },
+    "saldanha-bay": {
+      "scope": "Saldanha Bay",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 66.527,
+          "unit": "million tonnes",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        },
+        {
+          "kind": "arrivals",
+          "value": 600,
+          "unit": "arrivals",
+          "period": "2024",
+          "source": "sa2024"
+        }
+      ]
+    },
+    "bandar-abbas": {
+      "scope": "Bandar Abbas",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.112554,
+          "unit": "million TEU",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "guayaquil": {
+      "scope": "Guayaquil",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 1.821654,
+          "unit": "million TEU",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "chattogram": {
+      "scope": "Chattogram",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.35,
+          "unit": "million TEU",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "southampton": {
+      "scope": "Southampton",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 2.459318,
+          "unit": "million TEU",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "london": {
+      "scope": "London",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 1.388283,
+          "unit": "million TEU",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "gdansk": {
+      "scope": "Gdansk",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 1.559168,
+          "unit": "million TEU",
+          "period": "2016",
+          "source": "aapa2016",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        }
+      ]
+    },
+    "rio-de-janeiro": {
+      "scope": "Rio de Janeiro",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 15.5,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "rio2024",
+          "breakdown": [
+            {
+              "label": "Containerized cargo",
+              "value": 11.8
+            },
+            {
+              "label": "Other cargo",
+              "value": 3.7
+            }
+          ],
+          "breakdownNote": "Other cargo is the published total minus containerized cargo; source values are rounded."
+        },
+        {
+          "kind": "containers",
+          "value": 1.2,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "rio2024"
+        }
+      ]
+    },
+    "veracruz": {
+      "scope": "Veracruz",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 32.905024,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "veracruz2024",
+          "breakdown": [
+            {
+              "label": "General cargo",
+              "value": 1.638468
+            },
+            {
+              "label": "Containerized cargo",
+              "value": 10.560823
+            },
+            {
+              "label": "Mineral bulk",
+              "value": 3.124888
+            },
+            {
+              "label": "Agricultural bulk",
+              "value": 9.247236
+            },
+            {
+              "label": "Non-petroleum liquids",
+              "value": 1.204419
+            },
+            {
+              "label": "Hydrocarbons",
+              "value": 5.717954
+            },
+            {
+              "label": "Vehicles",
+              "value": 1.411237
+            }
+          ],
+          "breakdownNote": "Published categories sum to one tonne more than the published total, owing to source rounding."
+        },
+        {
+          "kind": "containers",
+          "value": 1.30147,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "veracruz2024",
+          "breakdown": [
+            {
+              "label": "ICAVE",
+              "value": 1.126069
+            },
+            {
+              "label": "CICE",
+              "value": 0.175401
+            }
+          ]
+        }
+      ]
+    },
+    "djibouti": {
+      "scope": "Doraleh container terminal (SGTD)",
+      "scopeNote": "This figure covers the SGTD terminal in the Djibouti port area, not all Djibouti ports.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 1.2,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "djibouti2024"
+        }
+      ]
+    },
+    "tema": {
+      "scope": "Tema",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 18,
+          "unit": "million tonnes",
+          "period": "2023",
+          "source": "tema2023"
+        }
+      ]
+    },
+    "dakar": {
+      "scope": "Dakar",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 24,
+          "unit": "million tonnes",
+          "period": "2024",
+          "source": "dakar2024"
+        },
+        {
+          "kind": "arrivals",
+          "value": 3000,
+          "unit": "arrivals",
+          "period": "2024",
+          "source": "dakar2024",
+          "note": "Rounded annual call count in the port statement reported by RTS."
+        }
+      ]
+    },
+    "montevideo": {
+      "scope": "Montevideo",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 1.12,
+          "unit": "million TEU",
+          "period": "2023",
+          "source": "montevideo2023",
+          "note": "Preliminary rounded year-end figure in the authority president’s January 2024 statement."
+        }
+      ]
+    },
+    "buenos-aires": {
+      "scope": "Buenos Aires",
+      "scopeNote": "Puerto Buenos Aires reporting area; excludes the separately reported Dock Sud / Exolgan port.",
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 0.750286,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "buenosaires2024",
+          "breakdown": [
+            {
+              "label": "Loaded inbound",
+              "value": 0.309487
+            },
+            {
+              "label": "Empty inbound",
+              "value": 0.07699
+            },
+            {
+              "label": "Loaded outbound",
+              "value": 0.254785
+            },
+            {
+              "label": "Empty outbound",
+              "value": 0.109024
+            }
+          ]
+        }
+      ]
+    },
+    "port-qasim": {
+      "scope": "Port Qasim",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "cargo",
+          "value": 45.304,
+          "unit": "million tonnes",
+          "period": "FY 2024–25",
+          "source": "qasim2025",
+          "breakdown": [
+            {
+              "label": "Imports",
+              "value": 35.585
+            },
+            {
+              "label": "Exports",
+              "value": 9.719
+            }
+          ]
+        },
+        {
+          "kind": "containers",
+          "value": 1.003,
+          "unit": "million TEU",
+          "period": "FY 2024–25",
+          "source": "qasim2025"
+        }
+      ]
+    },
+    "cape-town": {
+      "scope": "Cape Town",
+      "scopeNote": null,
+      "metrics": [
+        {
+          "kind": "containers",
+          "value": 0.778276,
+          "unit": "million TEU",
+          "period": "2024",
+          "source": "sa2024"
+        },
+        {
+          "kind": "arrivals",
+          "value": 2339,
+          "unit": "arrivals",
+          "period": "2024",
+          "source": "sa2024"
+        }
+      ]
+    },
+    "lagos": {
+      "scope": "Lagos Port Complex / Apapa",
+      "scopeNote": "Apapa / Lagos Port Complex only, not Tin Can Island, Lekki or all Nigerian ports.",
+      "metrics": [
+        {
+          "kind": "arrivals",
+          "value": 1154,
+          "unit": "arrivals",
+          "period": "2017",
+          "source": "lagos2017",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        },
+        {
+          "kind": "containers",
+          "value": 0.361247,
+          "unit": "million TEU",
+          "period": "2017",
+          "source": "lagos2017",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
+        },
+        {
+          "kind": "cargo",
+          "value": 19.09969,
+          "unit": "million tonnes",
+          "period": "2017",
+          "source": "lagos2017",
+          "note": "Historical reference, not a current-year estimate. A newer verified figure has not been added."
         }
       ]
     }

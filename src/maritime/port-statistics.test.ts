@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest'
 import { ports, searchPorts } from './port-labels'
-import { formatPortMetric, portProfiles, statisticSources } from './port-statistics'
+import { formatPortMetric, freightPeriods, freightRanking, portProfiles, statisticSources } from './port-statistics'
 
 it('keeps sourced metrics attached to real catalogue ports, with explicit periods and units', () => {
   for (const [id, profile] of Object.entries(portProfiles)) {
@@ -30,7 +30,38 @@ it('covers the container baseline without attributing an aggregate ranking to a 
   expect(portProfiles['port-hedland'].metrics).toHaveLength(1)
   // Authority-wide visits must never be presented as port-specific arrivals.
   expect(portProfiles['port-hedland'].metrics[0].kind).toBe('cargo')
-  expect(portProfiles.palermo).toBeUndefined()
+  expect(portProfiles.palermo.metrics.find(metric => metric.kind === 'cargo')?.value).toBe(8.07095)
+  expect(portProfiles['ras-tanura']).toBeUndefined()
+})
+
+it('covers the expanded catalogue and keeps breakdown parts in the total’s units', () => {
+  expect(Object.keys(portProfiles).length).toBeGreaterThanOrEqual(131)
+  for (const [id, profile] of Object.entries(portProfiles)) {
+    for (const metric of profile.metrics) {
+      if (!metric.breakdown) continue
+      expect(metric.kind, id).not.toBe('containerRank')
+      expect(new Set(metric.breakdown.map(part => part.label)).size, id).toBe(metric.breakdown.length)
+      for (const part of metric.breakdown) {
+        expect(Number.isFinite(part.value) && part.value >= 0 && part.value <= metric.value, id).toBe(true)
+      }
+      const total = metric.breakdown.reduce((sum, part) => sum + part.value, 0)
+      // Independently rounded source categories may differ slightly from their total.
+      expect(Math.abs(total - metric.value) / metric.value, id).toBeLessThan(.001)
+    }
+  }
+})
+
+it('ranks only matching measures and periods, deduplicating shared reporting systems', () => {
+  const rows = freightRanking('containers', '2024')
+  expect(rows.every(row => row.metric.kind === 'containers' && row.metric.period === '2024')).toBe(true)
+  expect(rows.map(row => row.metric.value)).toEqual(rows.map(row => row.metric.value).sort((a, b) => b - a))
+  const alliance = rows.filter(row => row.scope === 'Seattle–Tacoma')
+  expect(alliance).toHaveLength(1)
+  expect(alliance[0].portIds.sort()).toEqual(['seattle', 'tacoma'])
+  expect(freightRanking('cargo', 'no such period')).toEqual([])
+  expect(freightPeriods('cargo')).toContain('FY 2025–26')
+  expect(freightRanking('cargo', '2024').some(row => row.portIds.includes('port-hedland'))).toBe(false)
+  expect(freightRanking('cargo').some(row => row.portIds.includes('port-hedland'))).toBe(true)
 })
 
 it('formats units faithfully and finds punctuation/alias variants', () => {

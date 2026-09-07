@@ -41,7 +41,7 @@
   "portStatistics": {
     "path": "public/data/port-statistics.json",
     "capturedAt": "2026-09-07",
-    "sha256": "db462a0042f484e40769285a065720d4da5cd3824e7b706edfd6d6cf9e14941a",
+    "sha256": "0ba28e9218617452c48d1ad13d8744d52b27c03042bd60577e16bec6250cd0ab",
     "sources": [
       {
         "name": "World Shipping Council",
@@ -50,8 +50,8 @@
       },
       {
         "name": "Port of Rotterdam",
-        "title": "Annual throughput · 2025",
-        "url": "https://www.portofrotterdam.com/en/news-and-press-releases/throughput-port-rotterdam-shows-slight-decline"
+        "title": "Annual throughput and cargo categories · 2025",
+        "url": "https://www.portofrotterdam.com/sites/default/files/2026-02/throughput-port-of-rotterdam-2025.pdf"
       },
       {
         "name": "Port of Los Angeles",
@@ -67,10 +67,342 @@
         "name": "Maritime and Port Authority of Singapore",
         "title": "Annual report · 2024",
         "url": "https://www.mpa.gov.sg/docs/mpalibraries/mpa-documents-files/comms-and-community/annual-report/mpa-ar24-full-book_fa.pdf?sfvrsn=2f89c7a0_1"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Gioia Tauro · container throughput 2024",
+        "url": "https://lloydslist.com/LL1153899"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Manzanillo · container throughput 2024",
+        "url": "https://lloydslist.com/LL1153979"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Port Said* · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154118"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Barcelona · container throughput 2024",
+        "url": "https://lloydslist.com/LL1153828"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Jeddah · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154043"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Cartagena · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154197"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Felixstowe · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154144"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Incheon · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154133"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Virginia · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154056"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Vancouver · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154057"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Melbourne  · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154075"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Salalah · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154105"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Dammam · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154039"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Yokohama · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154028"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Callao · container throughput 2024",
+        "url": "https://lloydslist.com/LL1153924"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Ambarli · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154191"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Sydney · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154076"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Kobe · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154026"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Nagoya · container throughput 2024",
+        "url": "https://lloydslist.com/LL1153877"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Tangshan · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154383"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Durban  · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154269"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Kingston · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154200"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Charleston · container throughput 2024",
+        "url": "https://lloydslist.com/LL1153882"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Genoa · container throughput 2024",
+        "url": "https://lloydslist.com/LL1153898"
+      },
+      {
+        "name": "Lloyd’s List",
+        "title": "Lázaro Cárdenas · container throughput 2024",
+        "url": "https://lloydslist.com/LL1154198"
+      },
+      {
+        "name": "Ministry of Transport, China",
+        "title": "Annual port statistics · 2024",
+        "url": "https://xxgk.mot.gov.cn/jigou/zhghs/202503/P020250326508512684765.pdf"
+      },
+      {
+        "name": "Comune di Palermo",
+        "title": "Annual port statistics · 2024",
+        "url": "https://docs.comune.palermo.it/palermo-statistica.php?cap=8&per=2024&sel=7&sez=187"
+      },
+      {
+        "name": "Confetra / Assoporti",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.confetra.com/wp-content/uploads/Traffico-merci-2024-per-tipologia-di-trasporto-nei-porti-italiani.pdf"
+      },
+      {
+        "name": "Transport Canada",
+        "title": "Table M18 · preliminary 2024 container volumes",
+        "url": "https://tdih-cdit.tc.canada.ca/en/addendum-tables/2024/table-m18-containerized-freight-volumes-selected-ports-2015-2024-0"
+      },
+      {
+        "name": "Port of Montreal",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.port-montreal.com/en/benefits-and-traffic-2024"
+      },
+      {
+        "name": "Prince Rupert Port Authority",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.rupertport.com/port-of-prince-rupert-moved-23-1-million-tonnes-of-cargo-in-2024-amid-historic-expansion-phase/"
+      },
+      {
+        "name": "Vancouver Fraser Port Authority",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.globenewswire.com/news-release/2025/03/10/3040234/0/en/Port-of-Vancouver-moves-record-trade-in-2024-supporting-Canada-and-Canadians.html"
+      },
+      {
+        "name": "Maritime Board of Russia / ASOP",
+        "title": "Annual port statistics · 2024",
+        "url": "https://marine.org.ru/events/sudostroenie/16855/"
+      },
+      {
+        "name": "HAROPA PORT",
+        "title": "Annual port statistics · 2024",
+        "url": "https://rapport-annuel.haropaport.com/en/news/2024-new-model-growth-increase-traffic-and-industrial-projects"
+      },
+      {
+        "name": "French transport statistics (SDES)",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.statistiques.developpement-durable.gouv.fr/le-trafic-maritime-en-france-tres-legere-baisse-du-fret-en-2024"
+      },
+      {
+        "name": "Port of Gothenburg",
+        "title": "Sustainability report · 2025",
+        "url": "https://www.portofgothenburg.com/globalassets/dokument/publikationer/engelska/sustainability_report_2025_eng.pdf"
+      },
+      {
+        "name": "General Authority for Statistics, Saudi Arabia",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.stats.gov.sa/documents/20117/2435281/Maritime%2BTransport%2BStatistics%2BPublication%2B2024%2B-%2BEN.pdf/3ff86956-7844-2137-44ad-32338b01c4fe"
+      },
+      {
+        "name": "Port of Newcastle",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.portofnewcastle.com.au/wp-content/uploads/2025/03/PON_Annual_Trade_Report_2024.pdf"
+      },
+      {
+        "name": "Port of Tauranga",
+        "title": "Financial results · year ended 30 June 2024",
+        "url": "https://www.port-tauranga.co.nz/news/port-of-tauranga-shows-resilience-amid-economic-and-supply-chain-challenges/"
+      },
+      {
+        "name": "Port of Auckland",
+        "title": "Annual report · year ended 30 June 2024",
+        "url": "https://poal.co.nz/sites/default/files/2024-09/2024%20Annual%20Report.pdf"
+      },
+      {
+        "name": "Fremantle Ports",
+        "title": "Annual report · 2023–24",
+        "url": "https://www.fremantleports.com.au/docs/default-source/annual-reports/fremantle-ports-annual-report-2024.pdf?sfvrsn=27bc79dc_3"
+      },
+      {
+        "name": "Port of Brisbane",
+        "title": "Trade results · FY 2024–25",
+        "url": "https://www.portbris.com.au/w/strong-fy25-trade-through-port-of-brisbane"
+      },
+      {
+        "name": "Ministry of Ports, Shipping and Waterways, India",
+        "title": "Cargo loaded and unloaded · FY 2023–24",
+        "url": "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2037381&lang=2&reg=48"
+      },
+      {
+        "name": "Karachi Port Trust",
+        "title": "Cargo handled · FY 2023–24",
+        "url": "https://kpt.gov.pk/news/149/a-massive-increase-of-24.43-percent-in-cargo-handling-at-karachi-port-at-the-end-of-f.y-2023-24"
+      },
+      {
+        "name": "Port of Oakland",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.portofoakland.com/wp-content/uploads/2025/01/Maritime-News-Jan-2025-FINAL.pdf"
+      },
+      {
+        "name": "Northwest Seaport Alliance",
+        "title": "Annual port statistics · 2024",
+        "url": "https://s3.us-west-2.amazonaws.com/nwseaportalliance.com.if-us-west-2-or/2025-04/2024%20NWSA%20Annual%20Cargo%20Report.pdf"
+      },
+      {
+        "name": "Miami-Dade County / PortMiami",
+        "title": "Cargo volumes · fiscal years",
+        "url": "https://www.miamidade.gov/portmiami/cargo.page"
+      },
+      {
+        "name": "Kenya Ports Authority",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.kpa.co.ke/Media/Read/2"
+      },
+      {
+        "name": "Bank of Tanzania / Tanzania Ports Authority",
+        "title": "Consolidated zonal report · FY 2024–25",
+        "url": "https://www.bot.go.tz/Publications/Regular/Consolidated%20Zonal%20Economic%20Report/sw/2025121711505302.pdf"
+      },
+      {
+        "name": "Ministry of Transport, Côte d’Ivoire",
+        "title": "Annual port statistics · 2024",
+        "url": "https://transports.gouv.ci/actualites/developpement-portuaire-le-port-dabidjan-monte-en-puissance"
+      },
+      {
+        "name": "Agence Togolaise de Presse / Port of Lomé",
+        "title": "Annual port statistics · 2024",
+        "url": "https://atop.tg/performances-du-port-autonome-de-lome-en-2024-le-trafic-global-en-progression-de-185/"
+      },
+      {
+        "name": "Porto do Itaqui",
+        "title": "Annual port statistics · 2024",
+        "url": "https://website.portodoitaqui.com.br/imprensa/noticia/porto-do-itaqui-alcanca-segunda-melhor-movimentacao-historica-e-reforca-papel-estrategico-no-desenvolvimento-do-maranhao"
+      },
+      {
+        "name": "Puerto San Antonio",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.puertosanantonio.com/transferencia-de-carga-aumento-10-52-en-2024"
+      },
+      {
+        "name": "Port de Barcelona",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.portdebarcelona.cat/memoria2024/05-economic-value.html"
+      },
+      {
+        "name": "American Association of Port Authorities",
+        "title": "World port rankings · historical 2016 reference",
+        "url": "https://aapa.files.cms-plus.com/Statistics/WORLD%20PORT%20RANKINGS%202016.xlsx"
+      },
+      {
+        "name": "PortosRio",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.portosrio.gov.br/pt-br/node/4739"
+      },
+      {
+        "name": "ASIPONA Veracruz",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.puertodeveracruz.com.mx/wp-content/uploads/2025/01/Resumen_Estadistico_ASIPONAVER_DICIEMBRE_2024.pdf"
+      },
+      {
+        "name": "SGTD Doraleh",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.sgtd-terminal.com/2025/01/19/record-of-1-2m-teus/"
+      },
+      {
+        "name": "Ghana News Agency / GPHA",
+        "title": "GPHA annual performance · 2023",
+        "url": "https://gna.org.gh/2024/03/tema-port-handles-18-million-tonnes-of-cargo-in-2023/"
+      },
+      {
+        "name": "RTS / Port Autonome de Dakar",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.rts.sn/actualite/detail/economie/port-autonome-de-dakar-une-croissance-de-6-du-trafic-global-en-2024-malgre-des-fluctuations-mensuelles"
+      },
+      {
+        "name": "Administración Nacional de Puertos",
+        "title": "Year-end performance statement · 2023",
+        "url": "https://anp.com.uy/index.php/es/inicio/comunicacion/noticias/el-puerto-de-montevideo-superara-el-millon-de-teus-en-contenedores-y-no-tendra-aumento-de-tarifas-en-2024"
+      },
+      {
+        "name": "Administración General de Puertos",
+        "title": "Annual port statistics · 2024",
+        "url": "https://www.argentina.gob.ar/sites/default/files/2021/08/informe_estadistico_diciembre_2024-_evolucion_historica.pdf"
+      },
+      {
+        "name": "Ministry of Maritime Affairs, Pakistan",
+        "title": "Yearbook · FY 2024–25, Port Qasim chapter",
+        "url": "https://moma.gov.pk/SiteImage/Misc/files/YEAR%20BOOK%202024-2025.pdf"
+      },
+      {
+        "name": "Africa Ports & Ships / TNPA",
+        "title": "TNPA calendar 2024 container and ship-call statistics",
+        "url": "https://africaports.co.za/2025/02/01/africa-ports-ships-maritime-news-26-27-january-2025/"
+      },
+      {
+        "name": "Nigerian Ports Authority",
+        "title": "Port handbook 2018 · Lagos port complex statistics 2017",
+        "url": "https://nigerianports.gov.ng/wp-content/uploads/2018/09/NigerianPortHandbook2018final-compressed.pdf"
       }
     ],
-    "transformations": "Transcribe attributed numerical facts only. WSC 2024 rank and million-TEU throughput matched by existing catalogue rank, comma decimal separators normalized. Preserve source periods, units and aggregate port-system scope. Supplement four port-specific cargo totals and one vessel-arrival count; exclude authority-wide Pilbara vessel counts. No metrics derive from the synthetic animation.",
+    "transformations": "Transcribe attributed numerical facts with source periods, units and reporting scope. Normalize tonnes and TEU to millions; convert AAPA US short tons to metric tonnes using 0.90718474. Keep historical 2016/2017 figures explicitly dated. Preserve the WSC 2024 rank baseline; added container figures do not imply global ranks. Breakdowns use same-source, same-period mutually exclusive categories; derived remainders and source rounding are documented per metric. Shared systems are deduplicated at display time. Exclude capacity, undated figures, Newcastle revenue tonnes, TEU-based estimated cargo weights and authority-wide Pilbara vessel counts. No metric derives from vessel tracks or synthetic animation.",
     "wscEmbedUrl": "https://flo.uri.sh/visualisation/25394867/embed",
-    "wscRetrievedHtmlSha256": "b63ad78ae4f92d7acf4bcc6a8bc4ab18aa0a7544ef5dd35d8a3f10377da641a1"
+    "wscRetrievedHtmlSha256": "b63ad78ae4f92d7acf4bcc6a8bc4ab18aa0a7544ef5dd35d8a3f10377da641a1",
+    "profileCount": 131,
+    "missingProfiles": [
+      "ras-tanura",
+      "ras-laffan",
+      "fujairah",
+      "istanbul"
+    ]
   }
 }
