@@ -1,6 +1,6 @@
 import { createReadStream } from 'node:fs'
 import { stat } from 'node:fs/promises'
-import { resolve } from 'node:path'
+import { posix, resolve } from 'node:path'
 import { createGzip } from 'node:zlib'
 import { pipeline } from 'node:stream/promises'
 
@@ -9,12 +9,26 @@ export function localNoaaPlugin() {
   return {
     name: 'local-noaa-review', apply: 'serve',
     configureServer(server) {
+      const privatePaths = ['raw', 'compiled'].flatMap(directory => [
+        `/data/${directory}`,
+        `/@fs${resolve(server.config.root, 'data', directory).replaceAll('\\', '/')}`,
+      ])
       const artifacts = new Map([
         ['/__local/noaa-la-2025.json', resolve(server.config.root, 'data/compiled/noaa-la-2025.json')],
         ['/__local/noaa-la-land.geojson', resolve(server.config.root, 'data/compiled/noaa-la-land.geojson')],
       ])
       server.middlewares.use(async (request, response, next) => {
-        const artifact = artifacts.get(request.url?.split('?')[0])
+        let pathname
+        try { pathname = posix.normalize(decodeURIComponent((request.url ?? '/').split(/[?#]/)[0]).replaceAll('\\', '/')) }
+        catch { response.writeHead(400); response.end('Invalid request path.'); return }
+        // Vite's filesystem deny list protects existing files, but missing files
+        // can reach the SPA fallback. Reject the namespace before either branch,
+        // including encoded paths and Vite's absolute-file URL form.
+        if (privatePaths.some(path => pathname === path || pathname.startsWith(`${path}/`))) {
+          response.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' })
+          response.end('Private data is not served directly.'); return
+        }
+        const artifact = artifacts.get(pathname)
         if (!artifact) return next()
         const remote = request.socket.remoteAddress
         const origin = request.headers.origin

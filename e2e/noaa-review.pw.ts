@@ -50,10 +50,21 @@ test('missing review artifact does not fall back to synthetic movement', async (
 })
 
 test('local data cannot be read through Vite static paths or cross-origin requests', async ({ request }) => {
-  for (const path of ['/data/raw/noaa-2025/normalized.json', '/data/compiled/noaa-la-2025.json']) {
+  for (const path of [
+    '/data/raw/noaa-2025/normalized.json', '/data/compiled/noaa-la-2025.json',
+    // A clean CI checkout has no local sample: missing paths must not fall
+    // through to Vite's 200 HTML fallback either.
+    '/data/raw/ci-missing-static-boundary.json', '/data/compiled/ci-missing-static-boundary.json',
+    '/data/raw', '/data/compiled', '/data/%72aw/ci-missing-static-boundary.json?raw',
+    `/@fs${process.cwd()}/data/raw/ci-missing-static-boundary.json`,
+    `/@fs${process.cwd()}/data/compiled/noaa-la-2025.json?import`,
+  ]) {
     const response = await request.get(path)
-    expect(response.status()).toBe(403)
+    expect(response.status(), path).toBe(403)
+    expect(await response.text(), path).toBe('Private data is not served directly.')
   }
+  const head = await request.head('/data/compiled/ci-missing-static-boundary.json')
+  expect(head.status()).toBe(403)
   const response = await request.get('/__local/noaa-la-2025.json', { headers: { Origin: 'https://example.com' } })
   expect(response.status()).toBe(403)
 })
