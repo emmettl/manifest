@@ -16,7 +16,7 @@ The feasibility study is sufficient for a provider-independent prototype. This r
 
 Time is seconds relative to `startUtc`; coordinates are `[longitude, latitude]`. Synthetic segments may start before and finish after the displayed window. Observed compilation is cropped to its declared interval. The renderer never extrapolates before or after a segment and never connects separate segments. Dateline crossings interpolate along the short longitude path; a screen-edge crossing does not create a line across the entire map.
 
-The canvas uses a simple equirectangular projection and repeats geometry at the world seam. Distortion at high latitudes is expected. This is not a navigational map. Pan is bounded; focal-region buttons and zoom/reset provide keyboard alternatives. The fixture routes are hand-authored schematic passages, not measured sea lanes.
+The canvas uses a simple equirectangular projection and repeats geometry at the world seam. Distortion at high latitudes is expected. This is not a navigational map. Pan is bounded; focal-region buttons and zoom/reset provide keyboard alternatives. Two touch pointers pan and zoom around their moving midpoint; lifting one finger rebases the remaining drag and never selects a vessel. Trackpad pinch uses non-passive Ctrl-wheel handling and Safari GestureEvents on the canvas, while ordinary wheel scrolling remains available to the page. Gesture changes stay within the same 1–10× zoom bounds as the buttons. The fixture routes are hand-authored schematic passages, not measured sea lanes.
 
 ## Offline normalized input
 
@@ -55,7 +55,7 @@ Presence grids describe intensity. They cannot be converted into moving hulls or
 - Initial world field plus land: at most 1.5 MiB gzip.
 - No raw feed or provider credentials in the browser.
 - CI tests cover playback limits, dateline interpolation, fixture admission, ordering, duplicates, conflicts, invalid reports, gap splitting, speed jumps and publication status.
-- Browser interaction and phone frame-rate measurements remain to be performed; bundle checks do not establish GPU/CPU performance.
+- Gesture regression tests cover pointer sequences, anchored zoom, handoff to one-finger panning, cancellation, trackpad event handling and listener cleanup. Physical-device interaction and phone frame-rate measurements remain to be performed; bundle checks do not establish GPU/CPU performance.
 - Spatial/time chunk loading, adaptive level of detail, port-call inference, provider adapters, static identity histories and trade statistics are next-stage work.
 
 The source research remains in Motion Studies; `docs/STUDY.md` is a pinned copy so the new repository is understandable on its own. Catalogue admission and linking remain a separate editorial decision.

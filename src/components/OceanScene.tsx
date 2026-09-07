@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { attachMapGestures } from '../maritime/map-gestures'
 import { DAY, positionAt } from '../maritime/playback'
 import type { Region } from '../maritime/regions'
 import type { LandCollection, Position, TrackStudy, VesselClass } from '../maritime/types'
@@ -18,7 +19,15 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
   const hits = useRef<{ id: string; x: number; y: number }[]>([])
   const [size, setSize] = useState({ width: 1, height: 1 })
   const [camera, setCamera] = useState({ longitude: region.center[0] as number, latitude: region.center[1] as number, zoom: region.zoom as number })
-  const drag = useRef<{ x: number; y: number; longitude: number; latitude: number; moved: boolean } | null>(null)
+  const cameraRef = useRef(camera)
+  useLayoutEffect(() => { cameraRef.current = camera }, [camera])
+  useEffect(() => attachMapGestures(canvasRef.current!, () => cameraRef.current, next => {
+    cameraRef.current = next
+    setCamera(next)
+  }, ({ x, y }) => {
+    const hit = hits.current.filter(item => Math.hypot(item.x - x, item.y - y) < 18).sort((a,b) => Math.hypot(a.x - x,a.y-y) - Math.hypot(b.x-x,b.y-y))[0]
+    onSelect(hit?.id ?? null)
+  }), [region, onSelect])
   useEffect(() => { setCamera({ longitude: region.center[0], latitude: region.center[1], zoom: region.zoom }) }, [region])
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -125,29 +134,12 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
 
   return <div className="ocean-scene">
     <canvas ref={canvasRef} aria-label="World map with synthetic cargo and tanker movement. Use the region controls and vessel selector to explore with a keyboard." role="img"
-      onPointerDown={event => { event.currentTarget.setPointerCapture(event.pointerId); drag.current = { x: event.clientX, y: event.clientY, longitude: camera.longitude, latitude: camera.latitude, moved: false } }}
-      onPointerMove={event => {
-        const start = drag.current
-        if (!start) return
-        const dx = event.clientX - start.x, dy = event.clientY - start.y
-        if (Math.abs(dx) + Math.abs(dy) > 5) start.moved = true
-        if (start.moved) setCamera(current => ({ ...current, longitude: Math.max(-180, Math.min(180, start.longitude - dx / scale)), latitude: Math.max(-60, Math.min(70, start.latitude + dy / scale)) }))
-      }}
-      onPointerCancel={() => { drag.current = null }}
-      onPointerUp={event => {
-        if (!drag.current?.moved) {
-          const bounds = event.currentTarget.getBoundingClientRect()
-          const x = event.clientX - bounds.left, y = event.clientY - bounds.top
-          const hit = hits.current.filter(item => Math.hypot(item.x - x, item.y - y) < 18).sort((a,b) => Math.hypot(a.x - x,a.y-y) - Math.hypot(b.x-x,b.y-y))[0]
-          onSelect(hit?.id ?? null)
-        }
-        drag.current = null
-      }} />
+      />
     <div className="map-tools" aria-label="Map controls">
       <button aria-label="Zoom in" data-tooltip="See the vessels more closely" disabled={camera.zoom >= 10} onClick={() => setCamera(current => ({ ...current, zoom: Math.min(10, current.zoom * 1.4) }))}>+</button>
       <button aria-label="Zoom out" data-tooltip="See more of the ocean" disabled={camera.zoom <= 1} onClick={() => setCamera(current => ({ ...current, zoom: Math.max(1, current.zoom / 1.4) }))}>−</button>
       <button aria-label="Reset map view" data-tooltip="Return to this chapter’s opening view" onClick={() => setCamera({ longitude: region.center[0], latitude: region.center[1], zoom: region.zoom })}>↺</button>
     </div>
-    <span className="map-hint">Drag to explore · Select a vessel</span>
+    <span className="map-hint">Drag to explore · Pinch to zoom</span>
   </div>
 }
