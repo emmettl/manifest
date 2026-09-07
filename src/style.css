@@ -84,7 +84,27 @@ dialog dd { margin: 0; font-size: 14px; line-height: 1.6; color: #b2c5cc; }
   .chapters [data-tooltip]:is(:hover,:focus-visible)::after, .layer-controls [data-tooltip]:is(:hover,:focus-visible)::after { bottom: auto; top: calc(100% + 9px); left: 0; transform: none; }
   .map-tools [data-tooltip]:is(:hover,:focus-visible)::after { bottom: 0; left: auto; right: calc(100% + 9px); transform: none; }
 }
-@media (min-width: 1500px) { .map-surface { min-height: 430px; } }
+@media (min-width: 701px) {
+  .study { height: 100svh; min-height: 740px; display: grid; grid-template-rows: auto auto minmax(360px, 1fr) auto auto; }
+  .masthead { padding: 17px 32px 16px; }
+  h1 { font-size: clamp(48px, 4vw, 58px); margin-top: 6px; }
+  .header-meta { flex-direction: row; align-items: center; gap: 25px; }
+  .chapters { padding-inline: 32px; }
+  .chapters button { padding-block: 11px; min-height: 44px; }
+  .map-surface { min-height: 360px; height: auto; }
+  .ocean-scene { position: absolute; inset: 0; height: auto; min-height: 0; }
+  .ocean-scene canvas { position: absolute; inset: 0; min-height: 0; }
+  .study-notes { padding: 16px 32px; gap: 28px; align-items: center; }
+  .chapter-copy h2 { font-size: 25px; margin-block: 7px 5px; }
+  .evidence-panel { padding-left: 28px; }
+  .evidence-panel p { margin-top: 7px; }
+  .playback { padding: 15px 32px 17px; }
+  .layer-controls, .map-hint { left: 32px; }
+  .field-count, .map-tools { right: 32px; }
+}
+@media (min-width: 701px) and (max-width: 1000px) {
+  .header-meta { flex-direction: column; align-items: flex-end; gap: 13px; }
+}
 @media (max-width: 700px) {
   .masthead { padding: 22px 20px; align-items: flex-start; gap: 10px; }
   .masthead .eyebrow { font-size: 10px; letter-spacing: .04em; }

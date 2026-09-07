@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { projectionScale } from '../maritime/map-projection'
 import { attachMapGestures } from '../maritime/map-gestures'
 import { DAY, positionAt } from '../maritime/playback'
 import type { Region } from '../maritime/regions'
@@ -35,7 +36,7 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
     observer.observe(canvas)
     return () => observer.disconnect()
   }, [])
-  const scale = Math.min(size.width / 360, size.height / 150) * .9 * camera.zoom
+  const scale = projectionScale(size) * camera.zoom
   const worldWidth = scale * 360
   const project = ([longitude, latitude]: Position): Position => [size.width / 2 + (longitude - camera.longitude) * scale, size.height / 2 - (latitude - camera.latitude) * scale]
 

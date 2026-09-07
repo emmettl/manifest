@@ -3,7 +3,7 @@ import { attachMapGestures, PointerGesture, transformCamera, type MapCamera } fr
 
 const viewport = { width: 1000, height: 500 }
 const initial: MapCamera = { longitude: 22, latitude: 10, zoom: 2 }
-const base = Math.min(viewport.width / 360, viewport.height / 150) * .9
+const base = viewport.width / 360
 const geoAt = (camera: MapCamera, x: number, y: number) => [camera.longitude + (x - 500) / (base * camera.zoom), camera.latitude - (y - 250) / (base * camera.zoom)]
 
 describe('map gesture geometry', () => {

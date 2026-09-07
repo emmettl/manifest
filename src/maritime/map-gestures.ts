@@ -1,3 +1,5 @@
+import { projectionScale } from './map-projection'
+
 export interface MapCamera { longitude: number; latitude: number; zoom: number }
 export interface ScreenPoint { x: number; y: number }
 interface Viewport { width: number; height: number }
@@ -7,7 +9,7 @@ const distance = (a: ScreenPoint, b: ScreenPoint) => Math.hypot(a.x - b.x, a.y -
 
 /** Keep the geographic point under `from` beneath `to` after zooming. */
 export function transformCamera(camera: MapCamera, from: ScreenPoint, to: ScreenPoint, factor: number, viewport: Viewport): MapCamera {
-  const base = Math.min(viewport.width / 360, viewport.height / 150) * .9
+  const base = projectionScale(viewport)
   if (base <= 0 || !Number.isFinite(factor) || factor <= 0) return camera
   const zoom = clamp(camera.zoom * factor, 1, 10)
   const longitude = camera.longitude + (from.x - viewport.width / 2) / (base * camera.zoom) - (to.x - viewport.width / 2) / (base * zoom)
