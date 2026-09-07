@@ -49,6 +49,65 @@ test('missing review artifact does not fall back to synthetic movement', async (
   await expect(page.getByRole('button', { name: 'Play playback', exact: true })).toBeDisabled()
 })
 
+for (const width of [1366, 390]) for (const renderer of ['webgl2', 'canvas2d']) {
+  test(`shipping-line filters preserve attribution and Unknown at ${width}px in ${renderer}`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 })
+    await page.addInitScript(renderer => {
+      if (renderer === 'canvas2d') {
+        const getContext = HTMLCanvasElement.prototype.getContext
+        HTMLCanvasElement.prototype.getContext = function(type: string, ...args: unknown[]) {
+          return type === 'webgl2' ? null : Reflect.apply(getContext, this, [type, ...args])
+        } as typeof getContext
+      } else {
+        const getParameter = WebGL2RenderingContext.prototype.getParameter
+        WebGL2RenderingContext.prototype.getParameter = function(parameter: number) {
+          return parameter === 0x9246 ? 'Operator shader contract test' : getParameter.call(this, parameter)
+        }
+      }
+    }, renderer)
+    const fixture = structuredClone(testStudy)
+    const groups = ['msc', 'maersk', 'cma-cgm', 'unknown']
+    fixture.vessels = groups.map((group, index) => ({
+      id: group, label: `Invented ${group} vessel`, category: 'cargo', evidence: 'observed',
+      ...(group !== 'unknown' ? { imo: '1234567', operator: { imo: '1234567', groupId: group, operatorName: `Invented ${group} operator`, role: 'commercial-operator', validFrom: '2025-01-01T00:00:00Z', validTo: '2025-01-04T00:00:00Z', evidenceNote: 'Invented contract evidence, never actual vessel data.', source: { label: 'Test fleet directory', url: 'https://example.com/fleet', retrievedUtc: '2026-09-07T00:00:00Z' } } } : { reportedName: 'MSC NAME WITHOUT EVIDENCE' }),
+      mmsi: `12345678${index}`,
+    }))
+    fixture.segments = groups.map((group, index) => ({ id: group, vesselId: group, samples: [{ time: 42900, position: [-118.5 + index * .03, 33.5] }, { time: 43500, position: [-118.49 + index * .03, 33.5] }] }))
+    await page.route('**/__local/noaa-la-2025.json', route => route.fulfill({ json: fixture }))
+    await page.route('**/__local/noaa-la-land.geojson', route => route.fulfill({ json: land }))
+    await page.goto('/?study=noaa-la-2025')
+    const map = page.locator('canvas[role="img"]')
+    await expect(map).toHaveAttribute('data-renderer', renderer)
+    await expect(page.locator('.field-count strong')).toHaveText('4')
+    await expect(page.locator('.operator-controls')).toContainText('3 of 4 vessel records')
+    expect((await page.locator('.operator-controls').boundingBox())!.height).toBeLessThan(width > 700 ? 150 : 230)
+    for (const [id, name] of [['msc', 'MSC'], ['maersk', 'Maersk'], ['cma-cgm', 'CMA CGM']]) {
+      await page.getByRole('button', { name, exact: true }).click()
+      await expect(page.locator('.field-count strong')).toHaveText('1')
+      await expect(map).toHaveAttribute('data-drawn', '1')
+      await expect(page.getByLabel('Inspect an observed vessel')).toHaveValue('')
+      await page.getByLabel('Inspect an observed vessel').selectOption(id)
+      await expect(page.locator('.operator-evidence')).toContainText(`Operator: ${name}`)
+      await page.getByText('Dated operator evidence', { exact: true }).click()
+      await expect(page.getByRole('link', { name: 'Test fleet directory' })).toHaveAttribute('href', 'https://example.com/fleet')
+    }
+    await page.getByLabel('Filter shipping company').selectOption('unknown')
+    await expect(page.locator('.field-count strong')).toHaveText('1')
+    await page.getByLabel('Inspect an observed vessel').selectOption('unknown')
+    await expect(page.locator('.operator-evidence')).toContainText('Operator: Unknown')
+    await expect(page.locator('.operator-evidence')).toContainText('MSC NAME WITHOUT EVIDENCE')
+    await page.getByLabel('Filter shipping company').selectOption('top3')
+    await expect(page.locator('.field-count strong')).toHaveText('3')
+    await expect(map).toHaveAttribute('data-drawn', '3')
+    await page.getByLabel('Filter shipping company').selectOption('cosco')
+    await expect(page.locator('.empty-hint')).toContainText('No verified matches')
+    await expect(map).toHaveAttribute('data-drawn', '0')
+    await page.getByRole('button', { name: 'Show all operators' }).click()
+    await expect(page.locator('.field-count strong')).toHaveText('4')
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width)
+  })
+}
+
 test('local data cannot be read through Vite static paths or cross-origin requests', async ({ request }) => {
   for (const path of [
     '/data/raw/noaa-2025/normalized.json', '/data/compiled/noaa-la-2025.json',

@@ -9,6 +9,7 @@ import { advanceTime, DAY, positionAt } from './maritime/playback'
 import { regions, noaaRegions } from './maritime/regions'
 import { registerAgentNavigation } from './maritime/agent-navigation'
 import type { VesselClass } from './maritime/types'
+import { filterOperatorStudy, operatorGroups } from './maritime/operator-attribution.mjs'
 
 const dataUrl = createDataUrlResolver(`${import.meta.env.BASE_URL}data/`)
 const localReview = import.meta.env.DEV && new URLSearchParams(window.location.search).get('study') === 'noaa-la-2025'
@@ -25,6 +26,8 @@ export function App() {
   const [visible, setVisible] = useState<Set<VesselClass>>(() => new Set(['cargo', 'tanker']))
   const [selected, setSelected] = useState<string | null>(null)
   const [vesselQuery, setVesselQuery] = useState('')
+  const [operatorFilter, setOperatorFilter] = useState('all')
+  const displayedStudy = useMemo(() => data ? filterOperatorStudy(data.study, operatorFilter) : undefined, [data, operatorFilter])
   const [selectedPort, setSelectedPort] = useState<Port | null>(null)
   const selectVessel = useCallback((id: string | null) => { setSelected(id); setSelectedPort(null) }, [])
   const [about, setAbout] = useState(false)
@@ -52,17 +55,17 @@ export function App() {
 
   useEffect(() => { if (about) dialogRef.current?.showModal(); else dialogRef.current?.close() }, [about])
   const activeVessels = useMemo(() => {
-    if (!data || !ready) return []
-    const ids = new Set(data.study.segments.filter(segment => time >= segment.samples[0].time && time <= segment.samples[segment.samples.length - 1].time).map(segment => segment.vesselId))
-    return data.study.vessels.filter(vessel => ids.has(vessel.id) && visible.has(vessel.category))
-  }, [data, ready, time, visible])
+    if (!displayedStudy || !ready) return []
+    const ids = new Set(displayedStudy.segments.filter(segment => time >= segment.samples[0].time && time <= segment.samples[segment.samples.length - 1].time).map(segment => segment.vesselId))
+    return displayedStudy.vessels.filter(vessel => ids.has(vessel.id) && visible.has(vessel.category))
+  }, [displayedStudy, ready, time, visible])
   const vessel = selected ? data?.study.vessels.find(item => item.id === selected) : undefined
   const vesselChoices = useMemo(() => {
     const query = vesselQuery.trim().toLowerCase()
     if (!query) return activeVessels.slice(0, 100)
     const matches = []
     for (const item of activeVessels) {
-      if (`${item.label} ${item.id}`.toLowerCase().includes(query)) matches.push(item)
+      if (`${item.label} ${item.id} ${item.imo ?? ''} ${item.operator?.operatorName ?? ''}`.toLowerCase().includes(query)) matches.push(item)
       if (matches.length === 100) break
     }
     return matches
@@ -82,6 +85,8 @@ export function App() {
   const calendarDate = data ? new Date(Date.parse(data.study.startUtc) + time * 1000).toISOString().slice(0, 10) : '2025-01-01'
   const gapMinutes = (data?.study.audit?.maxGapSeconds ?? 600) / 60
   const exactSample = selectedSegment?.samples.some(sample => sample.time === time)
+  const chooseOperator = (filter: string) => { setOperatorFilter(filter); setSelected(null); setVesselQuery('') }
+  const attributedCount = data?.study.vessels.filter(item => item.operator).length ?? 0
 
   return <main className="study">
     <header className="masthead">
@@ -91,8 +96,18 @@ export function App() {
 
     <nav className="chapters" aria-label="Study regions">{studyRegions.map(item => <button key={item.id} aria-pressed={regionId === item.id} data-tooltip={`Explore ${item.title.toLowerCase()}`} onClick={() => { setRegionId(item.id); setSelected(null); setSelectedPort(null) }}><span>{item.number}</span>{item.label}</button>)}</nav>
 
+    {localReview && <section className="operator-controls" aria-label="Shipping company filters">
+      <div className="operator-focus"><span>Shipping line</span><button aria-pressed={operatorFilter === 'all'} onClick={() => chooseOperator('all')}>All</button>{operatorGroups.slice(0, 3).map(group => <button key={group.id} aria-pressed={operatorFilter === group.id} onClick={() => chooseOperator(group.id)}>{group.label}</button>)}</div>
+      <label className="operator-select">Operator group<select aria-label="Filter shipping company" value={operatorFilter} onChange={event => chooseOperator(event.target.value)}>
+        <option value="all">All operators</option><option value="top3">Focus three together</option><option value="top10">Ten focus groups</option>
+        {operatorGroups.map(group => <option key={group.id} value={group.id}>{group.label}</option>)}
+        <option value="other">Other verified operators</option><option value="unknown">Unknown operator</option>
+      </select></label>
+      <p>{data ? `${attributedCount} of ${data.study.vessels.length} vessel records have dated operator evidence.` : 'Loading operator evidence…'} {attributedCount ? 'Filters use the commercial operator for each track’s date.' : 'Operator identity is unverified; vessel names are reported by the source.'}</p>
+    </section>}
+
     <section className="map-surface" aria-label="Maritime study">
-      {data ? <OceanScene study={data.study} land={data.land} time={time} playing={playing && ready} region={region} visible={visible} selected={selected} onSelect={selectVessel} selectedPort={selectedPort} onPortSelect={setSelectedPort} /> : <div className="load-state" role="status">{error ? <><p>{localReview ? 'The local NOAA sample is unavailable. Prepare it with npm run data:noaa, then try again.' : 'The study could not be loaded.'}</p><button onClick={retry}>Try again</button></> : <p>Opening the ocean study…</p>}</div>}
+      {data && displayedStudy ? <OceanScene study={displayedStudy} land={data.land} time={time} playing={playing && ready} region={region} visible={visible} selected={selected} onSelect={selectVessel} selectedPort={selectedPort} onPortSelect={setSelectedPort} /> : <div className="load-state" role="status">{error ? <><p>{localReview ? 'The local NOAA sample is unavailable. Prepare it with npm run data:noaa, then try again.' : 'The study could not be loaded.'}</p><button onClick={retry}>Try again</button></> : <p>Opening the ocean study…</p>}</div>}
       {data && !ready && <div className="chunk-loading" role="status">{error ? <><p>Movement data for this day could not be loaded.</p><button onClick={retry}>Retry this day</button></> : <p>Loading movement for day {chunkIndex + 1}…</p>}</div>}
       {manifest && <div className="delivery-readout" role="note" aria-label="Data delivery" data-state={ready ? 'ready' : error ? 'error' : 'loading'} data-chunk={chunkIndex} data-cached={stats?.cachedChunks ?? 0} data-decoded-bytes={stats?.decodedBytes ?? 0} data-resident-samples={stats?.residentSamples ?? 0} data-fetched-bytes={stats?.fetchedBytes ?? 0}>
         Day {chunkIndex + 1}/{manifest.chunks.length} · {stats?.cachedChunks ?? 0}/2 chunks cached · {((stats?.decodedBytes ?? 0) / 1024 / 1024).toFixed(1)} MiB decoded{stats ? ` · ${Math.round(stats.lastLoadMs)} ms load/decode` : ''}
@@ -103,15 +118,16 @@ export function App() {
       </div>
       {data && ready && <div className="field-count"><strong>{activeVessels.length.toLocaleString('en-US')}</strong><span>{localReview ? 'vessels in accepted segments' : 'synthetic vessels with positions'}</span><small>{data.study.vessels.length.toLocaleString('en-US')} vessels in the full study</small></div>}
       {data && ready && !visible.size && <div className="empty-hint">Choose Cargo or Tankers to show movement.</div>}
+      {data && ready && visible.size > 0 && operatorFilter !== 'all' && !activeVessels.length && <div className="empty-hint" role="status">{operatorFilter === 'unknown' ? 'No unknown operators have positions at this time with these vessel classes.' : 'No verified matches have positions at this time with these vessel classes.'} <button className="text-button" onClick={() => chooseOperator('all')}>Show all operators</button></div>}
     </section>
 
     <section className="study-notes" aria-label="Study details">
-      {selectedPort ? <PortHero port={selectedPort} onClose={() => { setSelectedPort(null); document.getElementById('port-search')?.focus() }} /> : <>
+      {selectedPort ? <PortHero key={selectedPort.id} port={selectedPort} onClose={() => { setSelectedPort(null); document.getElementById('port-search')?.focus() }} /> : <>
       <div className="chapter-copy"><p className="eyebrow">{region.number} <span>/</span> {region.label.toUpperCase()}</p><h2>{region.title}</h2><p>{region.description}</p></div>
       <div className="evidence-panel">
         <label htmlFor="vessel">{localReview ? 'Inspect an observed vessel' : 'Inspect a demo vessel'}</label>
         <div className="vessel-picker">
-        <input type="search" aria-label="Find a vessel" placeholder="Find vessel by label or ID" value={vesselQuery} onChange={event => setVesselQuery(event.target.value)} />
+        <input type="search" aria-label="Find a vessel" placeholder={localReview ? 'Find by name, MMSI or IMO' : 'Find vessel by label or ID'} value={vesselQuery} onChange={event => setVesselQuery(event.target.value)} />
         <select id="vessel" value={selected ?? ''} onChange={event => setSelected(event.target.value || null)}>
           <option value="">Select a moving mark or choose here</option>
           {vessel && !vesselChoices.some(item => item.id === vessel.id) && <option value={vessel.id}>{vessel.label} — selected</option>}
@@ -120,6 +136,10 @@ export function App() {
         </select>
         </div>
         {vessel ? <p><span className="evidence-tag">{localReview ? 'OBSERVED AIS' : 'SYNTHETIC'}</span> {!ready ? 'Loading movement data…' : position ? `${Math.abs(position[1]).toFixed(2)}°${position[1] < 0 ? 'S' : 'N'} · ${Math.abs(position[0]).toFixed(2)}°${position[0] < 0 ? 'W' : 'E'}` : 'No position at this time.'} <span className="muted">{!ready ? '' : localReview ? `${position ? exactSample ? 'Received sample.' : 'Interpolated between received samples.' : 'Reception gap or outside the regional sample.'} NOAA vessel class; cargo contents unknown.` : 'Interpolated demo position; no observed voyage or cargo claim.'}</span></p> : <p>{region.caption} <span className="muted">{localReview ? `Interpolation capped at ${gapMinutes} minutes. Local review; publication pending.` : 'These movements are generated, not observed.'}</span></p>}
+        {localReview && vessel && <div className="operator-evidence">
+          <p>{vessel.reportedName ? `Reported name: ${vessel.reportedName}. ` : ''}{vessel.imo ? `IMO ${vessel.imo} (source supplied). ` : 'No valid IMO supplied. '}<strong>Operator: {vessel.operator ? operatorGroups.find(group => group.id === vessel.operator?.groupId)?.label ?? vessel.operator.operatorName : 'Unknown'}</strong></p>
+          {vessel.operator ? <details><summary>Dated operator evidence</summary><p>{vessel.operator.operatorName} · commercial operator. Applies to this track episode from {vessel.operator.validFrom} until {vessel.operator.validTo} (exclusive). {vessel.operator.evidenceNote}</p><p><a href={vessel.operator.source.url} target="_blank" rel="noreferrer">{vessel.operator.source.label}</a> · retrieved {vessel.operator.source.retrievedUtc.slice(0, 10)}.</p></details> : <p className="muted">No dated commercial-operator match for this track episode. A name or flag alone does not verify the shipping line.</p>}
+        </div>}
       </div>
       </>}
     </section>
@@ -136,7 +156,7 @@ export function App() {
       <h2 id="about-title">A study taking shape.</h2><p>MANIFEST explores how vessel movement can make the world’s trade routes visible. This first version is a working prototype.</p>
       {localReview ? <>
         <p><strong>Real observations, shown in local review.</strong> This sample covers 1–3 January 2025 within 120–117°W and 32.5–34.5°N. It includes NOAA cargo and tanker classes only. Stationary reports remain visible. Holiday traffic and coastal reception do not establish typical activity or global coverage.</p>
-        <dl><dt>Movement and credit</dt><dd><a href="https://www.fisheries.noaa.gov/inport/item/77594/full-list" target="_blank" rel="noreferrer">Nationwide Automatic Identification System 2025</a>. U.S. Coast Guard Navigation Center, Bureau of Ocean Energy Management, NOAA Office for Coastal Management.</dd><dt>What the marks mean</dt><dd>Received positions, interpolated only within accepted segments. Gaps over {gapMinutes} minutes, apparent speeds over {data?.study.audit?.maxSpeedKnots ?? 45} knots, conflicting reports and observed exits from the region break tracks. No extrapolation through gaps.</dd><dt>Classification</dt><dd>NOAA’s supplied vessel types include AVID enrichment. Their historical registry validity is not established. Identifiers are MMSIs, not verified hull identities. No cargo contents, trade volumes or port calls are asserted.</dd><dt>Publication</dt><dd>NOAA metadata lists no access constraints and “For coastal and ocean planning” as its use constraint. Public artwork redistribution remains under review. This sample is served locally and excluded from the public build.</dd><dt>Geography</dt><dd>Natural Earth, public domain, 1:10 million, regional polygon selection. Small harbour structures are generalized; this is not a navigational chart.</dd></dl>
+        <dl><dt>Movement and credit</dt><dd><a href="https://www.fisheries.noaa.gov/inport/item/77594/full-list" target="_blank" rel="noreferrer">Nationwide Automatic Identification System 2025</a>. U.S. Coast Guard Navigation Center, Bureau of Ocean Energy Management, NOAA Office for Coastal Management.</dd><dt>What the marks mean</dt><dd>Received positions, interpolated only within accepted segments. Gaps over {gapMinutes} minutes, apparent speeds over {data?.study.audit?.maxSpeedKnots ?? 45} knots, conflicting reports and observed exits from the region break tracks. No extrapolation through gaps.</dd><dt>Classification</dt><dd>NOAA’s supplied vessel types include AVID enrichment. Their historical registry validity is not established. Names and IMO numbers are source-supplied, not independently verified hull identities. Shipping-line filters require separate dated commercial-operator evidence; unmatched vessels remain Unknown. The ten focus groups are an editorial selection, not a live capacity ranking. No cargo contents, trade volumes or port calls are asserted.</dd><dt>Publication</dt><dd>NOAA metadata lists no access constraints and “For coastal and ocean planning” as its use constraint. Public artwork redistribution remains under review. This sample is served locally and excluded from the public build.</dd><dt>Geography</dt><dd>Natural Earth, public domain, 1:10 million, regional polygon selection. Small harbour structures are generalized; this is not a navigational chart.</dd></dl>
       </> : <>
         <p><strong>Every vessel and journey here is synthetic.</strong> The 30-day clock is illustrative. Routes are schematic, vessel counts are invented, and the animation does not measure cargo contents or trade volumes. Port cards show separately sourced annual statistics.</p>
         <p>The complete performance fixture contains {data?.study.vessels.length.toLocaleString('en-US')} vessels and {sampleCount.toLocaleString('en-US')} route samples. Voyages are staggered, so the count with positions varies with time and class filters; the drawn count also depends on the viewport and wrapped world copies. Daily chunks retain the original samples needed for every qualifying mark and its full prototype wake. The current day loads on demand, playback prefetches the next day, and only two decoded chunks are cached. The delivery meter reports decoded JSON bytes, not JavaScript heap size; its load time includes fetching, integrity checking, decoding and validation. This tests fleet-scale loading and rendering, not raw AIS sampling volume or realistic traffic distribution. The on-map meter reports CPU preparation and drawing submission against a 16.7 ms frame budget; it is not a measurement of total frame or GPU time.</p>

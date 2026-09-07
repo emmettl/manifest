@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, resolve, sep } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { createHash } from 'node:crypto'
+import { createOperatorLookup, normalizeImo } from '../src/maritime/operator-attribution.mjs'
 
 const wrap = n => ((n + 180) % 360 + 360) % 360 - 180
 function distanceKm(a, b) {
@@ -19,7 +20,8 @@ export function compileReports(input, { maxGapSeconds = 21600, maxSpeedKnots = 4
   const epoch = Date.parse(input.startUtc) / 1000
   if (!Number.isFinite(epoch) || !Number.isFinite(input.duration) || input.duration <= 0 || !Array.isArray(input.reports)) throw new Error('Expected startUtc, positive duration and a reports array.')
   if (!input.source?.id || !input.source?.label || !input.source?.license) throw new Error('Source identity and license metadata are required.')
-  const audit = { received: input.reports.length, rejected: 0, duplicates: 0, conflicts: 0, gapSplits: 0, speedSplits: 0, outsideBounds: 0, classSplits: 0 }
+  const lookupOperator = createOperatorLookup(input.operatorRegistry)
+  const audit = { received: input.reports.length, rejected: 0, duplicates: 0, conflicts: 0, gapSplits: 0, speedSplits: 0, outsideBounds: 0, classSplits: 0, identitySplits: 0, operatorSplits: 0 }
   const gaps = [], speeds = []
   const groups = new Map()
   for (const report of input.reports) {
@@ -31,23 +33,34 @@ export function compileReports(input, { maxGapSeconds = 21600, maxSpeedKnots = 4
   const vessels = [], segments = []
   for (const [id, reports] of groups) {
     reports.sort((a, b) => a.timestamp - b.timestamp)
-    let previous = null, samples = [], count = 0, vesselId = id, category = null
+    let previous = null, samples = [], count = 0, vesselId = id, category = null, identityKey = null, operatorKey = null
     const flush = () => { if (samples.length) segments.push({ id: `${id}:${count++}`, vesselId, samples }); samples = [] }
     for (let i = 0; i < reports.length; i++) {
       const report = reports[i]
       const simultaneous = [report]
       while (reports[i + 1]?.timestamp === report.timestamp) simultaneous.push(reports[++i])
-      if (simultaneous.some(other => other.longitude !== report.longitude || other.latitude !== report.latitude || (other.category ?? 'other') !== (report.category ?? 'other'))) {
+      if (simultaneous.some(other => other.longitude !== report.longitude || other.latitude !== report.latitude || (other.category ?? 'other') !== (report.category ?? 'other') || normalizeImo(other.imo) !== normalizeImo(report.imo) || (other.reportedName ?? '') !== (report.reportedName ?? ''))) {
         audit.conflicts += simultaneous.length; flush(); previous = null; continue
       }
       audit.duplicates += simultaneous.length - 1
       if (bounds && (report.longitude < bounds[0] || report.longitude > bounds[2] || report.latitude < bounds[1] || report.latitude > bounds[3])) { audit.outsideBounds++; flush(); previous = null; continue }
       const nextCategory = ['cargo', 'tanker'].includes(report.category) ? report.category : 'other'
-      if (nextCategory !== category) {
+      const imo = normalizeImo(report.imo)
+      const reportedName = typeof report.reportedName === 'string' ? report.reportedName.trim() : ''
+      const nextIdentityKey = `${imo ?? ''}:${reportedName}`
+      const operator = lookupOperator(imo, report.timestamp)
+      const nextOperatorKey = operator ? JSON.stringify(operator) : ''
+      if (nextCategory !== category || nextIdentityKey !== identityKey || nextOperatorKey !== operatorKey) {
         flush()
-        if (category !== null) { audit.classSplits++; vesselId = `${id}@${report.timestamp}` }
+        if (category !== null) {
+          if (nextCategory !== category) audit.classSplits++
+          if (nextIdentityKey !== identityKey) audit.identitySplits++
+          if (nextOperatorKey !== operatorKey) audit.operatorSplits++
+          vesselId = `${id}@${report.timestamp}`
+        }
         category = nextCategory
-        vessels.push({ id: vesselId, label: `Observed ${category === 'other' ? 'vessel' : category} · ${report.mmsi}${vesselId === id ? '' : ` · ${new Date(report.timestamp * 1000).toISOString().slice(5, 16)}`}`, category, evidence: 'observed' })
+        identityKey = nextIdentityKey; operatorKey = nextOperatorKey
+        vessels.push({ id: vesselId, label: `${reportedName || `Observed ${category === 'other' ? 'vessel' : category}`} · ${report.mmsi}${vesselId === id ? '' : ` · ${new Date(report.timestamp * 1000).toISOString().slice(5, 16)}`}`, category, evidence: 'observed', mmsi: String(report.mmsi), ...(imo ? { imo } : {}), ...(reportedName ? { reportedName } : {}), ...(operator ? { operator } : {}) })
       }
       if (previous) {
         const delta = report.timestamp - previous.timestamp
@@ -70,7 +83,7 @@ export function compileReports(input, { maxGapSeconds = 21600, maxSpeedKnots = 4
     schemaVersion: 1, kind: 'tracks', id: `${input.source.id}-compiled`, title: 'Regional AIS compiler proof',
     startUtc: input.startUtc, duration: input.duration,
     source: { ...input.source, evidence: 'observed', publication: 'review-required' }, vessels, segments,
-    audit: { ...audit, maxGapSeconds, maxSpeedKnots, ...(bounds ? { bounds } : {}), gapsSeconds: distribution(gaps), apparentSpeedKnots: distribution(speeds), gapThresholdCounts: Object.fromEntries([120, 300, 600, 1800, 3600, 21600].map(threshold => [threshold, gaps.filter(gap => gap > threshold).length])), inputSha256: createHash('sha256').update(JSON.stringify(input)).digest('hex') },
+    audit: { ...audit, operatorAttributedVesselRecords: vessels.filter(vessel => vessel.operator).length, operatorUnknownVesselRecords: vessels.filter(vessel => !vessel.operator).length, operatorRegistrySha256: input.operatorRegistry ? createHash('sha256').update(JSON.stringify(input.operatorRegistry)).digest('hex') : null, maxGapSeconds, maxSpeedKnots, ...(bounds ? { bounds } : {}), gapsSeconds: distribution(gaps), apparentSpeedKnots: distribution(speeds), gapThresholdCounts: Object.fromEntries([120, 300, 600, 1800, 3600, 21600].map(threshold => [threshold, gaps.filter(gap => gap > threshold).length])), inputSha256: createHash('sha256').update(JSON.stringify(input)).digest('hex') },
   }
 }
 

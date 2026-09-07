@@ -28,6 +28,16 @@ h1 { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: cla
 .chapters button { border: 0; border-bottom: 2px solid transparent; border-radius: 0; padding: 15px 24px 15px 0; margin-right: 16px; font-size: 14px; color: #9cb0b9; min-height: 50px; }
 .chapters button span { font: 11px 'IBM Plex Mono', monospace; margin-right: 9px; opacity: .65; }
 .chapters button[aria-pressed=true] { border-bottom-color: var(--amber); color: #eff5f4; }
+.operator-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 14px clamp(20px, 3vw, 42px); border-bottom: 1px solid var(--line); background: #0b1319; }
+.operator-focus { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.operator-focus > span { font-size: 12px; color: var(--muted); margin-right: 6px; }
+.operator-focus button { min-height: 40px; padding: 8px 12px; font-size: 13px; }
+.operator-focus button[aria-pressed=true] { border-color: var(--amber); color: var(--amber); background: #192a33; }
+.operator-select { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 12px; max-width: 100%; }
+.operator-select select { min-width: 0; max-width: 100%; min-height: 40px; background: #101d24; border: 1px solid #31434b; padding: 8px; font-size: 16px; }
+.operator-controls > p { flex-basis: 100%; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.operator-evidence { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 2px; overflow-wrap: anywhere; }
+.operator-evidence summary { cursor: pointer; color: var(--amber); font-size: 13px; margin-top: 10px; }
 .map-surface { position: relative; flex: 1; min-height: 340px; height: max(350px, 46svh); }
 .ocean-scene { height: 100%; min-height: 340px; position: relative; overflow: hidden; }
 canvas { display: block; width: 100%; height: 100%; min-height: 340px; cursor: grab; touch-action: none; }
@@ -92,6 +102,7 @@ dialog dd { margin: 0; font-size: 14px; line-height: 1.6; color: #b2c5cc; }
 }
 @media (min-width: 701px) {
   .study { height: 100svh; min-height: 740px; display: grid; grid-template-rows: auto auto minmax(360px, 1fr) auto auto; }
+  .study:has(> .operator-controls) { grid-template-rows: auto auto auto minmax(360px, 1fr) auto auto; }
   .masthead { padding: 17px 32px 16px; }
   h1 { font-size: clamp(48px, 4vw, 58px); margin-top: 6px; }
   .header-meta { flex-direction: row; align-items: center; gap: 25px; }

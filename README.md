@@ -54,7 +54,7 @@ The local endpoints serve only the review tracks and regional land to loopback c
 
 ## Evidence and next milestone
 
-The regional compiler accepts normalized historical AIS reports, validates coordinates and identifiers, removes duplicates, rejects conflicting simultaneous positions, splits gaps and impossible jumps, and emits a source hash plus audit counts. Its output remains `review-required`; it does not authorize publication. The prototype loader admits only synthetic data.
+The regional compiler accepts normalized historical AIS reports, validates coordinates and identifiers, removes duplicates, rejects conflicting simultaneous positions, splits gaps and impossible jumps, and emits a source hash plus audit counts. Its output remains `review-required`; it does not authorize publication. The public loader admits only synthetic data. The local NOAA review preserves source-supplied names/IMOs and supports [dated commercial-operator attribution and shipping-line filters](docs/OPERATORS.md), with MSC, Maersk and CMA CGM as the initial focus. Without a reviewed historical registry, operators remain Unknown.
 
 The regional observation sample and initial measured gap policy are available locally. The next milestone is a source-approved publication path and review of a selected voyage. Global presence grids and individual trajectories have distinct contracts. See the [architecture](docs/ARCHITECTURE.md) for limitations and the normalized input format.
 

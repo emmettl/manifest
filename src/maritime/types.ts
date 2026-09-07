@@ -4,7 +4,17 @@ export type VesselClass = 'cargo' | 'tanker' | 'other'
 export type Evidence = 'synthetic' | 'observed'
 export interface Sample { time: number; position: Position }
 export interface TrackSegment { id: string; vesselId: string; originPortId?: string; destinationPortId?: string; samples: Sample[] }
-export interface Vessel { id: string; label: string; category: VesselClass; evidence: Evidence }
+export interface OperatorAttribution {
+  imo: string
+  groupId: string
+  operatorName: string
+  role: 'commercial-operator'
+  validFrom: string
+  validTo: string
+  evidenceNote: string
+  source: { label: string; url: string; retrievedUtc: string }
+}
+export interface Vessel { id: string; label: string; category: VesselClass; evidence: Evidence; mmsi?: string; imo?: string; reportedName?: string; operator?: OperatorAttribution }
 export interface StudySource {
   id: string
   label: string

@@ -8,6 +8,7 @@ import { Readable, Transform } from 'node:stream'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { compileReports } from './compile-ais.mjs'
+import { createOperatorLookup, normalizeImo } from '../src/maritime/operator-attribution.mjs'
 
 export const sample = {
   id: 'noaa-la-2025', startUtc: '2025-01-01T00:00:00Z', duration: 3 * 86400,
@@ -54,9 +55,12 @@ export function normalizeNoaaRow(line, columns) {
   // NOAA's timezone-free exported date is explicitly UTC. Never use host-local parsing.
   const timestamp = /^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}$/.test(date) ? Date.parse(date.replace(' ', 'T') + 'Z') / 1000 : NaN
   const vesselType = number('vessel_type')
+  const imo = normalizeImo(columns.imo === undefined ? undefined : get('imo'))
+  const reportedName = columns.vessel_name === undefined ? '' : get('vessel_name')
   return {
     mmsi: get('mmsi'), timestamp: Number.isFinite(timestamp) && new Date(timestamp * 1000).toISOString().slice(0, 19) === date.replace(' ', 'T') ? timestamp : NaN, longitude: number('longitude'), latitude: number('latitude'),
     category: Number.isInteger(vesselType) && vesselType >= 70 && vesselType <= 79 ? 'cargo' : Number.isInteger(vesselType) && vesselType >= 80 && vesselType <= 89 ? 'tanker' : 'other',
+    ...(imo ? { imo } : {}), ...(reportedName ? { reportedName } : {}),
   }
 }
 
@@ -145,7 +149,9 @@ async function* rows(path) {
   } finally { lines.close(); if (child.exitCode === null) child.kill() }
 }
 
-export async function buildSample({ acquire = false } = {}) {
+export async function buildSample({ acquire = false, operatorsPath } = {}) {
+  const operatorRegistry = operatorsPath ? JSON.parse(await readFile(resolve(operatorsPath), 'utf8')) : undefined
+  createOperatorLookup(operatorRegistry) // Fail before scanning/downloading on bad or overlapping evidence.
   await mkdir(rawDirectory, { recursive: true }); await mkdir(compiledDirectory, { recursive: true })
   const geography = await prepareLand({ acquire })
   const archives = []
@@ -193,7 +199,7 @@ export async function buildSample({ acquire = false } = {}) {
   }
   const input = {
     source: { id: sample.id, label: 'NOAA / BOEM / USCG · LA approaches · 1–3 Jan 2025', license: 'NOAA InPort 77594: access constraints None; use constraints For coastal and ocean planning. Public artwork redistribution review outstanding.', url: sample.metadataUrl, classification: provenance.classification },
-    startUtc: sample.startUtc, duration: sample.duration, reports, provenance,
+    startUtc: sample.startUtc, duration: sample.duration, reports, provenance, ...(operatorRegistry ? { operatorRegistry } : {}),
   }
   const study = compileReports(input, { bounds: sample.bounds, maxGapSeconds: 600, maxSpeedKnots: 45 })
   study.title = 'Los Angeles approaches · 72 hours of observed AIS'
@@ -202,6 +208,13 @@ export async function buildSample({ acquire = false } = {}) {
   await writeFile(resolve(compiledDirectory, sample.id + '.full.json'), JSON.stringify(study) + '\n')
   const review = selectReview(study)
   await writeFile(resolve(compiledDirectory, sample.id + '.json'), JSON.stringify(review) + '\n')
+  // Private research inventory; supplied names/IMOs are leads, not operator evidence.
+  const identities = new Map()
+  for (const vessel of review.vessels) {
+    const key = `${vessel.mmsi}:${vessel.imo ?? ''}:${vessel.reportedName ?? ''}`
+    if (!identities.has(key)) identities.set(key, { mmsi: vessel.mmsi, imo: vessel.imo ?? null, reportedName: vessel.reportedName ?? null })
+  }
+  await writeFile(resolve(compiledDirectory, sample.id + '.identities.json'), JSON.stringify({ source: study.source, startUtc: study.startUtc, duration: study.duration, note: 'Source-supplied identities for researching dated commercial operators. Not a verified fleet mapping.', identities: [...identities.values()] }, null, 2) + '\n')
   const audit = { source: study.source, startUtc: sample.startUtc, duration: sample.duration, provenance, ...study.audit, vessels: study.vessels.length, segments: study.segments.length, samples: study.segments.reduce((sum, segment) => sum + segment.samples.length, 0), categories: Object.fromEntries(['cargo', 'tanker', 'other'].map(category => [category, study.vessels.filter(vessel => vessel.category === category).length])) }
   const selectedMmsis = new Set(input.reports.filter(report => ['cargo', 'tanker'].includes(report.category)).map(report => report.mmsi))
   audit.selectedCohort = compileReports({ ...input, reports: input.reports.filter(report => selectedMmsis.has(report.mmsi)) }, { bounds: sample.bounds, maxGapSeconds: 600, maxSpeedKnots: 45 }).audit
@@ -211,6 +224,12 @@ export async function buildSample({ acquire = false } = {}) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  if (process.argv.slice(2).some(arg => arg !== '--download')) throw new Error('Usage: node scripts/noaa-sample.mjs [--download]')
-  await buildSample({ acquire: process.argv.includes('--download') })
+  const args = process.argv.slice(2)
+  let acquire = false, operatorsPath
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--download') acquire = true
+    else if (args[i] === '--operators' && args[i + 1] && !args[i + 1].startsWith('--')) operatorsPath = args[++i]
+    else throw new Error('Usage: node scripts/noaa-sample.mjs [--download] [--operators data/raw/operators.json]')
+  }
+  await buildSample({ acquire, operatorsPath })
 }
