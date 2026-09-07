@@ -63,3 +63,11 @@ The source research remains in Motion Studies; `docs/STUDY.md` is a pinned copy 
 ## Optional agent navigation
 
 When a browser exposes `document.modelContext`, the page registers `navigate_manifest_study` to choose a focal region and demo day, pause playback and clear vessel selection using the same application state. Unsupported browsers are unaffected. The input validator is unit tested. Registration and end-to-end execution have not been verified in a supported WebMCP browser context; this optional integration is not a prerequisite for the human-facing prototype.
+
+## Port labels
+
+`public/data/ports.json` retains nine named port locations from the pinned public-domain Natural Earth port dataset. `scripts/generate-demo.mjs` explicitly assigns an origin and destination ID to every synthetic segment, including reversed voyages. The first and last samples meet those port markers exactly; the old unnamed offshore endpoints have been replaced. These remain authored demo voyages, not observed port calls or evidence of cargo. Source coordinates, feature IDs and hashes are recorded in `docs/DATA-SOURCES.json`.
+
+Every visible port is labelled at world scale and on zoomed views. Labels use a separate SVG overlay, dark backing, leader lines and collision-aware placement that avoids the main controls. Los Angeles and Long Beach retain separate names even when their markers are very close. Suez Canal and the Strait of Hormuz remain labelled as passages in regional views. The labels are geographic context and do not imply that an observed vessel is calling at a nearby port.
+
+Tests verify that every demo segment has named endpoints at the catalogue coordinates and that opening labels do not overlap. A browser check covers all nine labels and zooming into China. Set `MANIFEST_TEST_PORT` to use a dedicated test preview port when another checkout is already running.

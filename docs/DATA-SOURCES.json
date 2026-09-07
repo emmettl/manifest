@@ -6,7 +6,7 @@
     "seed": 9173,
     "evidence": "synthetic",
     "license": "CC0-1.0",
-    "sha256": "42d170509ad6b88ed6b5cbf13a691c4d289c025769cc505c40a48ec14021ab01"
+    "sha256": "2cfb51791abb021c67b0d4be52e86d11df4b0ed4a97a4b0a59137da259020704"
   },
   "geography": {
     "path": "public/data/land.geojson",
@@ -20,5 +20,14 @@
     "path": "docs/STUDY.md",
     "sourceUrl": "https://github.com/emmettl/motionstudies/blob/fcfb4287e1ddd94500470432da197243feee81ca/docs/MANIFEST.md",
     "sha256": "e7f86a673ed3e49fb04f3c0983981a04f3a7d00a014181ea57ed8bbca641fa1e"
+  },
+  "ports": {
+    "path": "public/data/ports.json",
+    "sourceUrl": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/ca96624a56bd078437bca8184e78163e5039ad19/geojson/ne_10m_ports.geojson",
+    "license": "Public domain",
+    "termsUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "sourceSha256": "c5a5028f5187a5e1b9fe7f0fab99804a8be7482099a2365d404fb7e9dd6b5457",
+    "transformations": "Select nine named ports by Natural Earth feature name; retain source coordinates and stable feature IDs. Demo route endpoints are authored assignments, not observed port calls.",
+    "sha256": "5b04b114c0cf2aca0906f580e0e68b3facc368bd4dcb7a38811784beee6b6d63"
   }
 }

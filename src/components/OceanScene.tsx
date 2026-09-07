@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { PortLabels } from './PortLabels'
 import { projectionScale } from '../maritime/map-projection'
 import { attachMapGestures } from '../maritime/map-gestures'
 import { DAY, positionAt } from '../maritime/playback'
@@ -6,11 +7,7 @@ import type { Region } from '../maritime/regions'
 import type { LandCollection, Position, TrackStudy, VesselClass } from '../maritime/types'
 
 const colors = { cargo: '#d5e9e7', tanker: '#e9b86b', other: '#70888e' }
-const ports: { position: Position; label: string }[] = [
-  { position: [122,31], label: 'SHANGHAI' }, { position: [114,22], label: 'PEARL RIVER' },
-  { position: [56,26.5], label: 'HORMUZ' }, { position: [104,1], label: 'SINGAPORE' },
-  { position: [32.5,30], label: 'SUEZ' }, { position: [4,52], label: 'ROTTERDAM' },
-]
+
 
 interface Props { study: TrackStudy; land: LandCollection; time: number; region: Region; visible: Set<VesselClass>; selected: string | null; onSelect: (id: string | null) => void }
 
@@ -80,11 +77,6 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
       context.font = '11px monospace'; context.fillStyle = '#4b6571'; context.textAlign = 'center'
       for (const [label, point] of oceanLabels) for (const shift of [-360,0,360]) { const [x,y] = project([point[0] + shift, point[1]]); context.fillText(label, x, y) }
     }
-    for (const port of ports) for (const shift of [-360, 0, 360]) {
-      const [x,y] = project([port.position[0] + shift, port.position[1]])
-      context.fillStyle = '#71898c'; context.fillRect(x - 2, y - 2, 4, 4)
-      if (camera.zoom > 2) { context.font = '11px monospace'; context.textAlign = 'left'; context.fillText(port.label, x + 8, y - 8) }
-    }
     backdrop.current = buffer
   // The projection is determined entirely by these camera and size values.
   }, [land, camera, size])
@@ -136,6 +128,7 @@ export function OceanScene({ study, land, time, region, visible, selected, onSel
   return <div className="ocean-scene">
     <canvas ref={canvasRef} aria-label="World map with synthetic cargo and tanker movement. Use the region controls and vessel selector to explore with a keyboard." role="img"
       />
+    <PortLabels camera={camera} size={size} />
     <div className="map-tools" aria-label="Map controls">
       <button aria-label="Zoom in" data-tooltip="See the vessels more closely" disabled={camera.zoom >= 10} onClick={() => setCamera(current => ({ ...current, zoom: Math.min(10, current.zoom * 1.4) }))}>+</button>
       <button aria-label="Zoom out" data-tooltip="See more of the ocean" disabled={camera.zoom <= 1} onClick={() => setCamera(current => ({ ...current, zoom: Math.max(1, current.zoom / 1.4) }))}>−</button>

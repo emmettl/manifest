@@ -1,4 +1,19 @@
 import { expect, test } from '@playwright/test'
+import catalogue from '../public/data/ports.json' with { type: 'json' }
+
+test('ports are labelled in the opening view and remain legible when zooming', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 })
+  await page.goto('/')
+  for (const port of catalogue) await expect(page.locator(`[data-port-id="${port.id}"] text`)).toHaveText(port.name.toUpperCase())
+  const boxes = await page.locator('[data-port-id] rect').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().toJSON()))
+  for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+    const a = boxes[i], b = boxes[j]
+    expect(a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top).toBe(false)
+  }
+  await page.getByRole('button', { name: '01China', exact: true }).click()
+  await expect(page.locator('[data-port-id="shanghai"] text')).toBeVisible()
+  await expect(page.locator('[data-port-id="yantian"] text')).toBeVisible()
+})
 
 for (const viewport of [{ width: 1366, height: 768 }, { width: 1920, height: 1080 }, { width: 2560, height: 1440 }, { width: 3840, height: 2160 }, { width: 1920, height: 1600 }]) {
   test(`world opening uses the screen at ${viewport.width}×${viewport.height}`, async ({ page }) => {

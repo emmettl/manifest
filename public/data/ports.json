@@ -1,0 +1,83 @@
+[
+  {
+    "id": "shanghai",
+    "name": "Shanghai",
+    "position": [
+      121.48722,
+      31.221944
+    ],
+    "naturalEarthId": 1730089389
+  },
+  {
+    "id": "rotterdam",
+    "name": "Rotterdam",
+    "position": [
+      4.292874,
+      51.927222
+    ],
+    "naturalEarthId": 1730089247
+  },
+  {
+    "id": "yantian",
+    "name": "Yantian",
+    "position": [
+      114.26702,
+      22.574167
+    ],
+    "naturalEarthId": 1730087339
+  },
+  {
+    "id": "palermo",
+    "name": "Palermo",
+    "position": [
+      13.369847,
+      38.130833
+    ],
+    "naturalEarthId": 1730089601
+  },
+  {
+    "id": "jubail",
+    "name": "Jubail",
+    "position": [
+      49.670907,
+      27.028611
+    ],
+    "naturalEarthId": 1730087689
+  },
+  {
+    "id": "los-angeles",
+    "name": "Los Angeles",
+    "position": [
+      -118.259717,
+      33.731944
+    ],
+    "naturalEarthId": 1730089645
+  },
+  {
+    "id": "singapore",
+    "name": "Singapore",
+    "position": [
+      103.722144,
+      1.292778
+    ],
+    "naturalEarthId": 1730089479
+  },
+  {
+    "id": "new-york",
+    "name": "New York",
+    "position": [
+      -74.024264,
+      40.688333
+    ],
+    "naturalEarthId": 1730089663
+  },
+  {
+    "id": "long-beach",
+    "name": "Long Beach",
+    "position": [
+      -118.200707,
+      33.748889
+    ],
+    "naturalEarthId": 1730089493
+  }
+]

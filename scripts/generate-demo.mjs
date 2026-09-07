@@ -1,4 +1,5 @@
 import { writeFileSync } from 'node:fs'
+import ports from '../public/data/ports.json' with { type: 'json' }
 
 // Authored schematic sea passages. These are synthetic fixtures, never AIS observations.
 const routes = [
@@ -10,6 +11,12 @@ const routes = [
   [[104,1],[105,-3],[104,-7],[97,-15],[80,-25],[60,-31],[40,-36],[23,-36],[16,-33],[7,-20],[-3,-2],[-16,15],[-20,30],[-12,43],[-5,49],[2,51],[4,52]],
   [[4,52],[2,51],[-5,49],[-14,47],[-25,44],[-40,41],[-55,39],[-68,38],[-74,40]],
 ]
+// Explicit endpoint identities, including for reversed voyages.
+const endpoints = [
+  ['shanghai', 'rotterdam'], ['yantian', 'palermo'], ['jubail', 'shanghai'],
+  ['jubail', 'palermo'], ['shanghai', 'los-angeles'], ['singapore', 'rotterdam'], ['rotterdam', 'new-york'],
+]
+const portById = new Map(ports.map(port => [port.id, port]))
 const DAY = 86400
 const wrap = n => ((n + 180) % 360 + 360) % 360 - 180
 let seed = 9173
@@ -17,8 +24,9 @@ const random = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; ret
 const vessels = [], segments = []
 for (let i = 0; i < 420; i++) {
   const routeIndex = i % routes.length
-  const route = [...routes[routeIndex]]
-  if (i % 3 === 0) route.reverse()
+  let [originPortId, destinationPortId] = endpoints[routeIndex]
+  const route = [portById.get(originPortId).position, ...routes[routeIndex].slice(1, -1), portById.get(destinationPortId).position]
+  if (i % 3 === 0) { route.reverse(); [originPortId, destinationPortId] = [destinationPortId, originPortId] }
   const id = `demo-${String(i + 1).padStart(3, '0')}`
   const category = routeIndex === 2 || routeIndex === 3 ? 'tanker' : 'cargo'
   const duration = (12 + random() * 18) * DAY
@@ -29,15 +37,15 @@ for (let i = 0; i < 420; i++) {
   const offset = (random() - .5) * .15
   const samples = route.map((point, index) => {
     travelled += lengths[index]
-    return { time: Math.round(start + duration * travelled / total), position: [Number(wrap(point[0] + offset).toFixed(4)), Number((point[1] + offset).toFixed(4))] }
+    return { time: Math.round(start + duration * travelled / total), position: index === 0 || index === route.length - 1 ? [...point] : [Number(wrap(point[0] + offset).toFixed(4)), Number((point[1] + offset).toFixed(4))] }
   })
   vessels.push({ id, label: `${category === 'tanker' ? 'Tanker' : 'Cargo'} ${String(i + 1).padStart(3, '0')}`, category, evidence: 'synthetic' })
-  segments.push({ id: `${id}-segment-1`, vesselId: id, samples })
+  segments.push({ id: `${id}-segment-1`, vesselId: id, originPortId, destinationPortId, samples })
 }
 const study = {
-  schemaVersion: 1, kind: 'tracks', id: 'manifest-synthetic-v1', title: 'MANIFEST development fixture',
+  schemaVersion: 1, kind: 'tracks', id: 'manifest-synthetic-v2', title: 'MANIFEST development fixture',
   startUtc: '2026-01-01T00:00:00Z', duration: 30 * DAY,
-  source: { id: 'authored-demo-v1', label: 'Deterministic synthetic fixture', evidence: 'synthetic', license: 'CC0-1.0', publication: 'synthetic-only' },
+  source: { id: 'authored-demo-v2', label: 'Deterministic synthetic fixture', evidence: 'synthetic', license: 'CC0-1.0', publication: 'synthetic-only' },
   vessels, segments,
 }
 writeFileSync(new URL('../public/data/demo-study.json', import.meta.url), JSON.stringify(study) + '\n')

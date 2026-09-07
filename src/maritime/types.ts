@@ -3,7 +3,7 @@ export type Position = readonly [number, number]
 export type VesselClass = 'cargo' | 'tanker' | 'other'
 export type Evidence = 'synthetic' | 'observed'
 export interface Sample { time: number; position: Position }
-export interface TrackSegment { id: string; vesselId: string; samples: Sample[] }
+export interface TrackSegment { id: string; vesselId: string; originPortId?: string; destinationPortId?: string; samples: Sample[] }
 export interface Vessel { id: string; label: string; category: VesselClass; evidence: Evidence }
 export interface StudySource {
   id: string
