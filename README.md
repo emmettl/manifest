@@ -61,3 +61,5 @@ The regional observation sample and initial measured gap policy are available lo
 Code: MIT. Generated fixture: CC0. Geography: public domain, [Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/); pinned source and hashes are in [data provenance](docs/DATA-SOURCES.json). Fonts currently load from Google Fonts with local system fallbacks.
 
 Port selection, aggregate-port mappings and geographic sources are documented in [PORTS.md](docs/PORTS.md).
+
+Shared dependencies pin the published `0.1.0-alpha.5` release, including the reusable split-flap airport board. This edition retains its existing data scope; no airport movements are fabricated.
