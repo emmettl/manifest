@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "MANIFEST — World trade in motion. An independent Motion Studies investigation.",
+  "description": "MANIFEST \u2014 World trade in motion. An independent Motion Studies investigation.",
   "engines": {
     "node": ">=24.0.0"
   },
@@ -23,18 +23,18 @@
     "benchmark": "playwright test e2e/performance.pw.ts --project=public --workers=1"
   },
   "dependencies": {
-    "@motionstudies/web": "0.1.0-alpha.5",
+    "@motionstudies/web": "0.1.0-alpha.7",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@playwright/test": "1.62.1",
-    "@types/node": "22.20.1",
+    "@playwright/test": "1.63.0",
+    "@types/node": "22.20.2",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.7",
     "@vitejs/plugin-react": "6.1.1",
     "typescript": "7.0.2",
-    "vite": "8.2.2",
+    "vite": "8.3.0",
     "vitest": "5.0.0"
   },
   "packageManager": "npm@11.19.0"
