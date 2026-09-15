@@ -23,7 +23,7 @@
     "benchmark": "playwright test e2e/performance.pw.ts --project=public --workers=1"
   },
   "dependencies": {
-    "@motionstudies/web": "0.1.0-alpha.16",
+    "@motionstudies/web": "0.1.0-alpha.17",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
