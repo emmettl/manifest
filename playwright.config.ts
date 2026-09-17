@@ -18,8 +18,8 @@ export default defineConfig({
   workers: 2,
   use: { baseURL: `http://127.0.0.1:${port}`, browserName: 'chromium', launchOptions: { args: process.platform === 'darwin' && !process.env.CI ? ['--use-angle=metal'] : [] }, contextOptions: { reducedMotion: 'reduce' }, screenshot: 'only-on-failure', trace: 'retain-on-failure' },
   projects: [
-    { name: 'public', testIgnore: '**/noaa-review.pw.ts' },
-    { name: 'local-review', testMatch: '**/noaa-review.pw.ts', use: { baseURL: `http://127.0.0.1:${reviewPort}` } },
+    { name: 'public', testIgnore: ['**/noaa-review.pw.ts', '**/portwatch.pw.ts'] },
+    { name: 'local-review', testMatch: ['**/noaa-review.pw.ts', '**/portwatch.pw.ts'], use: { baseURL: `http://127.0.0.1:${reviewPort}` } },
   ],
   webServer: [
     { command: `npm run preview -- --port ${port} --strictPort`, url: `http://127.0.0.1:${port}`, reuseExistingServer: !process.env.CI },

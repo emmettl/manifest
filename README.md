@@ -1,5 +1,7 @@
 # MANIFEST
 
+**Active direction — 18 September 2026:** a local [PortWatch study](docs/PORTWATCH.md) now follows 152 days of real daily activity at eight ports and eight maritime passages. Run `npm run data:portwatch`, then open `/?study=portwatch` on the development server. The production site remains the synthetic prototype until the new composition is selected for publication.
+
 **World trade in motion.** An independent, unnumbered Motion Studies investigation.
 
 [Open the prototype](https://emmettl.github.io/manifest/) · [Study](docs/STUDY.md) · [Architecture](docs/ARCHITECTURE.md) · [Next steps](docs/ROADMAP.md)

@@ -16,6 +16,7 @@ export function localNoaaPlugin() {
       const artifacts = new Map([
         ['/__local/noaa-la-2025.json', resolve(server.config.root, 'data/compiled/noaa-la-2025.json')],
         ['/__local/noaa-la-land.geojson', resolve(server.config.root, 'data/compiled/noaa-la-land.geojson')],
+        ['/__local/portwatch-study.json', resolve(server.config.root, 'data/compiled/portwatch-study.json')],
       ])
       server.middlewares.use(async (request, response, next) => {
         let pathname
@@ -36,7 +37,7 @@ export function localNoaaPlugin() {
           response.writeHead(403); response.end('Local review only.'); return
         }
         if (!['GET', 'HEAD'].includes(request.method)) { response.writeHead(405); response.end(); return }
-        try { await stat(artifact) } catch { response.writeHead(404); response.end('Run node scripts/noaa-sample.mjs to prepare the local sample.'); return }
+        try { await stat(artifact) } catch { response.writeHead(404); response.end('Prepare the requested local sample with its data script.'); return }
         response.setHeader('Content-Type', 'application/json')
         response.setHeader('Cache-Control', 'no-store')
         response.setHeader('Vary', 'Accept-Encoding')
