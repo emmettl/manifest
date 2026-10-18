@@ -32,6 +32,8 @@ React, TypeScript and Vite. MANIFEST consumes the published `@motionstudies/web`
 
 ## Publication
 
+The public synthetic preview is served at [motionstudies.app/manifest](https://motionstudies.app/manifest/), with [GitHub Pages](https://emmettl.github.io/manifest/) retained as a mirror. A separate Cloudflare workflow publishes the exact artifact from a successful main Pages workflow; failed checks do not publish. See [series hosting](https://github.com/emmettl/motionstudies/blob/main/docs/HOSTING.md) for the shared publication and rollback contract.
+
 Every push to `main` runs the checks and deploys their exact `dist` artifact to GitHub Pages. Pull requests run the same checks without deployment. Six browser regressions check the built site’s desktop framing and canvas sizing before deployment. `Deploy Pages` can also be run manually. The repository’s Pages source must be **GitHub Actions**. No provider keys or deployment secrets are required; deployment uses the workflow’s Pages and OIDC permissions.
 
 Relative Vite asset paths support the `/manifest/` project URL. Public movement data contains only the synthetic study, alongside pinned Natural Earth land and port geography. Raw provider data and local compilations belong in ignored `data/raw/` and `data/compiled/` directories.
