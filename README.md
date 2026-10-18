@@ -12,7 +12,7 @@ The prototype remains **unlinked from the Motion Studies catalogue** until it pr
 
 ## Development
 
-Node 24 LTS (`nvm use`) and npm 11.19.0:
+Node 24 LTS (`nvm use`) and npm 11.21.1:
 
 ```sh
 npm ci
@@ -64,4 +64,4 @@ Code: MIT. Generated fixture: CC0. Geography: public domain, [Natural Earth](htt
 
 Port selection, aggregate-port mappings and geographic sources are documented in [PORTS.md](docs/PORTS.md).
 
-Shared dependencies pin the published `0.1.0-alpha.5` release, including the reusable split-flap airport board. This edition retains its existing data scope; no airport movements are fabricated.
+Shared dependencies pin the published `0.1.0-alpha.31` release; adoption does not change this edition’s data scope.
