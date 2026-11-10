@@ -13,8 +13,9 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
-      - run: npm install --global npm@11.21.1 --ignore-scripts
+      - run: npm install --global npm@12.2.2 --ignore-scripts
       - run: npm ci
+      - run: npm run check:stack
       - run: npm run check
       - run: npx playwright install --with-deps chromium
       - name: E2E tests
