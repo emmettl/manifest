@@ -12,7 +12,7 @@ The prototype remains **unlinked from the Motion Studies catalogue** until it pr
 
 ## Development
 
-Node 24 LTS (`nvm use`) and npm 12.2.2:
+Node 26 (`nvm use`) and npm 12.2.2:
 
 ```sh
 npm ci
