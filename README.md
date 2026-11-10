@@ -12,7 +12,7 @@ The prototype remains **unlinked from the Motion Studies catalogue** until it pr
 
 ## Development
 
-Node 24 LTS (`nvm use`) and npm 11.21.1:
+Node 24 LTS (`nvm use`) and npm 12.2.2:
 
 ```sh
 npm ci
@@ -67,3 +67,5 @@ Code: MIT. Generated fixture: CC0. Geography: public domain, [Natural Earth](htt
 Port selection, aggregate-port mappings and geographic sources are documented in [PORTS.md](docs/PORTS.md).
 
 Shared dependencies pin the published `0.1.0-alpha.31` release; adoption does not change this edition’s data scope.
+
+Development targets Node 26 and npm 12.2.2. Shared Motion Studies packages are pinned to 1.0.0; `npm run check:stack` validates the adopted baseline through `@motionstudies/tooling`. Edition-specific data, boundary and publication checks remain local.
